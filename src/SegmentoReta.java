@@ -136,7 +136,7 @@ public class SegmentoReta {
         }
 
         //Neste caso, os segmentos de reta são paralelos
-        if (denominador < Ponto.eps)
+        if (Math.abs(denominador) < Ponto.eps)
             return null;
 
         double u = numerador / denominador;
