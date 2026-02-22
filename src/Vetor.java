@@ -20,7 +20,7 @@ public class Vetor {
      * @param y Componente y do vetor.
      */
     public Vetor(double x, double y) {
-        if (x == 0 && y == 0) {
+        if (Math.abs(x) < Ponto.eps && Math.abs(y) < Ponto.eps) {
             System.out.println("Vetor:iv");
             System.exit(0);
         }
