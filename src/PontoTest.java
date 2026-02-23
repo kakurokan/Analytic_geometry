@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class PontoTest {
 
@@ -20,11 +20,15 @@ class PontoTest {
     @Test
     void distanciaDaOrigem() {
         assertEquals(3.605551275, new Ponto(2, 3).distanciaDaOrigem(), Ponto.eps);
+        assertEquals(5.0, new Ponto(-3, -4).distanciaDaOrigem(), Ponto.eps);
     }
 
     @Test
     void testEquals() {
-        assertTrue(new Ponto(2, 3).equals(new Ponto(2, 3)));
+        Ponto p1 = new Ponto(2, 3);
+        assertEquals(new Ponto(2, 3), p1);           // Igualdade
+        assertNotEquals(new Ponto(2.0000001, 3), p1);  // Diferença acima do eps
+        assertNotEquals(null, p1);                     // Caso nulo
     }
 
     @Test
@@ -34,7 +38,9 @@ class PontoTest {
 
     @Test
     void subtracao() {
-        assertEquals(new Ponto(1, 3), new Ponto(3, 8).subtracao(new Ponto(2, 5)));
+        Ponto resultado = new Ponto(5.5, 10).subtracao(new Ponto(2, 3));
+        assertEquals(3.5, resultado.getX(), Ponto.eps);
+        assertEquals(7.0, resultado.getY(), Ponto.eps);
     }
 
     @Test
