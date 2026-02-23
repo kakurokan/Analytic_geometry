@@ -141,4 +141,9 @@ public class Vetor {
     public Vetor sub(Vetor v) {
         return new Vetor(this.x - v.getX(), this.y - v.getY());
     }
+
+    @Override
+    public String toString() {
+        return "[" + String.format("%.2f", this.x) + ',' + String.format("%.2f", this.y) + ']';
+    }
 }
