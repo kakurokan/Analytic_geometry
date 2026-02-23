@@ -108,4 +108,37 @@ public class Vetor {
     public Ponto intersect(SegmentoReta v) {
         return v.intersect(this);
     }
+
+    /**
+     * Multiplica as componentes do vetor atual por um escalar fornecido.
+     *
+     * @param d O escalar pelo qual as componentes do vetor serão multiplicadas.
+     * @return Um novo vetor cujas componentes são o resultado da multiplicação do vetor atual pelo escalar.
+     */
+    public Vetor mult(double d) {
+        return new Vetor(this.x * d, this.y * d);
+    }
+
+    /**
+     * Soma o vetor atual com outro vetor fornecido.
+     * A soma é realizada componente a componente, resultando em um novo vetor.
+     *
+     * @param v O vetor a ser somado ao vetor atual.
+     * @return Um novo vetor que é o resultado da soma dos dois vetores.
+     */
+    public Vetor add(Vetor v) {
+        return new Vetor(v.getX() + this.x, v.getY() + this.y);
+    }
+
+    /**
+     * Subtrai o vetor atual por outro vetor fornecido. A subtração é realizada
+     * componente a componente, resultando em um novo vetor.
+     *
+     * @param v O vetor a ser subtraído do vetor atual.
+     * @return Um novo vetor que é o resultado da subtração do vetor fornecido
+     * do vetor atual.
+     */
+    public Vetor sub(Vetor v) {
+        return new Vetor(this.x - v.getX(), this.y - v.getY());
+    }
 }
