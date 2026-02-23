@@ -41,6 +41,17 @@ public class Vetor {
     }
 
     /**
+     * Constrói um vetor 2D no sistema de coordenadas cartesianas utilizando dois pontos fornecidos.
+     * O vetor construído representa a diferença entre o ponto final e o ponto inicial especificados.
+     *
+     * @param a O ponto inicial utilizado para calcular o vetor.
+     * @param b O ponto final utilizado para calcular o vetor.
+     */
+    public Vetor(Ponto a, Ponto b) {
+        this(b.getX() - a.getX(), b.getY() - a.getY());
+    }
+
+    /**
      * Retorna a coordenada x do vetor no sistema de coordenadas cartesianas.
      *
      * @return o valor da coordenada x.
