@@ -46,5 +46,6 @@ class PontoTest {
     @Test
     void testToString() {
         assertEquals("(3.00,4.00)", new Ponto(3, 4).toString());
+        assertEquals("(-2.40,7.51)", new Ponto(-2.4, 7.512).toString());
     }
 }
