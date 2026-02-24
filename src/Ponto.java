@@ -80,6 +80,13 @@ public class Ponto {
         return this.x * p.getY() - this.y * p.getX();
     }
 
+    /**
+     * Subtrai as coordenadas do ponto fornecido das coordenadas do ponto atual,
+     * resultando em um novo ponto representando a diferença vetorial entre eles.
+     *
+     * @param p O ponto cujas coordenadas serão subtraídas do ponto atual.
+     * @return Um novo objeto Ponto representando a subtração das coordenadas dos dois pontos.
+     */
     public Ponto subtracao(Ponto p) {
         return new Ponto(this.x - p.getX(), this.y - p.getY());
     }
