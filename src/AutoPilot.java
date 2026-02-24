@@ -1,6 +1,7 @@
 /**
  * @author Léo Souza
  * @version 24/02/26
+ * @inv o vetor r não pode ser nulo
  * A classe AutoPilot representa um sistema de navegação automatizado que calcula
  * a velocidade ajustada e o tempo necessário para percorrer uma rota entre dois pontos,
  * levando em consideração fatores como velocidade do vento.
