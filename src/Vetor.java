@@ -155,6 +155,6 @@ public class Vetor {
 
     @Override
     public String toString() {
-        return "[" + String.format("%.2f", this.x) + ',' + String.format("%.2f", this.y) + ']';
+        return String.format("[%.2f,%.2f]", this.x, this.y);
     }
 }

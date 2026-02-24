@@ -93,6 +93,6 @@ public class Ponto {
      */
     @Override
     public String toString() {
-        return "(" + String.format("%.2f", x) + "," + String.format("%.2f", y) + ")";
+        return String.format("(%.2f,%.2f)", this.x, this.y);
     }
 }
