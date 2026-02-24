@@ -153,6 +153,13 @@ public class Vetor {
         return new Vetor(this.x - v.getX(), this.y - v.getY());
     }
 
+    /**
+     * Retorna uma representação em formato textual do vetor no sistema de coordenadas cartesianas.
+     * A representação segue o formato "[x, y]", onde x e y são as componentes do vetor
+     * arredondadas para duas casas decimais.
+     *
+     * @return uma string representando o vetor no formato "[x, y]".
+     */
     @Override
     public String toString() {
         return String.format("[%.2f,%.2f]", this.x, this.y);

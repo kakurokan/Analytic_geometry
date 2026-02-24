@@ -11,8 +11,8 @@ class AutoPilotTest {
         double time = 5;
         Vetor expected = new Vetor(-0.2, 0.2);
         Vetor result = ap.speed(speed, time);
-        assertEquals(expected.getX(), result.getX());
-        assertEquals(expected.getY(), result.getY());
+        assertEquals(expected.getX(), result.getX(), Ponto.eps);
+        assertEquals(expected.getY(), result.getY(), Ponto.eps);
     }
 
     @Test
