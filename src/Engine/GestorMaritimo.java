@@ -13,13 +13,17 @@ import java.util.List;
  * - Inicializar o ambiente marítimo com rotas e obstáculos.
  * - Monitorar e atualizar posições dos navios, garantindo navegação livre de colisões.
  * - Calcular e atribuir rotas otimizadas para navios usando uma estratégia de roteamento específica.
- * - Gerir transições de estado dos navios com base em seu status atual, colisões
+ * - Gerir transições de estado dos navios com base no seu status atual, colisões
  * ou disponibilidade de rota.
  * - Gerir o ciclo de vida dos navios, incluindo adicioná-los e removê-los do controle ativo
  * após partida ou chegada.
  * <p>
  * A classe utiliza uma representação baseada em grafos do ambiente marítimo
  * e integra uma estratégia de roteamento (por exemplo, Dijkstra) para calcular caminhos.
+ *
+ * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
+ * @version 11/05/26
+ * @inv a lista de navios não pode ser nula
  */
 public class GestorMaritimo implements TorreDeControlo {
     private final List<Navio> navios;
@@ -30,7 +34,7 @@ public class GestorMaritimo implements TorreDeControlo {
      * Construtor padrão da classe GestorMaritimo.
      * <p>
      * Este construtor inicializa uma lista vazia de navios.
-     * A lista será utilizada para gerenciar e rastrear todos os navios
+     * A lista será utilizada para gerir e rastrear todos os navios
      * sob o controle deste gestor marítimo.
      */
     public GestorMaritimo() {

@@ -7,6 +7,9 @@ import java.util.List;
  * de navios num espaço marítimo. Ela define métodos para atualizar rotas, monitorar
  * posições, liberar navios de portos, registrar o término de percursos, inicializar o sistema
  * e consultar a lista de navios gerenciados.
+ *
+ * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
+ * @version 11/05/26
  */
 public interface TorreDeControlo {
     /**

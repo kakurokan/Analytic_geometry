@@ -7,6 +7,12 @@ import java.util.Map;
  * Representa um snapshot (foto) do estado atual da simulação de navegação.
  * Contém informações sobre navios em espera em diferentes portos, dados detalhados
  * dos navios, e o tempo de simulação em que o estado foi registrado.
+ *
+ * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
+ * @version 11/05/26
+ * @inv naviosEmEsperaPorPorto != null
+ * @inv dadosNavios != null
+ * @inv tempoSimulacao >= 0
  */
 public class SnapshotSimulacao {
 
@@ -67,6 +73,10 @@ public class SnapshotSimulacao {
     /**
      * Representa um navio em espera associado a um determinado porto no contexto de uma simulação.
      * Um navio em espera possui informações sobre o horário de saída, destino e velocidade linear.
+     *
+     * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
+     * @version 11/05/26
+     * @inv destino != null, !destino.isEmpty(), velocidadeLinear > 0, horarioSaida >= 0
      */
     public static class NavioEmEspera {
         private final int horarioSaida;
@@ -103,6 +113,10 @@ public class SnapshotSimulacao {
      * Esta classe é utilizada para representar informações sobre a posição, direção,
      * estado de colisão e o raio de ação do navio, permitindo o acompanhamento
      * do estado do mesmo num determinado momento da simulação.
+     *
+     * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
+     * @version 11/05/26
+     * @inv posicao != null, direcao != null, raioArea > 0
      */
     public static class DadosNavio {
         private final Ponto posicao;
@@ -111,7 +125,7 @@ public class SnapshotSimulacao {
         private final double raioArea;
 
         /**
-         * Constrói um objeto que encapsula os dados de um navio em uma simulação.
+         * Constrói um objeto que encapsula os dados de um navio numa simulação.
          *
          * @param posicao   A posição atual do navio representada por um objeto da classe Ponto.
          * @param direcao   O vetor de direção do navio representado por um objeto da classe Vetor.

@@ -10,6 +10,9 @@ package Engine;
  * <p>
  * Responsabilidades desta classe incluem a interação com o objeto Navio e a invocação
  * da sua ação de movimento, que calcula a próxima posição baseada nos parâmetros fornecidos.
+ *
+ * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
+ * @version 11/05/26
  */
 public class NavioNavegando implements EstadoNavio {
     /**

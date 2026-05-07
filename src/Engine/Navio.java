@@ -8,6 +8,18 @@ import java.util.List;
  * objetos móveis e atualizar o seu estado com base numa rota, velocidade e tempo.
  * Ele também é monitorado por uma torre de controle marítimo e mantém o seu estado
  * de colisão e deslocamento.
+ *
+ * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
+ * @version 11/05/26
+ * @inv area != null && area.getRaio() == 1.0
+ * @inv codigoViagem != null && !codigoViagem.isEmpty()
+ * @inv destino != null
+ * @inv navegante != null
+ * @inv torre != null
+ * @inv estado != null
+ * @inv velocidadeLinear > 0
+ * @inv horarioPartida >= 0
+ * @inv tempoNavegando >= 0
  */
 public class Navio implements Comparable<Navio>, Movel {
     private final String codigoViagem;

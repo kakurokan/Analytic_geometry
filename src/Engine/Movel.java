@@ -1,9 +1,12 @@
 package Engine;
 
 /**
- * Interface que representa um objeto móvel em um espaço bidimensional, capaz de
- * executar várias operações como verificar interseções, atualizar seu
+ * Interface que representa um objeto móvel num espaço bidimensional, capaz de
+ * executar várias operações como verificar interseções, atualizar o seu
  * estado e mover-se com base em parâmetros fornecidos.
+ *
+ * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
+ * @version 11/05/26
  */
 public interface Movel {
     /**

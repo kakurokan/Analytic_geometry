@@ -11,6 +11,9 @@ package Engine;
  *
  * <p>A implementação deste estado segue o padrão State, permitindo que o comportamento de
  * atualização do navio seja completamente definido por este estado específico.</p>
+ *
+ * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
+ * @version 11/05/26
  */
 public class NavioAguardando implements EstadoNavio {
     /**

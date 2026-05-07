@@ -17,6 +17,10 @@ import java.util.Map;
  * <p>
  * Coordena interações entre o modelo de simulação, os elementos da interface do utilizador
  * e os componentes relacionados da aplicação.
+ *
+ * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
+ * @version 11/05/26
+ * @inv simulador != null
  */
 public class JanelaPrincipal extends JFrame {
     private final Timer timer;

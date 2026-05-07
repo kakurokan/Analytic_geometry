@@ -7,6 +7,9 @@ import java.util.List;
  * Implementações dessa interface devem fornecer a lógica necessária para encontrar um caminho
  * viável entre os pontos de origem e destino, levando em consideração as restrições impostas
  * por elementos como obstáculos ou tráfego de navios.
+ *
+ * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
+ * @version 11/05/26
  */
 public interface EstrategiaRota {
     /**

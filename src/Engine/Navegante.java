@@ -55,21 +55,21 @@ public class Navegante {
      * requerido para atravessá-lo e, com base nesses parâmetros, determina-se a velocidade
      * resultante para o segmento.
      *
-     * @param windSpeed   Um objeto {@code Engine.Vetor} representando a velocidade do vento.
-     *                    Não pode ser {@code null}.
-     * @param linearSpeed A velocidade linear constante utilizada para o cálculo.
-     *                    Deve ser um valor positivo maior que zero.
+     * @param velocidadeCorrente Um objeto {@code Engine.Vetor} representando a velocidade do vento.
+     *                           Não pode ser {@code null}.
+     * @param velocidadeLinear   A velocidade linear constante utilizada para o cálculo.
+     *                           Deve ser um valor positivo maior que zero.
      * @return Uma lista de objetos {@code Engine.Vetor} representando a velocidade em cada
      * segmento da rota, considerando os efeitos da velocidade do vento.
      * A lista estará vazia se não houver segmentos na rota.
-     * @pre linearSpeed > 0
+     * @pre velocidadeLinear > 0
      */
-    public List<Vetor> velocidadePorSegmento(Vetor windSpeed, double linearSpeed) {
+    public List<Vetor> velocidadePorSegmento(Vetor velocidadeCorrente, double velocidadeLinear) {
         List<Vetor> velocidades = new ArrayList<>();
         for (SegmentoReta seg : segmentos) {
             AutoPilot ap = new AutoPilot(seg.getA(), seg.getB());
-            double time = ap.time(linearSpeed);
-            velocidades.add(ap.speed(windSpeed, time));
+            double time = ap.time(velocidadeLinear);
+            velocidades.add(ap.speed(velocidadeCorrente, time));
         }
         return velocidades;
     }

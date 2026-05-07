@@ -15,6 +15,10 @@ import java.util.List;
  * <p>
  * Esta classe estende {@code AbstractAction}, permitindo que seja usada
  * como uma ação num componente GUI.
+ *
+ * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
+ * @version 11/05/26
+ * @inv simulador != null, painel != null e rotinaDeTrafego != null
  */
 public class AcaoReiniciarSimulacao extends AbstractAction {
     private final Simulador simulador;
@@ -28,7 +32,7 @@ public class AcaoReiniciarSimulacao extends AbstractAction {
      *
      * @param simulador       o objeto {@code Simulador} responsável pela lógica principal da simulação.
      * @param painel          o objeto {@code PainelMapa} responsável por exibir o estado atual da simulação.
-     * @param rotinaDeTrafego uma rotina {@code Runnable} que é executada para gerenciar o fluxo de tráfego
+     * @param rotinaDeTrafego uma rotina {@code Runnable} que é executada para gerir o fluxo de tráfego
      *                        após a reinicialização da simulação.
      */
     public AcaoReiniciarSimulacao(Simulador simulador, PainelMapa painel, Runnable rotinaDeTrafego) {

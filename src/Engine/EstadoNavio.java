@@ -11,6 +11,9 @@ package Engine;
  * <p>Cada estado determina como o navio interage com o seu ambiente, incluindo a verificação
  * de colisões, solicitação de atualizações de posição à torre de controle e a transição
  * para outros estados.</p>
+ *
+ * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
+ * @version 11/05/26
  */
 public interface EstadoNavio {
     /**

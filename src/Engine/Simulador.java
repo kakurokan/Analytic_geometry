@@ -6,6 +6,10 @@ import java.util.*;
  * A classe Simulador representa um sistema de simulação para navegação marítima que gere
  * rotas, portos, obstáculos, navios e uma torre de controlo para coordenação. Permite a
  * simulação de movimentos de navios, eventos meteorológicos e outras operações marítimas ao longo do tempo.
+ *
+ * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
+ * @version 11/05/26
+ * @inv corrente != null, rotas != null, portos != null, obstaculos != null, torreDeControlo != null, tempoAcumulado >= 0
  */
 public class Simulador {
     private static final double MAX_RAIO_TEMPESTADE = 1.0;

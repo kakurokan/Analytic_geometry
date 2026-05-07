@@ -9,6 +9,10 @@ import java.util.*;
  * Esta classe mantém uma fila de navios à espera de partir, ordenados por hora de partida.
  * Cada porto tem um nome, uma localização (posição), uma torre de controlo associada e uma
  * área operacional para navios.
+ *
+ * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
+ * @version 11/05/26
+ * @inv nome != null, !nome.isEmpty(), posicao != null, torre != null e naviosEmEspera != null
  */
 public class Porto {
     private static final double RAIO_AREA_NAVIO = 1;
@@ -48,7 +52,7 @@ public class Porto {
     }
 
     /**
-     * Cria uma nova instância de Navio associada ao porto atual.
+     * Cria uma instância de Navio associada ao porto atual.
      *
      * @param velocidadeLinear A velocidade linear do navio.
      * @param horarioPartida   O horário previsto de partida do navio.
@@ -113,7 +117,7 @@ public class Porto {
 
     /**
      * Retorna um iterador que percorre os navios prontos para partir com base no tempo atual.
-     * Um navio é considerado pronto para partir se sua hora atual for maior ou igual ao tempo
+     * Um navio é considerado pronto para partir se a sua hora atual for maior ou igual ao tempo
      * especificado no parâmetro.
      *
      * @param tempoAtual O tempo atual utilizado para verificar se os navios estão prontos para partir.

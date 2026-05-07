@@ -98,7 +98,7 @@ public class Cliente {
             porto2.adicionarNavio(2.5, 2, porto1);
             porto6.adicionarNavio(1.2, 3, porto2); // Cargueiro muito lento
             porto7.adicionarNavio(2.2, 4, porto5);
-            porto1.adicionarNavio(1.5, 5, porto3);
+            porto1.adicionarNavio(2.5, 5, porto3);
 
             // Arranques a Médio Prazo (Tempo 8 a 15)
             porto2.adicionarNavio(2.8, 8, porto3);

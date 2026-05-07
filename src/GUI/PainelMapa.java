@@ -16,8 +16,8 @@ import java.util.Map;
  * Essa classe estende a {@code JPanel} e é responsável por criar uma interface gráfica
  * para visualização de dados de simulação marítima.
  *
- * @author Léo Souza
- * @version 07/05/2026
+ * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
+ * @version 11/05/26
  * @inv rotas != null && obstaculos != null && posicoesPortos != null
  * @inv escala > 0
  */

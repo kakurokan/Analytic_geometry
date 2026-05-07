@@ -4,16 +4,19 @@ import java.util.*;
 
 /**
  * Representa um grafo direcionado ou não direcionado que utiliza {@code Ponto} como os vértices
- * e armazena as conexões entre eles em forma de arestas. O grafo é construído com base em
- * uma lista de rotas e uma lista de obstáculos, garantindo que as conexões entre os pontos
+ * e armazena as conexões entre eles em forma de arestas. O grafo é construído com base numa lista de rotas e uma lista de obstáculos, garantindo que as conexões entre os pontos
  * não intersectem obstáculos fornecidos.
+ *
+ * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
+ * @version 11/05/26
+ * @inv a lista de rotas não pode ser vazia
  */
 public class Grafo {
     static Comparator<Ponto> comparador;
     private final Map<Ponto, Set<Ponto>> grafo;
 
     /**
-     * Construtor da classe {@code Grafo}, que cria um grafo com base em uma lista de rotas e uma lista
+     * Construtor da classe {@code Grafo}, que cria um grafo com base numa lista de rotas e uma lista
      * de obstáculos. O grafo é construído utilizando os segmentos das rotas fornecidas, desde que
      * esses segmentos não intersectem nenhum obstáculo na lista de obstáculos fornecida.
      *

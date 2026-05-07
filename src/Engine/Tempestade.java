@@ -3,10 +3,14 @@ package Engine;
 import java.util.List;
 
 /**
- * Representa uma tempestade como um obstáculo em um espaço cartesiano.
- * A tempestade é modelada através de um círculo que define sua área de impacto.
+ * Representa uma tempestade como um obstáculo num espaço cartesiano.
+ * A tempestade é modelada por um círculo que define a sua área de impacto.
  * Esta classe implementa a interface {@code Obstaculo}, permitindo que as interseções
  * de rotas com a área da tempestade sejam calculadas.
+ *
+ * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
+ * @version 11/05/26
+ * @inv area != null
  */
 public class Tempestade implements Obstaculo {
     private final Circulo area;

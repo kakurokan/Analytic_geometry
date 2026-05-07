@@ -1,7 +1,7 @@
 package Engine;
 
 /**
- * @author Léo Souza
+ * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
  * @version 24/02/26
  * @inv o vetor r não pode ser nulo
  * A classe Engine.AutoPilot representa um sistema de navegação automatizado que calcula

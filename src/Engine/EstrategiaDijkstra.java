@@ -16,6 +16,10 @@ import java.util.*;
  * A classe também fornece métodos utilitários para reconstruir o caminho usando o
  * mapeamento inverso calculado e aplicar restrições, como garantir que não existem
  * obstáculos ou áreas restritas ao longo de segmentos específicos do caminho.
+ *
+ * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
+ * @version 11/05/26
+ * @inv o grafo não pode ser nulo e deve conter ligações válidas entre nós (pontos)
  */
 
 public class EstrategiaDijkstra implements EstrategiaRota {
@@ -81,7 +85,7 @@ public class EstrategiaDijkstra implements EstrategiaRota {
      *                viabilidade dos segmentos de reta no caminho. Não pode ser nula, mas pode estar vazia.
      * @return Um objeto {@code Route} representando o caminho mais curto entre a origem e o destino,
      * levando em conta as restrições de tráfego por navios. Retorna {@code null} se a
-     * origem ou o destino não estiverem no grafo ou se não houver caminho viável.
+     * origem ou o destino não estiverem no grafo, ou se não houver caminho viável.
      */
     @Override
     public Route caminhos(Ponto origem, Ponto destino, List<Navio> navios) {
@@ -130,18 +134,22 @@ public class EstrategiaDijkstra implements EstrategiaRota {
      * e a distância acumulada desse ponto em relação à origem no grafo.
      * <p>
      * Esta classe é projetada para ser utilizada como parte do algoritmo de cálculo
-     * de rotas mais curtas, com a capacidade de comparar nós com base em suas distâncias
+     * de rotas mais curtas, com a capacidade de comparar nós com base na suas distâncias
      * acumuladas, para priorizar o nó com a menor distância no processamento.
+     *
+     * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
+     * @version 11/05/26
+     * @inv ponto != null e distanciaAcumulada > 0
      */
     private static class No implements Comparable<No> {
         private final Ponto ponto;
         private final double distanciaAcumulada;
 
         /**
-         * Constrói um nó contendo um ponto e sua distância acumulada em relação ao início do grafo.
+         * Constrói um nó contendo um ponto e a sua distância acumulada relativamente ao início do grafo.
          *
          * @param ponto              O ponto representado pelo nó no grafo.
-         * @param distanciaAcumulada A distância acumulada do ponto em relação ao nó de origem.
+         * @param distanciaAcumulada A distância acumulada do ponto relativamente ao nó de origem.
          */
         No(Ponto ponto, double distanciaAcumulada) {
             this.ponto = ponto;

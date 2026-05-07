@@ -10,6 +10,9 @@ package Engine;
  * de estado ou outras operações relevantes.
  * <p>
  * Implementa a interface EstadoNavio, que define o contrato para alteração do estado do navio.
+ *
+ * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
+ * @version 11/05/26
  */
 public class NavioNaOrigem implements EstadoNavio {
     /**
