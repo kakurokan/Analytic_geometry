@@ -18,7 +18,7 @@ public interface TorreDeControlo {
      *
      * @param navio o navio cuja rota será atualizada
      */
-    public void atualizarRota(Navio navio);
+    void atualizarRota(Navio navio);
 
     /**
      * Atualiza a posição do navio informado no sistema, realizando os ajustes necessários
@@ -27,7 +27,7 @@ public interface TorreDeControlo {
      *
      * @param navio o navio cuja posição será atualizada no sistema
      */
-    public void atualizarPosicoes(Navio navio);
+    void atualizarPosicoes(Navio navio);
 
     /**
      * Libera o navio especificado do porto de origem, removendo sua associação com
@@ -37,7 +37,7 @@ public interface TorreDeControlo {
      * @param origem o porto de onde o navio será liberado
      * @param navio  o navio que será liberado do porto de origem
      */
-    public void libertarNavio(Porto origem, Navio navio);
+    void libertarNavio(Porto origem, Navio navio);
 
     /**
      * Registra o término do percurso de um navio no sistema, concluindo o monitoramento
@@ -46,7 +46,7 @@ public interface TorreDeControlo {
      *
      * @param navio o navio que terminou o percurso
      */
-    public void navioTerminouPercurso(Navio navio);
+    void navioTerminouPercurso(Navio navio);
 
     /**
      * Inicializa o sistema de controle marítimo com as rotas e os obstáculos fornecidos.
@@ -59,7 +59,7 @@ public interface TorreDeControlo {
      * @param obstaculo a lista de objetos que representam os obstáculos no espaço marítimo. Cada
      *                  obstáculo define interseções potenciais com as rotas fornecidas.
      */
-    public void iniciar(List<Route> rotas, List<Obstaculo> obstaculo);
+    void iniciar(List<Route> rotas, List<Obstaculo> obstaculo);
 
     /**
      * Obtém a lista de navios gerenciados pelo sistema de controle marítimo.
@@ -68,5 +68,5 @@ public interface TorreDeControlo {
      *
      * @return a lista de objetos do tipo Navio que estão a ser controlados pelo sistema
      */
-    public List<Navio> getNavios();
+    List<Navio> getNavios();
 }
