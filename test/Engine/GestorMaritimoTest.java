@@ -30,7 +30,7 @@ class GestorMaritimoTest {
         List<Obstaculo> obstaculos = new ArrayList<>();
 
         gestor = new GestorMaritimo();
-        gestor.iniciar(rotas,obstaculos);
+        gestor.iniciar(rotas, obstaculos);
 
         origem = new Porto("Albufeira", new Ponto(0, 0), gestor);
         destino = new Porto("Lisboa", new Ponto(3, 5), gestor);
@@ -42,7 +42,7 @@ class GestorMaritimoTest {
 
     @Test
     void atualizarRota() {
-        gestor.libertarNavio(origem,navio);
+        gestor.libertarMovel(origem, navio);
         gestor.atualizarRota(navio);
 
         Route melhorRotaEsperada = new Route(List.of(
@@ -53,21 +53,21 @@ class GestorMaritimoTest {
 
     @Test
     void atualizarPosicoes() {
-        gestor.libertarNavio(destino,navio2);
-        navio2.atualizar(1.3,new Vetor(1,1));
-        gestor.libertarNavio(origem,navio);
-        navio.atualizar(1.9, new Vetor(1,1));
+        gestor.libertarMovel(destino, navio2);
+        navio2.atualizar(1.3, new Vetor(1, 1));
+        gestor.libertarMovel(origem, navio);
+        navio.atualizar(1.9, new Vetor(1, 1));
 
         gestor.atualizarPosicoes(navio2);
         assertEquals(NavioAguardando.class, navio.getEstado().getClass());
-       }
+    }
 
     @Test
     void libertarNavio() {
 
 
-        gestor.libertarNavio(destino, navio2);
-        gestor.libertarNavio(origem, navio);
+        gestor.libertarMovel(destino, navio2);
+        gestor.libertarMovel(origem, navio);
 
         assertInstanceOf(NavioNavegando.class, navio.getEstado());
 
@@ -78,9 +78,9 @@ class GestorMaritimoTest {
 
     @Test
     void navioTerminouPercurso() {
-        gestor.libertarNavio(origem, navio2);
+        gestor.libertarMovel(origem, navio2);
         gestor.atualizarPosicoes(navio2);
-        gestor.navioTerminouPercurso(navio2);
+        gestor.movelTerminouPercurso(navio2);
         assertFalse(gestor.getNavios().contains(navio2));
     }
 }

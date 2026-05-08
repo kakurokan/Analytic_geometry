@@ -19,6 +19,7 @@ class SimuladorTest {
     private Vetor corrente;
     private GestorMaritimo gestor;
     private Porto origem, destino;
+
     @BeforeEach
     void setUp() {
         Route rota1 = new Route(List.of(
@@ -34,9 +35,9 @@ class SimuladorTest {
         obstaculos = new ArrayList<>();
         gestor = new GestorMaritimo();
 
-        gestor.iniciar(rotas,obstaculos);
-         origem = new Porto("Albufeira", new Ponto(0, 0), gestor);
-         destino = new Porto("Lisboa", new Ponto(3, 5), gestor);
+        gestor.iniciar(rotas, obstaculos);
+        origem = new Porto("Albufeira", new Ponto(0, 0), gestor);
+        destino = new Porto("Lisboa", new Ponto(3, 5), gestor);
         portos = List.of(origem, destino);
 
         navio = origem.adicionarNavio(5, 2, destino);
@@ -48,7 +49,7 @@ class SimuladorTest {
 
     @Test
     void atualizar_ComNavioNavegando_AlteraPosicaoDoNavio() {
-        gestor.libertarNavio(origem,navio);
+        gestor.libertarMovel(origem, navio);
 
         Ponto posicaoInicial = navio.getPosicao();
 
@@ -74,9 +75,9 @@ class SimuladorTest {
 
     @Test
     void getObstaculos_SimuladorComObstaculos_RetornaListaCorreta() {
-        EstadoNavioTest.TorreDeControloSAux torre = new  EstadoNavioTest.TorreDeControloSAux();
+        EstadoNavioTest.TorreDeControloSAux torre = new EstadoNavioTest.TorreDeControloSAux();
         obstaculos.add(new Tempestade(new Circulo(new Ponto(1, 1), 5)));
-        Simulador simuladorComObstaculos = new Simulador(corrente, rotas, portos, obstaculos,torre);
+        Simulador simuladorComObstaculos = new Simulador(corrente, rotas, portos, obstaculos, torre);
 
         assertEquals(obstaculos, simuladorComObstaculos.getObstaculos(), "O simulador deveria retornar a mesma lista de obstáculos com a qual foi instanciado.");
     }

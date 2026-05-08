@@ -37,7 +37,7 @@ public interface TorreDeControlo {
      * @param origem o porto de onde o movel será liberado
      * @param movel  o movel que será liberado do porto de origem
      */
-    void libertarNavio(Porto origem, Movel movel);
+    void libertarMovel(Porto origem, Movel movel);
 
     /**
      * Registra o término do percurso de um movel no sistema, concluindo o monitoramento
@@ -46,7 +46,7 @@ public interface TorreDeControlo {
      *
      * @param movel o movel que terminou o percurso
      */
-    void navioTerminouPercurso(Movel movel);
+    void movelTerminouPercurso(Movel movel);
 
     /**
      * Inicializa o sistema de controle marítimo com as rotas e os obstáculos fornecidos.

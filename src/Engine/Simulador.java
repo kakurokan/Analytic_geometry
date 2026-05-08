@@ -72,7 +72,7 @@ public class Simulador {
             while (naviosProntos.hasNext()) {
                 Navio navio = naviosProntos.next();
 
-                torreDeControlo.libertarNavio(porto, navio);
+                torreDeControlo.libertarMovel(porto, navio);
             }
         }
 

@@ -128,7 +128,7 @@ public class Navio implements Movel {
             double tempoTotalViagem = this.navegante.tempoParaPercorrer(velocidadeLinear);
 
             if (this.tempoNavegando >= tempoTotalViagem) {
-                this.torre.navioTerminouPercurso(this);
+                this.torre.movelTerminouPercurso(this);
             }
         }
     }

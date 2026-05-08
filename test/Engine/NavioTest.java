@@ -52,10 +52,10 @@ class NavioTest {
     @Test
     void mover_ComDeltaPositivo_AtualizaPosicao() {
         double delta = 1;
-        torre.libertarNavio(origem,navio);
+        torre.libertarMovel(origem, navio);
         Ponto posicaoInicial = navio.getPosicao();
 
-        navio.mover(delta,new Vetor(2,2));
+        navio.mover(delta, new Vetor(2, 2));
         Ponto posicaoAtual = navio.getPosicao();
 
         assertNotEquals(posicaoInicial, posicaoAtual, "O navio deveria ter saído da posição inicial após invocar mover().");
@@ -63,7 +63,7 @@ class NavioTest {
 
     @Test
     void atualizar_ComTempoNegativo_LancaIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> navio.atualizar(-1,new Vetor(5,5)));
+        assertThrows(IllegalArgumentException.class, () -> navio.atualizar(-1, new Vetor(5, 5)));
     }
 
     @Test
@@ -75,7 +75,7 @@ class NavioTest {
             Navio navioRecebido = null;
 
             @Override
-            public void atualizar(Navio n, double d,Vetor velocidadeCorrente) {
+            public void atualizar(Navio n, double d, Vetor velocidadeCorrente) {
                 this.foiChamado = true;
                 this.navioRecebido = n;
                 this.deltaRecebido = d;
@@ -85,7 +85,7 @@ class NavioTest {
         EstadoNavioTemp estadoMock = new EstadoNavioTemp();
         navio.mudarEstado(estadoMock);
 
-        navio.atualizar(5,new Vetor(5,5));
+        navio.atualizar(5, new Vetor(5, 5));
 
         assertTrue(estadoMock.foiChamado, "O método atualizar do estado não foi invocado.");
         assertEquals(navio, estadoMock.navioRecebido, "A referência do navio passada ao estado está incorreta.");

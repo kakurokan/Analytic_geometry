@@ -145,7 +145,7 @@ public class GestorMaritimo implements TorreDeControlo {
      *               atualizada para alcançar o destino especificado.
      */
     @Override
-    public void libertarNavio(Porto origem, Movel movel) {
+    public void libertarMovel(Porto origem, Movel movel) {
         Route rota = estrategiaRota.caminhos(origem.getPosicao(), movel.getDestino());
         if (rota != null) {
             movel.receberRota(rota);
@@ -166,7 +166,7 @@ public class GestorMaritimo implements TorreDeControlo {
      *              lista interna de navios gerenciados.
      */
     @Override
-    public void navioTerminouPercurso(Movel movel) {
+    public void movelTerminouPercurso(Movel movel) {
         Navio navio = (Navio) movel;
 
         navio.mudarEstado(new NavioNoDestino());
@@ -183,6 +183,7 @@ public class GestorMaritimo implements TorreDeControlo {
      * @return Uma lista contendo os navios registrados no sistema.
      * A lista é composta por objetos do tipo {@code Navio}.
      */
+    @Override
     public List<Movel> getMovels() {
         return this.navios;
     }
