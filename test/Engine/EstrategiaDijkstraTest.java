@@ -32,7 +32,7 @@ class EstrategiaDijkstraTest {
         Ponto destino = new Ponto(3, 5);
         List<Navio> navios = new ArrayList<>();
 
-        Route rotaRetornada = dijkstra.caminhos(origem, destino, navios);
+        Route rotaRetornada = dijkstra.caminhos(origem, destino);
 
         Route rotaEsperada = new Route(List.of(
                 new Ponto(0, 0), new Ponto(1, 1), new Ponto(3, 2),
@@ -62,7 +62,7 @@ class EstrategiaDijkstraTest {
         Ponto destino = new Ponto(3, 5);
         List<Navio> navios = new ArrayList<>();
 
-        Route rotaRetornada = dijkstra.caminhos(origem, destino, navios);
+        Route rotaRetornada = dijkstra.caminhos(origem, destino);
 
         Route rotaEsperada = new Route(List.of(
                 new Ponto(0, 0), new Ponto(1, 1), new Ponto(3, 2), new Ponto(3, 5)
@@ -95,6 +95,6 @@ class EstrategiaDijkstraTest {
         Ponto destino = new Ponto(7,7);
         List<Navio> navios = new ArrayList<>();
         EstrategiaDijkstra dijkstra= new EstrategiaDijkstra(grafo);
-        assertNull(dijkstra.caminhos(origem, destino, navios),"Não existe caminho possivel entre a origem e o destino porque o grafo não é conexo");
+        assertNull(dijkstra.caminhos(origem, destino),"Não existe caminho possivel entre a origem e o destino porque o grafo não é conexo");
     }
 }
