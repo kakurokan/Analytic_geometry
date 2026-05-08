@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * A classe GestorMaritimo gerencia o tráfego marítimo, garantindo segurança e
- * rotas otimizadas para todos os navios sob seu controle. Implementa a interface TorreDeControlo
+ * rotas otimizadas para todos os navios sob o seu controle. Implementa a interface TorreDeControlo
  * para supervisionar decisões de navegação, como gestão de rotas, prevenção de colisões
  * e transições de estado dos navios.
  * <p>
@@ -26,7 +26,7 @@ import java.util.List;
  * @inv a lista de navios não pode ser nula
  */
 public class GestorMaritimo implements TorreDeControlo {
-    private final List<Navio> navios;
+    private final List<Movel> navios;
     private EstrategiaRota estrategiaRota;
     private Grafo grafo;
 
@@ -60,7 +60,7 @@ public class GestorMaritimo implements TorreDeControlo {
     }
 
     /**
-     * Atualiza as posições de um navio e modifica seu estado com base em sua interação
+     * Atualiza as posições de um navio e modifica o seu estado com base na sua interação
      * com outros navios e a lógica de colisão definida.
      * <p>
      * O método verifica se o navio fornecido está colidindo com outros navios em sua vizinhança.
@@ -69,40 +69,38 @@ public class GestorMaritimo implements TorreDeControlo {
      * em colisão, o estado do navio é alterado para {@code NavioAguardando}.
      * Caso contrário, o estado é alterado para {@code NavioNavegando}.
      *
-     * @param navio O navio cuja posição será atualizada, conforme as interações com outros navios
+     * @param movel O navio cuja posição será atualizada, conforme as interações com outros navios
      *              no espaço marítimo gerenciado.
      */
     @Override
     public void atualizarPosicoes(Movel movel) {
-        Navio navio = (Navio) movel;
-
         boolean tocando = false;
         boolean caminhoBloqueado = false;
 
-        for (Navio outro : navios) {
-            if (navio != outro && navio.intersect(outro)) {
+        for (Movel outro : navios) {
+            if (movel != outro && movel.intersect(outro)) {
                 tocando = true;
                 outro.setEmColisao(true);
 
                 // A REGRA DE OURO DO ENUNCIADO:
                 // Se o MEU código de viagem for lexicograficamente menor (< 0) que o outro,
                 // então EU sou obrigado a esperar (caminhoBloqueado = true).
-                if (navio.compareTo(outro) < 0) {
+                if (movel.compareTo(outro) < 0) {
                     caminhoBloqueado = true;
                     break;
                 }
             }
         }
 
-        navio.setEmColisao(tocando);
+        movel.setEmColisao(tocando);
 
         if (caminhoBloqueado) {
-            if (navio.getEstado() instanceof NavioNavegando) {
-                navio.mudarEstado(new NavioAguardando());
+            if (movel.getEstado() instanceof NavioNavegando) {
+                movel.mudarEstado(new NavioAguardando());
             }
         } else {
-            if (navio.getEstado() instanceof NavioAguardando) {
-                navio.mudarEstado(new NavioNavegando());
+            if (movel.getEstado() instanceof NavioAguardando) {
+                movel.mudarEstado(new NavioNavegando());
             }
         }
     }
@@ -120,21 +118,19 @@ public class GestorMaritimo implements TorreDeControlo {
      */
     @Override
     public void atualizarRota(Movel movel) {
-        Navio navio = (Navio) movel;
-
-        if (!navios.contains(navio))
+        if (!navios.contains(movel))
             return;
 
-        Ponto origem = navio.getPosicao();
-        SegmentoReta atual = navio.getSegmentoAtual(origem);
+        Ponto origem = movel.getPosicao();
+        SegmentoReta atual = movel.getSegmentoAtual(origem);
         grafo.adicionarPonto(origem, atual);
-        Route rota = estrategiaRota.caminhos(origem, navio.getDestino().getPosicao(), this.navios);
+        Route rota = estrategiaRota.caminhos(origem, movel.getDestino(), this.navios);
         grafo.removerPonto(origem, atual);
         if (rota != null) {
-            navio.receberRota(rota);
-            navio.mudarEstado(new NavioNavegando());
+            movel.receberRota(rota);
+            movel.mudarEstado(new NavioNavegando());
         } else {
-            navio.mudarEstado(new NavioAguardando());
+            movel.mudarEstado(new NavioAguardando());
         }
 
     }
@@ -150,13 +146,11 @@ public class GestorMaritimo implements TorreDeControlo {
      */
     @Override
     public void libertarNavio(Porto origem, Movel movel) {
-        Navio navio = (Navio) movel;
-
-        Route rota = estrategiaRota.caminhos(origem.getPosicao(), navio.getDestino().getPosicao(), this.navios);
+        Route rota = estrategiaRota.caminhos(origem.getPosicao(), movel.getDestino(), this.navios);
         if (rota != null) {
-            navio.receberRota(rota);
-            navio.mudarEstado(new NavioNavegando());
-            this.navios.add(navio);
+            movel.receberRota(rota);
+            movel.mudarEstado(new NavioNavegando());
+            this.navios.add(movel);
         }
     }
 
@@ -176,7 +170,7 @@ public class GestorMaritimo implements TorreDeControlo {
         Navio navio = (Navio) movel;
 
         navio.mudarEstado(new NavioNoDestino());
-        this.navios.remove(navio);
+        this.navios.remove(movel);
     }
 
     /**
@@ -189,7 +183,7 @@ public class GestorMaritimo implements TorreDeControlo {
      * @return Uma lista contendo os navios registrados no sistema.
      * A lista é composta por objetos do tipo {@code Navio}.
      */
-    public List<Navio> getNavios() {
+    public List<Movel> getMovels() {
         return this.navios;
     }
 }

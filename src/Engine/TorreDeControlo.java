@@ -60,4 +60,6 @@ public interface TorreDeControlo {
      *                  obstáculo define interseções potenciais com as rotas fornecidas.
      */
     void iniciar(List<Route> rotas, List<Obstaculo> obstaculo);
+
+    List<Movel> getMovels();
 }

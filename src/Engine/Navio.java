@@ -271,10 +271,10 @@ public class Navio implements Comparable<Navio>, Movel {
     /**
      * Obtém o porto de destino associado ao navio.
      *
-     * @return o objeto {@code Porto} que representa o destino do navio.
+     * @return o objeto {@code Ponto} que representa o destino do navio.
      */
-    public Porto getDestino() {
-        return this.destino;
+    public Ponto getDestino() {
+        return this.destino.getPosicao();
     }
 
     /**
