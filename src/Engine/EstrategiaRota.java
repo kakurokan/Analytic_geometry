@@ -22,15 +22,12 @@ public interface EstrategiaRota {
      *                Não pode ser nulo.
      * @param destino O ponto de destino para onde a rota será traçada.
      *                Não pode ser nulo.
-     * @param navios  Uma lista de navios que representam possíveis obstáculos ou
-     *                influências no cálculo da rota. A lista pode estar vazia, mas
-     *                não pode ser nula.
-     * @return Um objeto {@code Route} que representa a rota calculada entre os
+      * @return Um objeto {@code Route} que representa a rota calculada entre os
      * pontos de origem e destino. O resultado será sempre uma rota válida
      * ou nula caso não seja possível calcular uma rota viável.
      * @throws IllegalArgumentException Se algum dos parâmetros obrigatórios for nulo ou
      *                                  se as condições prévias para o cálculo da rota
      *                                  não forem satisfeitas.
      */
-    public Route caminhos(Ponto origem, Ponto destino, List<Navio> navios);
+    public Route caminhos(Ponto origem, Ponto destino);
 }

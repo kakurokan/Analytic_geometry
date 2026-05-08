@@ -124,7 +124,7 @@ public class GestorMaritimo implements TorreDeControlo {
         Ponto origem = navio.getPosicao();
         SegmentoReta atual = navio.getSegmentoAtual(origem);
         grafo.adicionarPonto(origem, atual);
-        Route rota = estrategiaRota.caminhos(origem, navio.getDestino().getPosicao(), this.navios);
+        Route rota = estrategiaRota.caminhos(origem, navio.getDestino().getPosicao());
         grafo.removerPonto(origem, atual);
         if (rota != null) {
             navio.receberRota(rota);
@@ -146,7 +146,7 @@ public class GestorMaritimo implements TorreDeControlo {
      */
     @Override
     public void libertarNavio(Porto origem, Navio navio) {
-        Route rota = estrategiaRota.caminhos(origem.getPosicao(), navio.getDestino().getPosicao(), this.navios);
+        Route rota = estrategiaRota.caminhos(origem.getPosicao(), navio.getDestino().getPosicao());
         if (rota != null) {
             navio.receberRota(rota);
             navio.mudarEstado(new NavioNavegando());

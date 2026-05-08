@@ -41,17 +41,6 @@ public class EstrategiaDijkstra implements EstrategiaRota {
     }
 
     /**
-     * Verifica se o segmento de reta fornecido está livre de colisões com os navios na lista.
-     *
-     * @param segmento o segmento de reta que será avaliado
-     * @param navios   a lista de navios cujas posições serão consideradas na verificação
-     * @return true se o segmento estiver livre de colisões, caso contrário, false
-     */
-    private boolean caminhoLivre(SegmentoReta segmento, List<Navio> navios) {
-        return true;
-    }
-
-    /**
      * Reverte o caminho fornecido, criando uma rota a partir do destino
      * até a origem com base no mapeamento de pontos.
      *
@@ -60,6 +49,7 @@ public class EstrategiaDijkstra implements EstrategiaRota {
      * @param destino        O ponto de destino inicial. Não pode ser nulo.
      * @return Uma instância de {@code Route} que representa o caminho invertido,
      * ou {@code null} se o destino não tiver um ponto associado no mapa.
+     * @see <a href="https://stackoverflow.com/questions/56609206/how-do-i-keep-track-of-the-shortest-paths-in-the-dijkstra-algorithm-when-using-a">Stack Overflow</a>
      */
     private Route inverteCaminho(Map<Ponto, Ponto> caminhoInverso, Ponto destino) {
         LinkedList<Ponto> caminhoCerto = new LinkedList<>();
@@ -81,14 +71,13 @@ public class EstrategiaDijkstra implements EstrategiaRota {
      *
      * @param origem  O ponto de partida no grafo. Não pode ser nulo e deve estar presente no grafo.
      * @param destino O ponto de destino no grafo. Não pode ser nulo e deve estar presente no grafo.
-     * @param navios  Uma lista de navios cujo posicionamento será considerado ao verificar a
-     *                viabilidade dos segmentos de reta no caminho. Não pode ser nula, mas pode estar vazia.
      * @return Um objeto {@code Route} representando o caminho mais curto entre a origem e o destino,
      * levando em conta as restrições de tráfego por navios. Retorna {@code null} se a
      * origem ou o destino não estiverem no grafo, ou se não houver caminho viável.
+     * @see <a href="https://www.geeksforgeeks.org/dsa/dijkstras-shortest-path-algorithm-using-priority_queue-stl/">GeeksforGeeks</a>
      */
     @Override
-    public Route caminhos(Ponto origem, Ponto destino, List<Navio> navios) {
+    public Route caminhos(Ponto origem, Ponto destino) {
         if (!grafo.getGrafo().containsKey(origem) || !grafo.getGrafo().containsKey(destino)) {
             return null;
         }
@@ -116,7 +105,6 @@ public class EstrategiaDijkstra implements EstrategiaRota {
             for (Ponto p : vizinhos) {
                 double distanciaParaP = pontoN.distanciaPara(p);
 
-                if (!caminhoLivre(new SegmentoReta(pontoN, p), navios)) continue;
 
                 double distanciaAcumuladaParaP = distanciaN + distanciaParaP;
                 if (distanciaAcumuladaParaP < distancias.get(p)) {
