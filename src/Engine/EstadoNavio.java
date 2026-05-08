@@ -24,5 +24,5 @@ public interface EstadoNavio {
      * @param delta              o tempo decorrido desde a última atualização, especificado em segundos.
      * @param velocidadeCorrente o vetor representando a velocidade da corrente na qual o navio está inserido.
      */
-    public void atualizar(Navio navio, double delta, Vetor velocidadeCorrente);
+    void atualizar(Navio navio, double delta, Vetor velocidadeCorrente);
 }
