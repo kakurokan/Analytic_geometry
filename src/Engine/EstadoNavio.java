@@ -14,6 +14,7 @@ package Engine;
  *
  * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
  * @version 11/05/26
+ * @see <a href="https://refactoring.guru/pt-br/design-patterns/state">Padrão de design</a>
  */
 public interface EstadoNavio {
     /**
