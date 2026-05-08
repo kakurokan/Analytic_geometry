@@ -65,17 +65,55 @@ public interface Movel {
      */
     Vetor getDirecao(Vetor velocidadeOposta);
 
+    /**
+     * Altera o estado de colisão do objeto móvel.
+     * * @param b {@code true} para indicar que o objeto está em colisão, {@code false} caso contrário.
+     */
     void setEmColisao(boolean b);
 
+    /**
+     * Compara o objeto móvel atual com outro objeto móvel para estabelecer
+     * uma ordem de prioridade (útil para regras de desempate em cruzamentos ou colisões).
+     * * @param outro O objeto do tipo {@code Movel} a ser comparado. Não pode ser {@code null}.
+     *
+     * @return um valor negativo, zero ou um valor positivo consoante a prioridade deste
+     * objeto seja menor, igual ou maior que a do objeto especificado.
+     */
     int compareTo(Movel outro);
 
+    /**
+     * Obtém o segmento de reta da rota onde o objeto móvel se encontra atualmente,
+     * com base numa posição de origem especificada.
+     * * @param origem O {@code Ponto} que representa a posição atual ou base de referência.
+     *
+     * @return O objeto {@code SegmentoReta} em que o móvel se encontra, ou {@code null}
+     * se não estiver associado a nenhum segmento reconhecido.
+     */
     SegmentoReta getSegmentoAtual(Ponto origem);
 
+    /**
+     * Atribui uma nova rota que ditará a trajetória do objeto móvel.
+     * * @param rota O objeto {@code Route} que representa o novo percurso. Não pode ser {@code null}.
+     */
     void receberRota(Route rota);
 
+    /**
+     * Altera o estado comportamental atual do objeto móvel no seu ciclo de vida
+     * (por exemplo: na origem, a navegar, a aguardar, no destino).
+     * * @param estado A instância de {@code EstadoNavio} que representa o novo estado a assumir.
+     */
     void mudarEstado(EstadoNavio estado);
 
+    /**
+     * Obtém a localização de destino do objeto móvel.
+     * * @return O {@code Ponto} que representa a meta ou o destino planeado do objeto.
+     */
     Ponto getDestino();
 
+    /**
+     * Recupera o estado comportamental atual do objeto móvel.
+     * * @return Um {@code Object} (geralmente uma implementação do estado correspondente)
+     * que representa a situação ou fase atual do objeto.
+     */
     Object getEstado();
 }
