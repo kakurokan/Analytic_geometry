@@ -13,40 +13,40 @@ import java.util.List;
  */
 public interface TorreDeControlo {
     /**
-     * Atualiza a rota associada ao navio informado, ajustando a sua trajetória
+     * Atualiza a rota associada ao movel informado, ajustando a sua trajetória
      * com base nos dados fornecidos e nas condições atuais do sistema.
      *
-     * @param navio o navio cuja rota será atualizada
+     * @param movel o movel cuja rota será atualizada
      */
-    void atualizarRota(Navio navio);
+    void atualizarRota(Movel movel);
 
     /**
-     * Atualiza a posição do navio informado no sistema, realizando os ajustes necessários
+     * Atualiza a posição do movel informado no sistema, realizando os ajustes necessários
      * com base em mudanças de localização ou outras informações pertinentes ao monitoramento
      * e controle do espaço marítimo.
      *
-     * @param navio o navio cuja posição será atualizada no sistema
+     * @param movel o movel cuja posição será atualizada no sistema
      */
-    void atualizarPosicoes(Navio navio);
+    void atualizarPosicoes(Movel movel);
 
     /**
-     * Libera o navio especificado do porto de origem, removendo sua associação com
+     * Libera o movel especificado do porto de origem, removendo sua associação com
      * o porto e permitindo que ele continue seu trajeto. Este método é utilizado para
      * gerenciar a saída de navios de portos sob o controle do sistema.
      *
-     * @param origem o porto de onde o navio será liberado
-     * @param navio  o navio que será liberado do porto de origem
+     * @param origem o porto de onde o movel será liberado
+     * @param movel  o movel que será liberado do porto de origem
      */
-    void libertarNavio(Porto origem, Navio navio);
+    void libertarNavio(Porto origem, Movel movel);
 
     /**
-     * Registra o término do percurso de um navio no sistema, concluindo o monitoramento
+     * Registra o término do percurso de um movel no sistema, concluindo o monitoramento
      * da sua trajetória e realizando atualizações necessárias para refletir o estado final
-     * desse navio.
+     * desse movel.
      *
-     * @param navio o navio que terminou o percurso
+     * @param movel o movel que terminou o percurso
      */
-    void navioTerminouPercurso(Navio navio);
+    void navioTerminouPercurso(Movel movel);
 
     /**
      * Inicializa o sistema de controle marítimo com as rotas e os obstáculos fornecidos.
@@ -60,13 +60,4 @@ public interface TorreDeControlo {
      *                  obstáculo define interseções potenciais com as rotas fornecidas.
      */
     void iniciar(List<Route> rotas, List<Obstaculo> obstaculo);
-
-    /**
-     * Obtém a lista de navios gerenciados pelo sistema de controle marítimo.
-     * Este método retorna todos os navios atualmente registrados para controle
-     * e monitoramento sob a responsabilidade da implementação da interface.
-     *
-     * @return a lista de objetos do tipo Navio que estão a ser controlados pelo sistema
-     */
-    List<Navio> getNavios();
 }

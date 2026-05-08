@@ -22,7 +22,7 @@ public class NavioAguardando implements EstadoNavio {
      * solicita à torre de controle a atualização das posições ao redor. Se o navio
      * não estiver mais em colisão, seu estado é alterado para "Navegando".
      *
-     * @param navio              o navio cujo estado está sendo atualizado
+     * @param navio              o navio cujo estado está a ser atualizado
      * @param delta              o intervalo de tempo usado para atualização
      * @param velocidadeCorrente o vetor representando a velocidade atual da corrente
      */

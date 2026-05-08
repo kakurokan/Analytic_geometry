@@ -49,10 +49,17 @@ class PortoTest {
     }
 
     static class TorreDeControloAux implements TorreDeControlo {
-        public void atualizarRota(Navio navio) {}
-        public void atualizarPosicoes(Navio navio) {}
-        public void libertarNavio(Porto origem, Navio navio) {}
-        public void navioTerminouPercurso(Navio navio) {}
+        public void atualizarRota(Navio navio) {
+        }
+
+        public void atualizarPosicoes(Navio navio) {
+        }
+
+        public void libertarNavio(Porto origem, Navio navio) {
+        }
+
+        public void navioTerminouPercurso(Navio movel) {
+        }
 
         @Override
         public void iniciar(List<Route> rotas, List<Obstaculo> obstaculo) {

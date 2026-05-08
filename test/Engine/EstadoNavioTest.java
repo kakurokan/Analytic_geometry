@@ -35,7 +35,7 @@ class EstadoNavioTest {
     @Test
     void atualizar_EstadoNaOrigem_NaoLancaExcecoes() {
         assertDoesNotThrow(() -> navio.mudarEstado(naOrigem));
-        assertDoesNotThrow(() -> naOrigem.atualizar(navio, 1.0,new Vetor(5,5)));
+        assertDoesNotThrow(() -> naOrigem.atualizar(navio, 1.0, new Vetor(5, 5)));
         assertEquals(new Ponto(0, 0), navio.getPosicao());
         assertInstanceOf(EstadoNavio.class, naOrigem);
     }
@@ -43,14 +43,14 @@ class EstadoNavioTest {
     @Test
     void atualizar_EstadoAguardando_NaoLancaExcecoes() {
         assertDoesNotThrow(() -> navio.mudarEstado(aguardando));
-        assertDoesNotThrow(() -> aguardando.atualizar(navio, 5.0,new Vetor(5,5)));
+        assertDoesNotThrow(() -> aguardando.atualizar(navio, 5.0, new Vetor(5, 5)));
         assertInstanceOf(EstadoNavio.class, aguardando);
     }
 
     @Test
     void atualizar_EstadoNavegando_NaoLancaExcecoesEValidaInterface() {
         assertDoesNotThrow(() -> navio.mudarEstado(navegando));
-        assertDoesNotThrow(() -> navegando.atualizar(navio, 10.0,new Vetor(5,5)));
+        assertDoesNotThrow(() -> navegando.atualizar(navio, 10.0, new Vetor(5, 5)));
 
         assertInstanceOf(EstadoNavio.class, navegando);
         assertInstanceOf(Movel.class, navio, "O navio deve implementar a interface Movel para permitir a navegação.");
@@ -59,7 +59,7 @@ class EstadoNavioTest {
     @Test
     void atualizar_EstadoNoDestino_NaoLancaExcecoes() {
         assertDoesNotThrow(() -> navio.mudarEstado(noDestino));
-        assertDoesNotThrow(() -> noDestino.atualizar(navio, 2.0,new Vetor(5,5)));
+        assertDoesNotThrow(() -> noDestino.atualizar(navio, 2.0, new Vetor(5, 5)));
         assertInstanceOf(EstadoNavio.class, noDestino);
     }
 
@@ -71,7 +71,7 @@ class EstadoNavioTest {
         EstadoNavio navegando = new NavioNavegando();
         navio.mudarEstado(navegando);
 
-        navegando.atualizar(navio, 1.0,new Vetor(5,5));
+        navegando.atualizar(navio, 1.0, new Vetor(5, 5));
 
         Ponto posicaoAtual = navio.getPosicao();
 
@@ -94,7 +94,7 @@ class EstadoNavioTest {
         }
 
         @Override
-        public void navioTerminouPercurso(Navio navio) {
+        public void navioTerminouPercurso(Navio movel) {
         }
 
         @Override

@@ -73,7 +73,9 @@ public class GestorMaritimo implements TorreDeControlo {
      *              no espaço marítimo gerenciado.
      */
     @Override
-    public void atualizarPosicoes(Navio navio) {
+    public void atualizarPosicoes(Movel movel) {
+        Navio navio = (Navio) movel;
+
         boolean tocando = false;
         boolean caminhoBloqueado = false;
 
@@ -106,18 +108,20 @@ public class GestorMaritimo implements TorreDeControlo {
     }
 
     /**
-     * Atualiza a rota de um navio específico e define seu novo estado com base na viabilidade de rota.
+     * Atualiza a rota de um navio específico e define o seu novo estado com base na viabilidade de rota.
      * <p>
      * Este método verifica se o navio está registrado na lista de navios gerenciados.
      * Em seguida, calcula a rota mais eficiente para o destino do navio utilizando a lógica
      * definida na estratégia de cálculo de rotas. A rota gerada é atribuída ao navio,
      * e o estado do navio é alterado de acordo com o resultado (navegando ou aguardando).
      *
-     * @param navio O navio cuja rota será recalculada e que terá seu estado ajustado conforme
+     * @param movel O navio cuja rota será recalculada e que terá o seu estado ajustado conforme
      *              as condições avaliadas durante o processo de atualização.
      */
     @Override
-    public void atualizarRota(Navio navio) {
+    public void atualizarRota(Movel movel) {
+        Navio navio = (Navio) movel;
+
         if (!navios.contains(navio))
             return;
 
@@ -137,15 +141,17 @@ public class GestorMaritimo implements TorreDeControlo {
 
     /**
      * Libera um navio do porto de origem, atribuindo uma rota para seu destino
-     * e alterando seu estado para navegando, se uma rota viável for encontrada.
+     * e alterando o seu estado para navegando, se uma rota viável for encontrada.
      *
      * @param origem O porto de onde o navio será liberado. Contém informações
-     *               sobre sua posição e fila de navios em espera.
-     * @param navio  O navio que será liberado. Este navio terá sua rota
+     *               sobre a sua posição e fila de navios em espera.
+     * @param movel  O navio que será liberado. Este navio terá sua rota
      *               atualizada para alcançar o destino especificado.
      */
     @Override
-    public void libertarNavio(Porto origem, Navio navio) {
+    public void libertarNavio(Porto origem, Movel movel) {
+        Navio navio = (Navio) movel;
+
         Route rota = estrategiaRota.caminhos(origem.getPosicao(), navio.getDestino().getPosicao(), this.navios);
         if (rota != null) {
             navio.receberRota(rota);
@@ -161,12 +167,14 @@ public class GestorMaritimo implements TorreDeControlo {
      * chegou ao seu destino e remove o navio da lista de navios ativos
      * gerenciados pela instância atual.
      *
-     * @param navio O navio que terminou o percurso. Este navio terá seu estado
+     * @param movel O navio que terminou o percurso. Este navio terá seu estado
      *              atualizado para {@code NavioNoDestino} e será removido da
      *              lista interna de navios gerenciados.
      */
     @Override
-    public void navioTerminouPercurso(Navio navio) {
+    public void navioTerminouPercurso(Movel movel) {
+        Navio navio = (Navio) movel;
+
         navio.mudarEstado(new NavioNoDestino());
         this.navios.remove(navio);
     }
@@ -184,5 +192,4 @@ public class GestorMaritimo implements TorreDeControlo {
     public List<Navio> getNavios() {
         return this.navios;
     }
-
 }
