@@ -76,8 +76,8 @@ public class Simulador {
             }
         }
 
-        List<Navio> navios = torreDeControlo.getNavios();
-        for (Navio navio : new ArrayList<>(navios)) {
+        List<Movel> navios = torreDeControlo.getMovels();
+        for (Movel navio : new ArrayList<>(navios)) {
             navio.atualizar(delta, this.corrente);
         }
     }
@@ -160,10 +160,10 @@ public class Simulador {
             filaPorPorto.put(porto.getNome(), porto.getNaviosEmEspera());
         }
 
-        List<Navio> navios = torreDeControlo.getNavios();
+        List<Movel> navios = torreDeControlo.getMovels();
         List<SnapshotSimulacao.DadosNavio> dadosNavios = new ArrayList<>();
 
-        for (Navio navio : navios) {
+        for (Movel navio : navios) {
             dadosNavios.add(new SnapshotSimulacao.DadosNavio(
                     navio.getPosicao(),
                     navio.getDirecao(this.corrente),

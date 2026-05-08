@@ -21,7 +21,7 @@ import java.util.List;
  * @inv horarioPartida >= 0
  * @inv tempoNavegando >= 0
  */
-public class Navio implements Comparable<Navio>, Movel {
+public class Navio implements Movel {
     private final String codigoViagem;
     private final Porto destino;
     private final Navegante navegante;
@@ -231,8 +231,9 @@ public class Navio implements Comparable<Navio>, Movel {
      * {@code Navio} especificado.
      */
     @Override
-    public int compareTo(Navio o) {
-        return this.codigoViagem.compareTo(o.getCodigoViagem());
+    public int compareTo(Movel o) {
+        Navio outro = (Navio) o;
+        return this.codigoViagem.compareTo(outro.getCodigoViagem());
     }
 
     /**
@@ -269,12 +270,21 @@ public class Navio implements Comparable<Navio>, Movel {
     }
 
     /**
-     * Obtém o porto de destino associado ao navio.
+     * Obtém o ponto do porto de destino associado ao navio.
      *
      * @return o objeto {@code Ponto} que representa o destino do navio.
      */
     public Ponto getDestino() {
         return this.destino.getPosicao();
+    }
+
+    /**
+     * Obtém o porto de destino associado ao navio.
+     *
+     * @return o objeto {@code Porto} que representa o destino do navio.
+     */
+    public Porto getPortoDestino() {
+        return this.destino;
     }
 
     /**

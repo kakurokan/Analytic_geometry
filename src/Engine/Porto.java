@@ -28,7 +28,7 @@ public class Porto {
      *
      * @param nome    O nome do porto.
      * @param posicao A posição do porto especificada como um ponto 2D.
-     * @param torre   A torre de controle associada responsável por gerenciar os navios.
+     * @param torre   A torre de controle associada responsável por gerir os navios.
      */
     public Porto(String nome, Ponto posicao, TorreDeControlo torre) {
         this.nome = nome;
@@ -107,7 +107,7 @@ public class Porto {
         for (Navio navio : naviosEmEspera) {
             fila.add(new SnapshotSimulacao.NavioEmEspera(
                     navio.getHorarioPartida(),
-                    navio.getDestino().getNome(),
+                    navio.getPortoDestino().getNome(),
                     navio.getVelocidadeLinear()
             ));
         }

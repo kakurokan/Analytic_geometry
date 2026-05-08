@@ -8,7 +8,7 @@ package Engine;
  * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
  * @version 11/05/26
  */
-public interface Movel {
+public interface Movel extends Comparable<Movel> {
     /**
      * Verifica se o objeto atual do tipo {@code Movel} interceta outro objeto
      * do tipo {@code Movel} fornecido como argumento.
@@ -66,12 +66,6 @@ public interface Movel {
     Vetor getDirecao(Vetor velocidadeOposta);
 
     /**
-     * Altera o estado de colisão do objeto móvel.
-     * * @param b {@code true} para indicar que o objeto está em colisão, {@code false} caso contrário.
-     */
-    void setEmColisao(boolean b);
-
-    /**
      * Compara o objeto móvel atual com outro objeto móvel para estabelecer
      * uma ordem de prioridade (útil para regras de desempate em cruzamentos ou colisões).
      * * @param outro O objeto do tipo {@code Movel} a ser comparado. Não pode ser {@code null}.
@@ -79,6 +73,7 @@ public interface Movel {
      * @return um valor negativo, zero ou um valor positivo consoante a prioridade deste
      * objeto seja menor, igual ou maior que a do objeto especificado.
      */
+    @Override
     int compareTo(Movel outro);
 
     /**
@@ -116,4 +111,17 @@ public interface Movel {
      * que representa a situação ou fase atual do objeto.
      */
     Object getEstado();
+
+    /**
+     * Retorna o estado de colisão do objeto móvel.
+     *
+     * @return {@code true} para indicar que o objeto está em colisão, {@code false} caso contrário.
+     */
+    boolean isEmColisao();
+
+    /**
+     * Altera o estado de colisão do objeto móvel.
+     * * @param b {@code true} para indicar que o objeto está em colisão, {@code false} caso contrário.
+     */
+    void setEmColisao(boolean b);
 }
