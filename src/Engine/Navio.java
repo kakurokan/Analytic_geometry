@@ -54,7 +54,6 @@ public class Navio implements Movel {
         this.navegante = new Navegante();
         this.estado = new MovelNaOrigem();
         this.torre = torre;
-        this.tempoNavegando = 0;
         this.emColisao = false;
     }
 
@@ -217,6 +216,7 @@ public class Navio implements Movel {
      *             pelo navio. Não pode ser nulo.
      */
     public void receberRota(Route rota) {
+        this.tempoNavegando = 0;
         this.navegante.mudarRota(rota);
     }
 

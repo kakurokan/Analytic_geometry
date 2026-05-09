@@ -123,16 +123,24 @@ public class GestorMaritimo implements TorreDeControlo {
 
         Ponto origem = movel.getPosicao();
         SegmentoReta atual = movel.getSegmentoAtual(origem);
-        grafo.adicionarPonto(origem, atual);
+
+        // Só particiona o grafo se o navio estiver efetivamente a meio de um segmento
+        if (atual != null) {
+            grafo.adicionarPonto(origem, atual);
+        }
         Route rota = estrategiaRota.caminhos(origem, movel.getDestino());
-        grafo.removerPonto(origem, atual);
+
+        // Limpa o ponto temporário do grafo, se ele foi criado
+        if (atual != null) {
+            grafo.removerPonto(origem, atual);
+        }
+        
         if (rota != null) {
             movel.receberRota(rota);
             movel.mudarEstado(new MovelNavegando());
         } else {
             movel.mudarEstado(new MovelAguardando());
         }
-
     }
 
     /**
