@@ -97,7 +97,7 @@ public interface Movel extends Comparable<Movel> {
      * (por exemplo: na origem, a navegar, a aguardar, no destino).
      * * @param estado A instância de {@code EstadoNavio} que representa o novo estado a assumir.
      */
-    void mudarEstado(EstadoNavio estado);
+    void mudarEstado(EstadoMovel estado);
 
     /**
      * Obtém a localização de destino do objeto móvel.
@@ -124,4 +124,11 @@ public interface Movel extends Comparable<Movel> {
      * * @param b {@code true} para indicar que o objeto está em colisão, {@code false} caso contrário.
      */
     void setEmColisao(boolean b);
+
+    /**
+     * Recupera a TorreDeControlo utilizada pelo objeto movel
+     *
+     * @return Um {@code TorreDeControlo} o mediador que o objeto está a utilizar para se comunicar
+     */
+    TorreDeControlo getTorre();
 }

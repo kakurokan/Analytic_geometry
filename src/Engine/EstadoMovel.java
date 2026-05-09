@@ -16,13 +16,13 @@ package Engine;
  * @version 11/05/26
  * @see <a href="https://refactoring.guru/pt-br/design-patterns/state">Padrão de design</a>
  */
-public interface EstadoNavio {
+public interface EstadoMovel {
     /**
      * Atualiza o estado de um navio considerando o tempo decorrido e a velocidade da corrente.
      *
-     * @param navio              o objeto Navio que será atualizado.
+     * @param movel              o objeto Movel que será atualizado.
      * @param delta              o tempo decorrido desde a última atualização, especificado em segundos.
      * @param velocidadeCorrente o vetor representando a velocidade da corrente na qual o navio está inserido.
      */
-    void atualizar(Navio navio, double delta, Vetor velocidadeCorrente);
+    void atualizar(Movel movel, double delta, Vetor velocidadeCorrente);
 }

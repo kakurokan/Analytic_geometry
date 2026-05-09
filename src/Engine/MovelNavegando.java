@@ -14,20 +14,20 @@ package Engine;
  * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
  * @version 11/05/26
  */
-public class NavioNavegando implements EstadoNavio {
+public class MovelNavegando implements EstadoMovel {
     /**
-     * Atualiza o estado do navio em movimento considerando o tempo decorrido e a velocidade da corrente.
+     * Atualiza o estado do movel em movimento considerando o tempo decorrido e a velocidade da corrente.
      * <p>
      * Este método aplica as movimentações necessárias ao objeto Navio com base no vetor de velocidade
      * da corrente e no intervalo de tempo fornecido, representado por delta. A interação resulta em
-     * uma mudança de posição do navio de acordo com as condições especificadas.
+     * uma mudança de posição do movel de acordo com as condições especificadas.
      *
-     * @param navio              o objeto Navio que terá a sua posição atualizada
-     * @param delta              o tempo decorrido que influencia o deslocamento do navio
-     * @param velocidadeCorrente o vetor representando a velocidade corrente que afeta o movimento do navio
+     * @param movel              o objeto Navio que terá a sua posição atualizada
+     * @param delta              o tempo decorrido que influencia o deslocamento do movel
+     * @param velocidadeCorrente o vetor representando a velocidade corrente que afeta o movimento do movel
      */
     @Override
-    public void atualizar(Navio navio, double delta, Vetor velocidadeCorrente) {
-        navio.mover(delta, velocidadeCorrente);
+    public void atualizar(Movel movel, double delta, Vetor velocidadeCorrente) {
+        movel.mover(delta, velocidadeCorrente);
     }
 }

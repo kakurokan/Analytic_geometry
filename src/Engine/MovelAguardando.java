@@ -15,26 +15,26 @@ package Engine;
  * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
  * @version 11/05/26
  */
-public class NavioAguardando implements EstadoNavio {
+public class MovelAguardando implements EstadoMovel {
     /**
-     * Atualiza o estado do navio enquanto ele está no estado "Aguardando".
-     * Este método verifica se o navio está em situação de colisão e, caso esteja,
-     * solicita à torre de controle a atualização das posições ao redor. Se o navio
+     * Atualiza o estado do movel enquanto ele está no estado "Aguardando".
+     * Este método verifica se o movel está em situação de colisão e, caso esteja,
+     * solicita à torre de controle a atualização das posições ao redor. Se o movel
      * não estiver mais em colisão, seu estado é alterado para "Navegando".
      *
-     * @param navio              o navio cujo estado está a ser atualizado
+     * @param movel              o movel cujo estado está a ser atualizado
      * @param delta              o intervalo de tempo usado para atualização
      * @param velocidadeCorrente o vetor representando a velocidade atual da corrente
      */
     @Override
-    public void atualizar(Navio navio, double delta, Vetor velocidadeCorrente) {
-        if (navio.isEmColisao()) {
+    public void atualizar(Movel movel, double delta, Vetor velocidadeCorrente) {
+        if (movel.isEmColisao()) {
             //Pede para torre para sair
-            navio.getTorre().atualizarPosicoes(navio);
+            movel.getTorre().atualizarPosicoes(movel);
         }
 
-        if (!navio.isEmColisao()) {
-            navio.mudarEstado(new NavioNavegando());
+        if (!movel.isEmColisao()) {
+            movel.mudarEstado(new MovelNavegando());
         }
     }
 }

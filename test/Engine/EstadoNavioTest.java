@@ -9,10 +9,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class EstadoNavioTest {
     private Navio navio;
-    private EstadoNavio navegando;
-    private EstadoNavio naOrigem;
-    private EstadoNavio noDestino;
-    private EstadoNavio aguardando;
+    private EstadoMovel navegando;
+    private EstadoMovel naOrigem;
+    private EstadoMovel noDestino;
+    private EstadoMovel aguardando;
 
     @BeforeEach
     void setUp() {
@@ -26,10 +26,10 @@ class EstadoNavioTest {
         });
         navio = new Navio(areaNavio, 20.0, 1, origem, portoDestino, torreAux);
         navio.receberRota(rota);
-        navegando = new NavioNavegando();
-        naOrigem = new NavioNaOrigem();
-        noDestino = new NavioNoDestino();
-        aguardando = new NavioAguardando();
+        navegando = new MovelNavegando();
+        naOrigem = new MovelNaOrigem();
+        noDestino = new MovelNoDestino();
+        aguardando = new MovelAguardando();
     }
 
     @Test
@@ -37,14 +37,14 @@ class EstadoNavioTest {
         assertDoesNotThrow(() -> navio.mudarEstado(naOrigem));
         assertDoesNotThrow(() -> naOrigem.atualizar(navio, 1.0, new Vetor(5, 5)));
         assertEquals(new Ponto(0, 0), navio.getPosicao());
-        assertInstanceOf(EstadoNavio.class, naOrigem);
+        assertInstanceOf(EstadoMovel.class, naOrigem);
     }
 
     @Test
     void atualizar_EstadoAguardando_NaoLancaExcecoes() {
         assertDoesNotThrow(() -> navio.mudarEstado(aguardando));
         assertDoesNotThrow(() -> aguardando.atualizar(navio, 5.0, new Vetor(5, 5)));
-        assertInstanceOf(EstadoNavio.class, aguardando);
+        assertInstanceOf(EstadoMovel.class, aguardando);
     }
 
     @Test
@@ -52,7 +52,7 @@ class EstadoNavioTest {
         assertDoesNotThrow(() -> navio.mudarEstado(navegando));
         assertDoesNotThrow(() -> navegando.atualizar(navio, 10.0, new Vetor(5, 5)));
 
-        assertInstanceOf(EstadoNavio.class, navegando);
+        assertInstanceOf(EstadoMovel.class, navegando);
         assertInstanceOf(Movel.class, navio, "O navio deve implementar a interface Movel para permitir a navegação.");
     }
 
@@ -60,7 +60,7 @@ class EstadoNavioTest {
     void atualizar_EstadoNoDestino_NaoLancaExcecoes() {
         assertDoesNotThrow(() -> navio.mudarEstado(noDestino));
         assertDoesNotThrow(() -> noDestino.atualizar(navio, 2.0, new Vetor(5, 5)));
-        assertInstanceOf(EstadoNavio.class, noDestino);
+        assertInstanceOf(EstadoMovel.class, noDestino);
     }
 
     @Test
@@ -68,7 +68,7 @@ class EstadoNavioTest {
         Route rota = new Route(List.of(new Ponto(0, 0), new Ponto(20, 20)));
         navio.receberRota(rota);
 
-        EstadoNavio navegando = new NavioNavegando();
+        EstadoMovel navegando = new MovelNavegando();
         navio.mudarEstado(navegando);
 
         navegando.atualizar(navio, 1.0, new Vetor(5, 5));

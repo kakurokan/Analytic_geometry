@@ -12,7 +12,7 @@ import java.util.*;
  * @inv corrente != null, rotas != null, portos != null, obstaculos != null, torreDeControlo != null, tempoAcumulado >= 0
  */
 public class Simulador {
-    private static final double MAX_RAIO_TEMPESTADE = 1.0;
+    private static final double MAX_RAIO_TEMPESTADE = 1.7;
     private static final double MIN_RAIO_TEMPESTADE = 0.5;
     private final List<Route> rotas;
     private final List<Porto> portos;

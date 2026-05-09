@@ -29,7 +29,7 @@ public class Navio implements Movel {
     private final double velocidadeLinear;
     private final Circulo area;
     private final int horarioPartida;
-    private EstadoNavio estado;
+    private EstadoMovel estado;
     private double tempoNavegando;
     private boolean emColisao;
 
@@ -52,7 +52,7 @@ public class Navio implements Movel {
         this.horarioPartida = horario;
         this.velocidadeLinear = velocidadeLinear;
         this.navegante = new Navegante();
-        this.estado = new NavioNaOrigem();
+        this.estado = new MovelNaOrigem();
         this.torre = torre;
         this.tempoNavegando = 0;
         this.emColisao = false;
@@ -205,7 +205,7 @@ public class Navio implements Movel {
      *
      * @param estado o novo estado que será atribuído ao navio. Deve ser uma instância válida de {@code EstadoNavio}.
      */
-    public void mudarEstado(EstadoNavio estado) {
+    public void mudarEstado(EstadoMovel estado) {
         this.estado = estado;
     }
 
@@ -265,7 +265,7 @@ public class Navio implements Movel {
      *
      * @return o estado do navio representado por um objeto {@code EstadoNavio}.
      */
-    public EstadoNavio getEstado() {
+    public EstadoMovel getEstado() {
         return this.estado;
     }
 

@@ -69,7 +69,7 @@ class NavioTest {
     @Test
     void atualizar_DelegaAoEstadoAtual() {
         // Criamos um estado falso para ver se o navio o chama corretamente
-        class EstadoNavioTemp implements EstadoNavio {
+        class EstadoNavioTemp implements EstadoMovel {
             boolean foiChamado = false;
             double deltaRecebido = 0;
             Navio navioRecebido = null;
@@ -94,11 +94,11 @@ class NavioTest {
 
     @Test
     void mudarEstado_NovoEstadoDefinido_AlteraOEstadoDoNavio() {
-        EstadoNavio novoEstado = new NavioNoDestino();
+        EstadoMovel novoEstado = new MovelNoDestino();
 
         navio.mudarEstado(novoEstado);
 
-        assertInstanceOf(NavioNoDestino.class, navio.getEstado(), "O estado do navio não foi atualizado corretamente.");
+        assertInstanceOf(MovelNoDestino.class, navio.getEstado(), "O estado do navio não foi atualizado corretamente.");
     }
 
     @Test
@@ -126,7 +126,7 @@ class NavioTest {
 
     @Test
     void getEstado_NavioRecemCriado_RetornaNavioNaOrigem() {
-        assertInstanceOf(NavioNaOrigem.class, navio.getEstado(), "Um navio recém-criado deve ter o estado NavioNaOrigem.");
+        assertInstanceOf(MovelNaOrigem.class, navio.getEstado(), "Um navio recém-criado deve ter o estado NavioNaOrigem.");
     }
 
     @Test

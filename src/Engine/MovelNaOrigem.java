@@ -14,18 +14,18 @@ package Engine;
  * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
  * @version 11/05/26
  */
-public class NavioNaOrigem implements EstadoNavio {
+public class MovelNaOrigem implements EstadoMovel {
     /**
-     * Atualiza o estado de um navio localizado na origem, considerando as condições
+     * Atualiza o estado de um movel localizado na origem, considerando as condições
      * fornecidas. Este método pode realizar operações de transição de estado ou
-     * estabelecer o comportamento do navio enquanto ele permanece na origem.
+     * estabelecer o comportamento do movel enquanto ele permanece na origem.
      *
-     * @param navio              o objeto Navio cujo estado será atualizado
+     * @param movel              o objeto Navio cujo estado será atualizado
      * @param delta              o intervalo de tempo que influencia a atualização do estado
-     * @param velocidadeCorrente o vetor que representa a velocidade da corrente no ambiente do navio
+     * @param velocidadeCorrente o vetor que representa a velocidade da corrente no ambiente do movel
      */
     @Override
-    public void atualizar(Navio navio, double delta, Vetor velocidadeCorrente) {
+    public void atualizar(Movel movel, double delta, Vetor velocidadeCorrente) {
 
     }
 }

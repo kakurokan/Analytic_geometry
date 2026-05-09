@@ -59,7 +59,7 @@ class GestorMaritimoTest {
         navio.atualizar(1.9, new Vetor(1, 1));
 
         gestor.atualizarPosicoes(navio2);
-        assertEquals(NavioAguardando.class, navio.getEstado().getClass());
+        assertEquals(MovelAguardando.class, navio.getEstado().getClass());
     }
 
     @Test
@@ -69,9 +69,9 @@ class GestorMaritimoTest {
         gestor.libertarMovel(destino, navio2);
         gestor.libertarMovel(origem, navio);
 
-        assertInstanceOf(NavioNavegando.class, navio.getEstado());
+        assertInstanceOf(MovelNavegando.class, navio.getEstado());
 
-        assertInstanceOf(NavioNavegando.class, navio2.getEstado());
+        assertInstanceOf(MovelNavegando.class, navio2.getEstado());
 
         assertNotNull(gestor.getMovels());
     }

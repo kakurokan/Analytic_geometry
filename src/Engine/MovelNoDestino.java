@@ -14,16 +14,16 @@ package Engine;
  * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
  * @version 11/05/26
  */
-public class NavioNoDestino implements EstadoNavio {
+public class MovelNoDestino implements EstadoMovel {
     /**
-     * Atualiza o estado de um navio quando ele está no destino.
+     * Atualiza o estado de um movel quando ele está no destino.
      *
-     * @param navio              o navio que será atualizado
+     * @param movel              o movel que será atualizado
      * @param delta              o intervalo de tempo em segundos desde a última atualização
      * @param velocidadeCorrente o vetor representando a velocidade da corrente no ambiente
      */
     @Override
-    public void atualizar(Navio navio, double delta, Vetor velocidadeCorrente) {
+    public void atualizar(Movel movel, double delta, Vetor velocidadeCorrente) {
 
     }
 }

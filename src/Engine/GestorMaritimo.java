@@ -95,12 +95,12 @@ public class GestorMaritimo implements TorreDeControlo {
         movel.setEmColisao(tocando);
 
         if (caminhoBloqueado) {
-            if (movel.getEstado() instanceof NavioNavegando) {
-                movel.mudarEstado(new NavioAguardando());
+            if (movel.getEstado() instanceof MovelNavegando) {
+                movel.mudarEstado(new MovelAguardando());
             }
         } else {
-            if (movel.getEstado() instanceof NavioAguardando) {
-                movel.mudarEstado(new NavioNavegando());
+            if (movel.getEstado() instanceof MovelAguardando) {
+                movel.mudarEstado(new MovelNavegando());
             }
         }
     }
@@ -128,9 +128,9 @@ public class GestorMaritimo implements TorreDeControlo {
         grafo.removerPonto(origem, atual);
         if (rota != null) {
             movel.receberRota(rota);
-            movel.mudarEstado(new NavioNavegando());
+            movel.mudarEstado(new MovelNavegando());
         } else {
-            movel.mudarEstado(new NavioAguardando());
+            movel.mudarEstado(new MovelAguardando());
         }
 
     }
@@ -149,7 +149,7 @@ public class GestorMaritimo implements TorreDeControlo {
         Route rota = estrategiaRota.caminhos(origem.getPosicao(), movel.getDestino());
         if (rota != null) {
             movel.receberRota(rota);
-            movel.mudarEstado(new NavioNavegando());
+            movel.mudarEstado(new MovelNavegando());
             this.navios.add(movel);
         }
     }
@@ -169,7 +169,7 @@ public class GestorMaritimo implements TorreDeControlo {
     public void movelTerminouPercurso(Movel movel) {
         Navio navio = (Navio) movel;
 
-        navio.mudarEstado(new NavioNoDestino());
+        navio.mudarEstado(new MovelNoDestino());
         this.navios.remove(movel);
     }
 
