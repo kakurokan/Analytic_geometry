@@ -242,7 +242,7 @@ public class PainelMapa extends JPanel {
             int y = telaY(p.getY());
 
             g.fillOval(x - 3, y - 3, 6, 6);
-            g.drawString(String.valueOf(entry.getValue()), x + 8, y - 8);
+            g.drawString(String.valueOf(entry.getValue()), x + 5, y - 5);
         }
     }
 
