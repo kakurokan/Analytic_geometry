@@ -81,20 +81,25 @@ class EstadoNavioTest {
     }
 
     static class TorreDeControloSAux implements TorreDeControlo {
+
         @Override
-        public void atualizarRota(Navio navio) {
+        public void atualizarRota(Movel movel) {
+
         }
 
         @Override
-        public void atualizarPosicoes(Navio navio) {
+        public void atualizarPosicoes(Movel movel) {
+
         }
 
         @Override
-        public void libertarNavio(Porto origem, Navio navio) {
+        public void libertarMovel(Porto origem, Movel movel) {
+
         }
 
         @Override
-        public void navioTerminouPercurso(Navio movel) {
+        public void movelTerminouPercurso(Movel movel) {
+
         }
 
         @Override
@@ -103,7 +108,7 @@ class EstadoNavioTest {
         }
 
         @Override
-        public List<Navio> getNavios() {
+        public List<Movel> getMovels() {
             return List.of();
         }
     }

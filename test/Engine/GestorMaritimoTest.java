@@ -73,7 +73,7 @@ class GestorMaritimoTest {
 
         assertInstanceOf(NavioNavegando.class, navio2.getEstado());
 
-        assertNotNull(gestor.getNavios());
+        assertNotNull(gestor.getMovels());
     }
 
     @Test
@@ -81,6 +81,6 @@ class GestorMaritimoTest {
         gestor.libertarMovel(origem, navio2);
         gestor.atualizarPosicoes(navio2);
         gestor.movelTerminouPercurso(navio2);
-        assertFalse(gestor.getNavios().contains(navio2));
+        assertFalse(gestor.getMovels().contains(navio2));
     }
 }

@@ -131,7 +131,7 @@ class NavioTest {
 
     @Test
     void getDestino_RetornaPortoDeDestinoCorreto() {
-        assertEquals(destino, navio.getDestino());
+        assertEquals(destino.getPosicao(), navio.getDestino());
     }
 
     @Test
