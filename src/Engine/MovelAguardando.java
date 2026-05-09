@@ -34,6 +34,7 @@ public class MovelAguardando implements EstadoMovel {
         }
 
         if (!movel.isEmColisao()) {
+            movel.getTorre().atualizarRota(movel);
             movel.mudarEstado(new MovelNavegando());
         }
     }

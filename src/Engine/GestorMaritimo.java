@@ -136,13 +136,17 @@ public class GestorMaritimo implements TorreDeControlo {
     }
 
     /**
-     * Libera um navio do porto de origem, atribuindo uma rota para seu destino
-     * e alterando o seu estado para navegando, se uma rota viável for encontrada.
+     * Tenta libertar um navio do porto de origem em direção ao seu destino.
+     * Se uma rota viável for encontrada, atribui a rota e altera o estado para navegando.
+     * Caso não exista rota (caminho bloqueado), o navio transita para o estado de espera.
      *
-     * @param origem O porto de onde o navio será liberado. Contém informações
-     *               sobre a sua posição e fila de navios em espera.
-     * @param movel  O navio que será liberado. Este navio terá sua rota
-     *               atualizada para alcançar o destino especificado.
+     * @param origem O porto de onde o navio será liberto.
+     * @param movel  O navio (móvel) que será liberto.
+     * @pre origem != null
+     * @pre movel != null
+     * @pos A lista de controlo (navios) passará a conter e monitorizar o movel.
+     * @pos Se existir rota, o estado do movel passa a MovelNavegando e a rota é atribuída.
+     * @pos Se não existir rota, o estado do movel passa a MovelAguardando.
      */
     @Override
     public void libertarMovel(Porto origem, Movel movel) {
@@ -150,6 +154,10 @@ public class GestorMaritimo implements TorreDeControlo {
         if (rota != null) {
             movel.receberRota(rota);
             movel.mudarEstado(new MovelNavegando());
+            this.navios.add(movel);
+        } else {
+            // Se não tiver rota, ele fica à espera
+            movel.mudarEstado(new MovelAguardando());
             this.navios.add(movel);
         }
     }
