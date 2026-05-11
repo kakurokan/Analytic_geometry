@@ -52,15 +52,24 @@ public class JanelaPrincipal extends JFrame {
         setSize(1024, 768);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
+
         add(painel, BorderLayout.CENTER);
 
+        // PAINEL INFERIOR (onde ficam todos os controlos)
         JPanel painelSul = new JPanel();
 
         AcaoReiniciarSimulacao reset = new AcaoReiniciarSimulacao(simulador, painel, recriarBarcos);
-
         JButton botaoReset = new JButton(reset);
 
+        AcaoAlternarDirecao acaoAlternar = new AcaoAlternarDirecao(this.painel);
+        JToggleButton btnAlternar = new JToggleButton(acaoAlternar);
+        btnAlternar.setFocusable(false);
+
         painelSul.add(botaoReset);
+        painelSul.add(Box.createHorizontalStrut(40)); // Cria um espaço em branco a separar os dois controlos
+        painelSul.add(new JLabel("Orientação do Navio:"));
+        painelSul.add(btnAlternar);
+
         add(painelSul, BorderLayout.SOUTH);
 
         this.timer = new Timer(16, e -> {

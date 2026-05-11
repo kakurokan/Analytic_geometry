@@ -158,7 +158,7 @@ public class Navegante {
     }
 
     /**
-     * Determina o índice do segmento atual sendo percorrido com base numa velocidade
+     * Determina o índice do segmento atual percorrido com base numa velocidade
      * linear e tempo decorrido fornecidos. Também calcula a distância percorrida
      * dentro do segmento atual.
      *

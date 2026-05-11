@@ -77,9 +77,9 @@ public class Navio implements Movel {
     }
 
     /**
-     * Verifica se a área do navio intercepta outro círculo fornecido.
-     * Dois círculos são considerados como interceptando se a distância entre
-     * seus centros for menor ou igual à soma de seus raios.
+     * Verifica se a área do navio interceta outro círculo fornecido.
+     * Dois círculos são considerados como intercetando se a distância entre
+     * seus centros for menor ou igual à soma dos seus raios.
      *
      * @param circulo O círculo a ser verificado quanto à interseção com a área do navio.
      *                Não pode ser nulo.

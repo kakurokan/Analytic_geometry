@@ -33,6 +33,7 @@ public class PainelMapa extends JPanel {
     private Vetor corrente;
     private List<Tempestade> tempestades;
     private SnapshotSimulacao snapshot;
+    private boolean apontarParaRota;
 
     /**
      * Constrói um painel gráfico que exibe um mapa com rotas, tempestades, obstáculos estáticos,
@@ -50,6 +51,7 @@ public class PainelMapa extends JPanel {
         this.obstaculos = obstaculosEstaticos;
         this.posicoesPortos = posicoesPortos;
         this.corrente = corrente;
+        this.apontarParaRota = false;
 
         setBackground(Color.white);
         atribuirLetrasAosPontos();
@@ -123,6 +125,17 @@ public class PainelMapa extends JPanel {
      */
     public void setTempestades(List<Tempestade> t) {
         this.tempestades = t;
+    }
+
+    /**
+     * Define se o desenho deve usar a direção da rota ou a direção
+     * real do navio
+     *
+     * @param apontarParaRota um valor booleano que indica se é para
+     *                        usar a direção da rota
+     */
+    public void setApontarParaRota(boolean apontarParaRota) {
+        this.apontarParaRota = apontarParaRota;
     }
 
     /**
@@ -270,9 +283,14 @@ public class PainelMapa extends JPanel {
                 g.setStroke(linhaOriginal);
             }
 
+            // Escolhe qual direção usar baseado na preferência
+            Vetor direcaoCalculada = (apontarParaRota && navio.getDirecaoRota() != null)
+                    ? navio.getDirecaoRota()
+                    : navio.getDirecao();
+
             double angulo = 0;
-            if (direcao != null) {
-                angulo = Math.atan2(-direcao.getY(), direcao.getX());
+            if (direcaoCalculada != null) {
+                angulo = Math.atan2(-direcaoCalculada.getY(), direcaoCalculada.getX());
             }
 
             AffineTransform transformacaoOriginal = g.getTransform();

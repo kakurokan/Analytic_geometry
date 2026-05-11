@@ -121,6 +121,7 @@ public class SnapshotSimulacao {
     public static class DadosNavio {
         private final Ponto posicao;
         private final Vetor direcao;
+        private final Vetor direcaoRota;
         private final boolean emColisao;
         private final double raioArea;
 
@@ -133,9 +134,10 @@ public class SnapshotSimulacao {
          *                  se o navio estiver em colisão, caso contrário {@code false}.
          * @param raioArea  O raio da área de ação do navio, usado para determinar sua influência na simulação.
          */
-        public DadosNavio(Ponto posicao, Vetor direcao, boolean emColisao, double raioArea) {
+        public DadosNavio(Ponto posicao, Vetor direcao, Vetor direcaoRota, boolean emColisao, double raioArea) {
             this.posicao = posicao;
             this.direcao = direcao;
+            this.direcaoRota = direcaoRota;
             this.emColisao = emColisao;
             this.raioArea = raioArea;
         }
@@ -156,6 +158,15 @@ public class SnapshotSimulacao {
          */
         public Vetor getDirecao() {
             return direcao;
+        }
+
+        /**
+         * Retorna o vetor que representa a direção atual do navio conforme a rota.
+         *
+         * @return um objeto {@code Vetor} que indica a direção do navio na simulação.
+         */
+        public Vetor getDirecaoRota() {
+            return direcaoRota;
         }
 
         /**
