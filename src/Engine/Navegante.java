@@ -143,7 +143,6 @@ public class Navegante {
                 inicio.getY() + deslocamento.getY());
     }
 
-
     /**
      * Calcula a direção do movimento em função da velocidade linear atual, tempo transcorrido
      * e a velocidade corrente num determinado ponto da rota.
