@@ -25,6 +25,8 @@ public class MovelNavegando implements EstadoMovel {
      * @param movel              o objeto Navio que terá a sua posição atualizada
      * @param delta              o tempo decorrido que influencia o deslocamento do movel
      * @param velocidadeCorrente o vetor representando a velocidade corrente que afeta o movimento do movel
+     * @pre movel != null, delta > 0 e velocidadeCorrente != null
+     * @pos Invoca o método mover do objeto, resultando na atualização da sua posição geográfica.
      */
     @Override
     public void atualizar(Movel movel, double delta, Vetor velocidadeCorrente) {

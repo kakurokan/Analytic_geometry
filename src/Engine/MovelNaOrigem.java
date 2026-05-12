@@ -23,6 +23,8 @@ public class MovelNaOrigem implements EstadoMovel {
      * @param movel              o objeto Navio cujo estado será atualizado
      * @param delta              o intervalo de tempo que influencia a atualização do estado
      * @param velocidadeCorrente o vetor que representa a velocidade da corrente no ambiente do movel
+     * @pre movel != null, delta > 0 e velocidadeCorrente != null
+     * @pos O navio permanece estático na origem; nenhuma alteração de posição é efetuada.
      */
     @Override
     public void atualizar(Movel movel, double delta, Vetor velocidadeCorrente) {

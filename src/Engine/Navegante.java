@@ -31,6 +31,7 @@ public class Navegante {
      *
      * @param rota a rota contendo os segmentos para inicializar esta instância de Engine.Navegante
      * @pre rota != null e rota.getSegmentos() != null
+     * @pos Os segmentos da rota fornecida são associados à instância.
      */
     public Navegante(Route rota) {
         mudarRota(rota);
@@ -44,6 +45,7 @@ public class Navegante {
      *             Deve ser um objeto {@code Engine.Route} válido cuja lista de segmentos
      *             não seja nula.
      * @pre rota != null e rota.getSegmentos() != null
+     * @pos A lista de segmentos interna é substituída pelos segmentos da nova rota.
      */
     public void mudarRota(Route rota) {
         this.segmentos = rota.getSegmentos();
@@ -62,7 +64,8 @@ public class Navegante {
      * @return Uma lista de objetos {@code Engine.Vetor} representando a velocidade em cada
      * segmento da rota, considerando os efeitos da velocidade do vento.
      * A lista estará vazia se não houver segmentos na rota.
-     * @pre velocidadeLinear > 0
+     * @pre velocidadeCorrente != null e velocidadeLinear > 0
+     * @pos Retorna uma lista de vetores (um por segmento). A lista não é nula.
      */
     public List<Vetor> velocidadePorSegmento(Vetor velocidadeCorrente, double velocidadeLinear) {
         List<Vetor> velocidades = new ArrayList<>();
@@ -86,6 +89,8 @@ public class Navegante {
      *                    Deve ser um valor positivo maior que zero.
      * @return O tempo total necessário para percorrer a rota em segundos. Se a lista de segmentos
      * estiver vazia, o retorno será 0.
+     * @pre linearSpeed > 0.0
+     * @pos Retorna o tempo total >= 0.
      */
     public double tempoParaPercorrer(double linearSpeed) {
         double resultado = 0;
@@ -113,6 +118,7 @@ public class Navegante {
      * correspondente ao local alcançado após o movimento. Se os segmentos estiverem
      * vazios, retorna null.
      * @pre tempo > 0 e velocidadeLinear > 0
+     * @pos Retorna o ponto exato da posição na rota. Se a rota estiver vazia, retorna null.
      */
     public Ponto posicao(double velocidadeLinear, double tempo) {
         //o array é preenchido dentro da função
@@ -148,6 +154,8 @@ public class Navegante {
      *                           Não pode ser {@code null}.
      * @return Um vetor representando a direção do movimento no segmento correspondente,
      * considerando os parâmetros fornecidos.
+     * @pre velocidadeLinear > 0, tempo >= 0 e velocidadeCorrente != null
+     * @pos Retorna o vetor da velocidade ajustada para o segmento atual.
      */
     public Vetor direcao(double velocidadeLinear, double tempo, Vetor velocidadeCorrente) {
         int segIndice = getIndiceSegmentoAtual(velocidadeLinear, tempo, new double[1]);
@@ -172,6 +180,8 @@ public class Navegante {
      * @return O índice do segmento atual sendo percorrido. Se a distância total
      * percorrida exceder o comprimento cumulativo de todos os segmentos, o índice do
      * último segmento é retornado.
+     * @pre velocidadeLinear > 0, tempo >= 0 e percorrido.length == 1
+     * @pos Retorna um índice válido dentro da lista de segmentos.
      */
     private int getIndiceSegmentoAtual(double velocidadeLinear, double tempo, double[] percorrido) {
         double percorrer = velocidadeLinear * tempo;
@@ -200,6 +210,7 @@ public class Navegante {
      * @return Uma lista contendo os segmentos da rota representados por
      * objetos do tipo {@code SegmentoReta}. Se não houver segmentos
      * associados, retorna uma lista vazia.
+     * @pos A lista de segmentos retornada não é nula.
      */
     public List<SegmentoReta> getSegmentos() {
         return segmentos;
@@ -214,6 +225,8 @@ public class Navegante {
      *                aos segmentos. Não pode ser nulo.
      * @return O segmento correspondente ao ponto fornecido, ou {@code null} se o ponto não
      * pertencer a nenhum segmento.
+     * @pre posicao != null
+     * @pos Retorna o segmento que contém o ponto, ou null se não pertencer a nenhum.
      */
     public SegmentoReta getSegmentoAtual(Ponto posicao) {
         for (SegmentoReta seg : segmentos) {

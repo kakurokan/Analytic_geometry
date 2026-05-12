@@ -45,6 +45,8 @@ public class Navio implements Movel {
      * @param destino          O porto de destino do navio. Não pode ser nulo.
      * @param torre            A torre de controle responsável por gerir os navios.
      *                         Não pode ser nula.
+     * @pre area != null, velocidadeLinear > 0, horario >= 0, origem != null, destino != null e torre != null
+     * @pos O Navio é criado no estado MovelNaOrigem com tempoNavegando a zero.
      */
     public Navio(Circulo area, double velocidadeLinear, int horario, Porto origem, Porto destino, TorreDeControlo torre) {
         this.area = new Circulo(area.getCentro(), area.getRaio());
@@ -62,6 +64,7 @@ public class Navio implements Movel {
      * Verifica se o navio está em estado de colisão.
      *
      * @return true se o navio estiver em colisão, ou false caso contrário.
+     * @pos Retorna true se o navio estiver marcado em colisão.
      */
     public boolean isEmColisao() {
         return emColisao;
@@ -72,6 +75,7 @@ public class Navio implements Movel {
      *
      * @param emColisao um valor booleano que indica se o navio está ou não em colisão.
      *                  true para indicar que o navio está em colisão, false caso contrário.
+     * @pos O estado de colisão é atualizado para o valor fornecido.
      */
     public void setEmColisao(boolean emColisao) {
         this.emColisao = emColisao;
@@ -99,6 +103,8 @@ public class Navio implements Movel {
      *               com a área do navio atual. Não pode ser {@code null}.
      * @return {@code true} se a área do navio intercetar a área do objeto fornecido,
      * {@code false} caso contrário.
+     * @pre objeto != null
+     * @pos Retorna true se as áreas circulares dos dois objetos se intersetam.
      */
     @Override
     public boolean intersect(Movel objeto) {
@@ -113,6 +119,9 @@ public class Navio implements Movel {
      *                         Representa a duração durante a qual o navio se movimentou.
      * @param velocidadeOposta O vetor de velocidade oposta que afeta o movimento do navio.
      *                         Pode representar forças externas como correntes ou vento.
+     * @pre delta > 0 e velocidadeOposta != null
+     * @pos O tempo de navegação é incrementado e a posição atualizada no mapa.
+     * Notifica a torre se terminar o percurso.
      */
     @Override
     public void mover(double delta, Vetor velocidadeOposta) {
@@ -164,6 +173,8 @@ public class Navio implements Movel {
      * @param velocidadeOposta O vetor de velocidade oposta que pode influenciar o estado
      *                         e o movimento do navio.
      * @throws IllegalArgumentException Se o valor de delta for menor ou igual a zero.
+     * @pre delta > 0 e velocidadeOposta != null
+     * @pos Delega a atualização ao estado atual (EstadoMovel).
      */
     public void atualizar(double delta, Vetor velocidadeOposta) {
         if (delta <= 0) {
@@ -215,6 +226,8 @@ public class Navio implements Movel {
      *
      * @param rota O objeto {@code Route} que representa a nova rota a ser seguida
      *             pelo navio. Não pode ser nulo.
+     * @pre rota != null
+     * @pos A rota é atualizada no Navegante e o tempoNavegando é reiniciado a zero.
      */
     public void receberRota(Route rota) {
         this.tempoNavegando = 0;
@@ -230,6 +243,8 @@ public class Navio implements Movel {
      * @return um inteiro negativo, zero ou um inteiro positivo conforme o código de viagem deste
      * {@code Navio} seja menor, igual ou maior que o código de viagem do
      * {@code Navio} especificado.
+     * @pre o != null
+     * @pos Retorna o resultado da comparação lexicográfica dos códigos de viagem.
      */
     @Override
     public int compareTo(Movel o) {

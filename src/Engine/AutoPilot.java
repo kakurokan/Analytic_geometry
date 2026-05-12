@@ -33,6 +33,7 @@ public class AutoPilot {
      * @return Um novo vetor que representa a velocidade ajustada com base no vetor de rota,
      * na velocidade do vento e no tempo.
      * @pre velocidadeCorrente != null e tempo > 0.0
+     * @pos O vetor retornado não é nulo.
      */
     public Vetor speed(Vetor velocidadeCorrente, double tempo) {
         return r.multi(1 / tempo).sub(velocidadeCorrente);
@@ -45,6 +46,7 @@ public class AutoPilot {
      * @param linearSpeed A velocidade linear constante utilizada na travessia da rota.
      * @return O tempo necessário para percorrer a rota, ajustado pela velocidade do vento.
      * @pre linearSpeed > 0.0
+     * @pos O valor retornado é > 0.0.
      */
     public double time(double linearSpeed) {
         return r.modulo() / linearSpeed;

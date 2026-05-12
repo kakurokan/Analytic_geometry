@@ -17,6 +17,9 @@ public interface Movel extends Comparable<Movel> {
      *               em relação ao objeto atual. Não pode ser {@code null}.
      * @return {@code true} se os objetos {@code Movel} se intercetarem,
      * {@code false} caso contrário.
+     * @pre objeto != null
+     * @pos Retorna true se as áreas circulares dos dois objetos causa uma intersecao.
+     *
      */
     boolean intersect(Movel objeto);
 
@@ -28,6 +31,8 @@ public interface Movel extends Comparable<Movel> {
      *                         Deve ser um valor positivo.
      * @param velocidadeOposta O vetor de velocidade oposta ao movimento que será considerado no cálculo
      *                         do movimento. Não pode ser {@code null}.
+     * @pre delta > 0.0 e velocidadeOposta != null
+     * @pos A posição da área do objeto é atualizada conforme o deslocamento calculado.
      */
     void mover(double delta, Vetor velocidadeOposta);
 
@@ -35,6 +40,7 @@ public interface Movel extends Comparable<Movel> {
      * Recupera a posição atual do objeto no espaço bidimensional.
      *
      * @return Um objeto {@code Ponto} que representa a posição atual do objeto.
+     * @pos O ponto retornado representa a localização atual e não é nulo.
      */
     Ponto getPosicao();
 
@@ -45,6 +51,8 @@ public interface Movel extends Comparable<Movel> {
      *                         Deve ser um valor positivo.
      * @param velocidadeOposta O vetor representando a velocidade oposta ao movimento atual.
      *                         Não pode ser {@code null}.
+     * @pre delta > 0.0 e velocidadeOposta != null
+     * @pos O estado ou a posição do objeto são atualizados conforme o seu estado atual.
      */
     void atualizar(double delta, Vetor velocidadeOposta);
 
@@ -53,6 +61,7 @@ public interface Movel extends Comparable<Movel> {
      * O círculo representa a área ocupada pelo objeto no espaço bidimensional.
      *
      * @return um objeto {@code Circulo} que define a área associada ao objeto.
+     * @pos O círculo retornado define a área física do objeto e não é nulo.
      */
     Circulo getArea();
 
@@ -62,6 +71,8 @@ public interface Movel extends Comparable<Movel> {
      * @param velocidadeOposta O vetor representando a velocidade oposta que será utilizado
      *                         para determinar a direção. Não pode ser {@code null}.
      * @return Um objeto {@code Vetor} que representa a direção do movimento calculada.
+     * @pre velocidadeOposta != null
+     * @pos Retorna o vetor da direção atual do movimento, ajustado pela corrente. Não é nulo.
      */
     Vetor getDirecao(Vetor velocidadeOposta);
 
@@ -72,6 +83,8 @@ public interface Movel extends Comparable<Movel> {
      *
      * @return um valor negativo, zero ou um valor positivo consoante a prioridade deste
      * objeto seja menor, igual ou maior que a do objeto especificado.
+     * @pre outro != null
+     * @pos Retorna um valor inteiro que define a prioridade de passagem entre dois móveis.
      */
     @Override
     int compareTo(Movel outro);
@@ -83,12 +96,16 @@ public interface Movel extends Comparable<Movel> {
      *
      * @return O objeto {@code SegmentoReta} em que o móvel se encontra, ou {@code null}
      * se não estiver associado a nenhum segmento reconhecido.
+     * @pre origem != null
+     * @pos Retorna o segmento da rota onde o ponto se encontra, ou null se estiver fora da rota.
      */
     SegmentoReta getSegmentoAtual(Ponto origem);
 
     /**
      * Atribui uma nova rota que ditará a trajetória do objeto móvel.
-     * * @param rota O objeto {@code Route} que representa o novo percurso. Não pode ser {@code null}.
+     * @param rota O objeto {@code Route} que representa o novo percurso. Não pode ser {@code null}.
+     * @pre rota != null
+     * @pos A inteligência de navegação do móvel é atualizada com o novo percurso.
      */
     void receberRota(Route rota);
 
@@ -96,12 +113,15 @@ public interface Movel extends Comparable<Movel> {
      * Altera o estado comportamental atual do objeto móvel no seu ciclo de vida
      * (por exemplo: na origem, a navegar, a aguardar, no destino).
      * * @param estado A instância de {@code EstadoNavio} que representa o novo estado a assumir.
+     * @pre estado != null
+     * @pos O comportamento atual do móvel é substituído pela nova instância de estado.
      */
     void mudarEstado(EstadoMovel estado);
 
     /**
      * Obtém a localização de destino do objeto móvel.
-     * * @return O {@code Ponto} que representa a meta ou o destino planeado do objeto.
+     * @return O {@code Ponto} que representa a meta ou o destino planeado do objeto.
+     * @pos Retorna o ponto de destino final planeado. Não é nulo.
      */
     Ponto getDestino();
 
@@ -109,6 +129,7 @@ public interface Movel extends Comparable<Movel> {
      * Recupera o estado comportamental atual do objeto móvel.
      * * @return Um {@code Object} (geralmente uma implementação do estado correspondente)
      * que representa a situação ou fase atual do objeto.
+     * @pos Retorna o estado comportamental atual (instância de EstadoMovel).
      */
     Object getEstado();
 
@@ -116,12 +137,14 @@ public interface Movel extends Comparable<Movel> {
      * Retorna o estado de colisão do objeto móvel.
      *
      * @return {@code true} para indicar que o objeto está em colisão, {@code false} caso contrário.
+     * @pos Retorna true se o objeto estiver marcado como em colisão.
      */
     boolean isEmColisao();
 
     /**
      * Altera o estado de colisão do objeto móvel.
      * * @param b {@code true} para indicar que o objeto está em colisão, {@code false} caso contrário.
+     * @pos O atributo de colisão do objeto é atualizado para o valor booleano fornecido.
      */
     void setEmColisao(boolean b);
 
@@ -129,6 +152,7 @@ public interface Movel extends Comparable<Movel> {
      * Recupera a TorreDeControlo utilizada pelo objeto movel
      *
      * @return Um {@code TorreDeControlo} o mediador que o objeto está a utilizar para se comunicar
+     * @pos Retorna a torre de controlo que gere este objeto. Não é nula.
      */
     TorreDeControlo getTorre();
 }

@@ -24,6 +24,8 @@ public class Tempestade implements Obstaculo {
      *             Não pode ser nulo e deve ter um raio maior que zero.
      * @throws IllegalArgumentException Se o círculo fornecido tiver um raio inválido
      *                                  ou se parâmetro for nulo.
+     * @pre area != null e area.getRaio() > 0
+     * @pos A tempestade é inicializada com uma cópia independente da área fornecida.
      */
     public Tempestade(Circulo area) {
         this.area = new Circulo(area.getCentro(), area.getRaio());
@@ -35,6 +37,7 @@ public class Tempestade implements Obstaculo {
      * graficamente a delimitação da área afetada.
      *
      * @return o objeto Circulo que representa a área da tempestade.
+     * @pos Retorna a área circular da tempestade, não sendo nula.
      */
     public Circulo getArea() {
         return area;
@@ -49,6 +52,8 @@ public class Tempestade implements Obstaculo {
      *             Não pode ser nula e deve conter informações válidas de geometria espacial.
      * @return Uma lista de pontos representando as interseções entre a área da tempestade
      * e a rota. Se não houver interseção, retorna uma lista vazia.
+     * @pre rota != null
+     * @pos Retorna null se não houver interseção, ou uma lista com os pontos de interseção únicos entre a área e a rota.
      */
     @Override
     public List<Ponto> intersect(Route rota) {

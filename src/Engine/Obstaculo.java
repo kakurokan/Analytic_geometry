@@ -11,5 +11,12 @@ import java.util.List;
  * @version 11/05/26
  */
 public interface Obstaculo {
+
+    /**
+     * Verifica a interseção entre o obstáculo e uma rota.
+     * @param rota A rota a ser verificada. Não pode ser nula.
+     * @pre rota != null
+     * @pos Retorna null se não houver interseções, ou uma lista com pelo menos um ponto e sem pontos repetidos.
+     */
     List<Ponto> intersect(Route rota);
 }

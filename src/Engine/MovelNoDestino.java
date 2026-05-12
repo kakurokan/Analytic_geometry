@@ -21,6 +21,8 @@ public class MovelNoDestino implements EstadoMovel {
      * @param movel              o movel que será atualizado
      * @param delta              o intervalo de tempo em segundos desde a última atualização
      * @param velocidadeCorrente o vetor representando a velocidade da corrente no ambiente
+     * @pre movel != null, delta > 0 e velocidadeCorrente != null
+     * @pos O movimento é interrompido permanentemente por alcançar o fim da rota.
      */
     @Override
     public void atualizar(Movel movel, double delta, Vetor velocidadeCorrente) {

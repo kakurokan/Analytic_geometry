@@ -17,6 +17,8 @@ public interface TorreDeControlo {
      * com base nos dados fornecidos e nas condições atuais do sistema.
      *
      * @param movel o movel cuja rota será atualizada
+     * @pre movel != null e deve estar registado na torre.
+     * @pos Se existir rota, o movel recebe-a e passa a MovelNavegando, caso contrário, passa a MovelAguardando
      */
     void atualizarRota(Movel movel);
 
@@ -26,6 +28,8 @@ public interface TorreDeControlo {
      * e controle do espaço marítimo.
      *
      * @param movel o movel cuja posição será atualizada no sistema
+     * @pre movel != null.
+     * @pos O estado de colisão do movel é atualizado e, se necessário, o seu estado comportamental (Aguardando/Navegando).
      */
     void atualizarPosicoes(Movel movel);
 
@@ -36,6 +40,8 @@ public interface TorreDeControlo {
      *
      * @param origem o porto de onde o movel será liberado
      * @param movel  o movel que será liberado do porto de origem
+     * @pre origem != null e movel != null.
+     * @pos O movel é adicionado à lista de gestão. Se houver rota, inicia navegação, caso contrário, aguarda.
      */
     void libertarMovel(Porto origem, Movel movel);
 
@@ -45,6 +51,8 @@ public interface TorreDeControlo {
      * desse movel.
      *
      * @param movel o movel que terminou o percurso
+     * @pre movel != null.
+     * @pos O movel passa para o estado MovelNoDestino e é removido da lista de gestão da torre.
      */
     void movelTerminouPercurso(Movel movel);
 
@@ -58,8 +66,15 @@ public interface TorreDeControlo {
      *                  por uma sequência de pontos, descrevendo trajetórias possíveis no espaço marítimo.
      * @param obstaculo a lista de objetos que representam os obstáculos no espaço marítimo. Cada
      *                  obstáculo define interseções potenciais com as rotas fornecidas.
+     * @pre rotas != null e obstaculo != null.
+     * @pos O sistema (grafo e estratégia) é reiniciado com os novos dados e a lista de navios é limpa.
      */
     void iniciar(List<Route> rotas, List<Obstaculo> obstaculo);
 
+    /**
+     * Retorna a lista de móveis sob gestão.
+     * @return Lista de objetos Movel.
+     * @pos A lista retornada não é nula.
+     */
     List<Movel> getMovels();
 }

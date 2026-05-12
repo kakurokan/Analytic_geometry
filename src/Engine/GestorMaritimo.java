@@ -36,6 +36,7 @@ public class GestorMaritimo implements TorreDeControlo {
      * Este construtor inicializa uma lista vazia de navios.
      * A lista será utilizada para gerir e rastrear todos os navios
      * sob o controle deste gestor marítimo.
+     * @pos A lista interna de navios é inicializada como uma lista vazia
      */
     public GestorMaritimo() {
         this.navios = new ArrayList<>();
@@ -51,6 +52,8 @@ public class GestorMaritimo implements TorreDeControlo {
      *                  Cada rota é representada por um objeto {@code Route}.
      * @param obstaculo A lista de obstáculos no espaço marítimo que impactam as rotas.
      *                  Cada obstáculo é representado por um objeto que implementa a interface {@code Obstaculo}.
+     * @pre rotas != null e obstaculo != null.
+     * @pos O grafo e a estratégia de Dijkstra são criados e a lista de navios é esvaziada.
      */
     public void iniciar(List<Route> rotas, List<Obstaculo> obstaculo) {
         grafo = new Grafo(rotas, obstaculo);
@@ -71,6 +74,8 @@ public class GestorMaritimo implements TorreDeControlo {
      *
      * @param movel O navio cuja posição será atualizada, conforme as interações com outros navios
      *              no espaço marítimo gerenciado.
+     * @pre movel != null.
+     * @pos Atualiza 'emColisao' de todos os envolvidos. Se o movel tiver menor prioridade, passa a MovelAguardando.
      */
     @Override
     public void atualizarPosicoes(Movel movel) {
@@ -115,6 +120,8 @@ public class GestorMaritimo implements TorreDeControlo {
      *
      * @param movel O navio cuja rota será recalculada e que terá o seu estado ajustado conforme
      *              as condições avaliadas durante o processo de atualização.
+     * @pre movel != null e deve estar na lista de gestão
+     * @pos Se houver rota, o movel recebe-a, caso contrário, fica em espera. Garante a integridade do grafo original.
      */
     @Override
     public void atualizarRota(Movel movel) {
@@ -150,8 +157,7 @@ public class GestorMaritimo implements TorreDeControlo {
      *
      * @param origem O porto de onde o navio será liberto.
      * @param movel  O navio (móvel) que será liberto.
-     * @pre origem != null
-     * @pre movel != null
+     * @pre origem != null e movel != null.
      * @pos A lista de controlo (navios) passará a conter e monitorizar o movel.
      * @pos Se existir rota, o estado do movel passa a MovelNavegando e a rota é atribuída.
      * @pos Se não existir rota, o estado do movel passa a MovelAguardando.
@@ -180,6 +186,8 @@ public class GestorMaritimo implements TorreDeControlo {
      * @param movel O navio que terminou o percurso. Este navio terá seu estado
      *              atualizado para {@code NavioNoDestino} e será removido da
      *              lista interna de navios gerenciados.
+     * @pre movel != null.
+     * @pos O movel transita para MovelNoDestino e deixa de ser gerido por esta instância.
      */
     @Override
     public void movelTerminouPercurso(Movel movel) {
@@ -198,6 +206,7 @@ public class GestorMaritimo implements TorreDeControlo {
      *
      * @return Uma lista contendo os navios registrados no sistema.
      * A lista é composta por objetos do tipo {@code Navio}.
+     * @pos A lista de navios retornada não é nula.
      */
     @Override
     public List<Movel> getMovels() {

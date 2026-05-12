@@ -23,6 +23,8 @@ public interface EstadoMovel {
      * @param movel              o objeto Movel que será atualizado.
      * @param delta              o tempo decorrido desde a última atualização, especificado em segundos.
      * @param velocidadeCorrente o vetor representando a velocidade da corrente na qual o navio está inserido.
+     * @pre movel != null, delta > 0 e velocidadeCorrente != null
+     * @pos O estado e/ou a posição do movel foram atualizados conforme a lógica do estado específico.
      */
     void atualizar(Movel movel, double delta, Vetor velocidadeCorrente);
 }

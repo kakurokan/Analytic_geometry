@@ -32,6 +32,8 @@ public class EstrategiaDijkstra implements EstrategiaRota {
      *              Este grafo não pode ser nulo e deve conter ligações válidas
      *              entre nós (pontos). Se o grafo for nulo, uma
      *              IllegalArgumentException é lançada.
+     * @pre grafo != null
+     * @pos O objeto é inicializado com o grafo fornecido.
      */
     EstrategiaDijkstra(Grafo grafo) {
         if (grafo == null) {
@@ -127,7 +129,7 @@ public class EstrategiaDijkstra implements EstrategiaRota {
      *
      * @author Acrismede Mendes, Alexandre Guerreiro, Léo Souza
      * @version 11/05/26
-     * @inv ponto != null e distanciaAcumulada > 0
+     * @inv ponto != null e distanciaAcumulada >= 0
      */
     private static class No implements Comparable<No> {
         private final Ponto ponto;

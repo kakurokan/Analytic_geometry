@@ -25,6 +25,9 @@ public class MovelAguardando implements EstadoMovel {
      * @param movel              o movel cujo estado está a ser atualizado
      * @param delta              o intervalo de tempo usado para atualização
      * @param velocidadeCorrente o vetor representando a velocidade atual da corrente
+     * @pre movel != null, delta > 0 e velocidadeCorrente != null
+     * @pos A situação de colisão do móvel é reavaliada pela torre de controlo. Se o percurso ficar livre (!isEmColisao),
+     * a rota é atualizada e o móvel transita para o estado MovelNavegando.
      */
     @Override
     public void atualizar(Movel movel, double delta, Vetor velocidadeCorrente) {
