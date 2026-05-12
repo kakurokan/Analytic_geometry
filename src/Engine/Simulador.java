@@ -48,6 +48,10 @@ public class Simulador {
         this.corrente = corrente;
     }
 
+    public Vetor getCorrente() {
+        return this.corrente;
+    }
+
     /**
      * Inicia a simulação utilizando as rotas e obstáculos previamente definidos.
      * <p>

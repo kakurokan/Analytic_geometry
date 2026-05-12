@@ -48,6 +48,54 @@ class SimuladorTest {
     }
 
     @Test
+    void setCorrente(){
+        assertEquals(new Vetor(-3,2), simulador.getCorrente());
+
+        Vetor novaCorrente = new Vetor(-4,7);
+        simulador.setCorrente(novaCorrente);
+        assertEquals(novaCorrente, simulador.getCorrente());
+    }
+
+    @Test
+    void iniciarTest(){
+        TorreControloAux torre = new  TorreControloAux();
+        Simulador simulador1 = new Simulador(corrente,rotas,portos,obstaculos, torre);
+        simulador1.iniciar();
+        assertTrue(torre.iniciarChamado);
+        assertEquals(rotas,torre.rotas);
+        assertEquals(obstaculos,torre.obstaculos);
+    }
+
+    @Test
+    void deveLibertarNavioQuandoTempoAcumuladoForSuficiente() {
+        Ponto p1 = new Ponto(0, 0);
+        Porto porto = new Porto("Porto Principal", p1, gestor);
+
+        porto.adicionarNavio(2,5,destino);
+
+        TorreControloAux torre = new TorreControloAux();
+        List<Porto> portos = List.of(porto);
+        Simulador simulador = new Simulador(new Vetor(1,1), new ArrayList<>(), portos, new ArrayList<>(), torre);
+
+        simulador.atualizar(6);
+
+       assertTrue(torre.libertaMovel);
+    }
+
+    @Test
+    void deveAtualizarPosicaoDeNavio() {
+        MovelAux navioAtivo = new MovelAux();
+        TorreControloAux torreAUX= new TorreControloAux();
+        torreAUX.libertarMovel(origem,navioAtivo);
+
+        Simulador simulador = new Simulador(new Vetor(1,1), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), torreAUX);
+
+        simulador.atualizar(5.0);
+        assertTrue(navioAtivo.atualizouNavio, "O navio ativo deveria ter sido atualizado.");
+       }
+
+
+    @Test
     void atualizar_ComNavioNavegando_AlteraPosicaoDoNavio() {
         gestor.libertarMovel(origem, navio);
 
@@ -80,5 +128,125 @@ class SimuladorTest {
         Simulador simuladorComObstaculos = new Simulador(corrente, rotas, portos, obstaculos, torre);
 
         assertEquals(obstaculos, simuladorComObstaculos.getObstaculos(), "O simulador deveria retornar a mesma lista de obstáculos com a qual foi instanciado.");
+    }
+
+    class TorreControloAux implements TorreDeControlo {
+
+        public boolean iniciarChamado=false;
+        public boolean libertaMovel=false;
+        List<Route> rotas = null;
+        List<Obstaculo> obstaculos = null;
+        List<Movel> movels= new  ArrayList<>();
+        @Override
+        public void atualizarRota(Movel movel) {
+
+        }
+
+        @Override
+        public void atualizarPosicoes(Movel movel) {
+
+        }
+
+        @Override
+        public void libertarMovel(Porto origem, Movel movel) {
+            this.libertaMovel=true;
+            this.movels.add(movel);
+        }
+
+        @Override
+        public void movelTerminouPercurso(Movel movel) {
+
+        }
+
+        @Override
+        public void iniciar(List<Route> rotas, List<Obstaculo> obstaculo) {
+        this.iniciarChamado=true;
+        this.rotas = rotas;
+        this.obstaculos = obstaculo;
+        }
+
+        @Override
+        public List<Movel> getMovels() {
+            return this.movels;
+        }
+    }
+
+    class MovelAux implements Movel {
+
+        public boolean atualizouNavio=false;
+        @Override
+        public boolean intersect(Movel objeto) {
+            return false;
+        }
+
+        @Override
+        public void mover(double delta, Vetor velocidadeOposta) {
+
+        }
+
+        @Override
+        public Ponto getPosicao() {
+            return null;
+        }
+
+        @Override
+        public void atualizar(double delta, Vetor velocidadeOposta) {
+        this.atualizouNavio=true;
+        }
+
+        @Override
+        public Circulo getArea() {
+            return null;
+        }
+
+        @Override
+        public Vetor getDirecao(Vetor velocidadeOposta) {
+            return null;
+        }
+
+        @Override
+        public int compareTo(Movel outro) {
+            return 0;
+        }
+
+        @Override
+        public SegmentoReta getSegmentoAtual(Ponto origem) {
+            return null;
+        }
+
+        @Override
+        public void receberRota(Route rota) {
+
+        }
+
+        @Override
+        public void mudarEstado(EstadoMovel estado) {
+
+        }
+
+        @Override
+        public Ponto getDestino() {
+            return null;
+        }
+
+        @Override
+        public Object getEstado() {
+            return null;
+        }
+
+        @Override
+        public boolean isEmColisao() {
+            return false;
+        }
+
+        @Override
+        public void setEmColisao(boolean b) {
+
+        }
+
+        @Override
+        public TorreDeControlo getTorre() {
+            return null;
+        }
     }
 }
