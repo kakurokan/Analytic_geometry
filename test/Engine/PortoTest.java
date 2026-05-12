@@ -14,7 +14,7 @@ class PortoTest {
 
     @BeforeEach
     void setUp() {
-        TorreDeControloAux torre = new TorreDeControloAux();
+        GestorMaritimo torre = new GestorMaritimo();
         portoOrigem = new Porto("Porto de Lisboa", new Ponto(0, 0), torre);
         portoDestino = new Porto("Porto de Faro", new Ponto(10, 10), torre);
     }
@@ -39,6 +39,11 @@ class PortoTest {
         Ponto posicaoEsperada = new Ponto(0, 0);
 
         assertEquals(posicaoEsperada, portoOrigem.getPosicao(), "O porto deve retornar a posição com que foi instanciado.");
+
+        Ponto destinoPosicao = new Ponto(10,10);
+
+        assertEquals(destinoPosicao,portoDestino.getPosicao(), "O porto deve retornar a posição com que foi instanciado");
+
     }
 
     @Test
@@ -48,35 +53,25 @@ class PortoTest {
         assertEquals(nomeEsperado, portoOrigem.getNome(), "O porto deve retornar o nome com que foi instanciado.");
     }
 
-    static class TorreDeControloAux implements TorreDeControlo {
+    @Test
+    void limparFila(){
+    portoOrigem.adicionarNavio(2,5,portoDestino);
+    portoOrigem.adicionarNavio(3,10,portoDestino);
+    assertFalse(portoOrigem.getNaviosEmEspera().isEmpty());
+    portoOrigem.limparFila();
+    assertTrue(portoOrigem.getNaviosEmEspera().isEmpty());
+    }
 
-        @Override
-        public void atualizarRota(Movel movel) {
+    @Test
+    void getNaviosEmEspera(){
+        portoOrigem.adicionarNavio(2,5,portoDestino);
+        portoOrigem.adicionarNavio(3,10,portoDestino);
+        assertFalse(portoOrigem.getNaviosEmEspera().isEmpty());
+    }
 
-        }
+    @Test
+    void getNaviosEmEspera_PortoVazio(){
+        assertTrue(portoOrigem.getNaviosEmEspera().isEmpty());
+    }
 
-        @Override
-        public void atualizarPosicoes(Movel movel) {
-
-        }
-
-        @Override
-        public void libertarMovel(Porto origem, Movel movel) {
-
-        }
-
-        @Override
-        public void movelTerminouPercurso(Movel movel) {
-
-        }
-
-        @Override
-        public void iniciar(List<Route> rotas, List<Obstaculo> obstaculo) {
-
-        }
-
-        @Override
-        public List<Movel> getMovels() {
-            return List.of();
-        }
-    }}
+}

@@ -14,10 +14,10 @@ class NavioTest {
     private Porto destino;
     private Navio navio,navio2;
     private TorreDeControlo torre;
-
+    private Route melhorRotaEsperada;
     @BeforeEach
     void setUp() {
-        Route melhorRotaEsperada = new Route(List.of(
+        melhorRotaEsperada = new Route(List.of(
                 new Ponto(0, 0), new Ponto(1, 1), new Ponto(3, 2), new Ponto(3, 5)
         ));
         List<Route> rotas = List.of(melhorRotaEsperada);
@@ -64,6 +64,42 @@ class NavioTest {
 
         assertEquals(-1,navio2.compareTo(navio));
     }
+
+    @Test
+    void getTorre(){
+    assertEquals(torre,navio.getTorre());
+    }
+
+    @Test
+    void getDestino(){
+        assertEquals(destino.getPosicao(),navio.getDestino());
+    }
+
+    @Test
+    void getPortoDestino(){
+        assertEquals(destino,navio.getPortoDestino());
+    }
+
+    @Test
+    void getVelocidadeLinear(){
+        assertEquals(5,navio.getVelocidadeLinear());
+    }
+
+    @Test
+    void getSegmentoAtual(){
+        torre.libertarMovel(origem,navio);
+        navio.mover(0.1,new Vetor(1,1));
+        SegmentoReta esperado = new SegmentoReta(new Ponto(0,0),new Ponto(1,1));
+        assertEquals(esperado,navio.getSegmentoAtual(navio.getPosicao()));
+
+    }
+
+    @Test
+    void getRotaAtual(){
+        torre.libertarMovel(origem,navio);
+        assertEquals(melhorRotaEsperada,navio.getRota());
+    }
+
     @Test
     void intersect_ComNavioNaMesmaArea_RetornaTrue() {
         // Cria um navio numa posição que interseta o navio principal na origem
