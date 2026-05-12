@@ -153,6 +153,7 @@ public class SegmentoReta implements Obstaculo {
     public Ponto intersect(SegmentoReta seg) {
         Vetor r = new Vetor(this.a, this.b);
         Vetor s = new Vetor(seg.getA(), seg.getB());
+        if (this.a.equals(seg.getA())) {return a;}
         Vetor k = new Vetor(this.a, seg.getA());
 
         double numerador = (k).produtoVetorial(r);

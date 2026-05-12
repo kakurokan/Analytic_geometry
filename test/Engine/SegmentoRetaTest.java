@@ -97,6 +97,12 @@ class SegmentoRetaTest {
         assertNotNull(p);
         assertEquals(2.0, p.getX(), Ponto.eps);
         assertEquals(2.0, p.getY(), Ponto.eps);
+
+        SegmentoReta sr3 = new SegmentoReta(new Ponto(2,5), new Ponto(6,4));
+        SegmentoReta sr4 = new SegmentoReta(new Ponto(4,3), new Ponto(5,8));
+        p = sr3.intersect(sr4);
+        assertEquals(4.285714285714286, p.getX());
+        assertEquals(4.428571428571429,p.getY());
     }
 
     @Test
@@ -267,4 +273,5 @@ class SegmentoRetaTest {
         Ponto pertence = new Ponto(2.5+Ponto.eps,2.5+Ponto.eps);
         assertTrue(seg.noSegmento(pertence));
     }
+
 }

@@ -75,12 +75,12 @@ class NavioTest {
             Navio navioRecebido = null;
 
             @Override
-            public void atualizar(Navio n, double d, Vetor velocidadeCorrente) {
+            public void atualizar(Movel movel, double delta, Vetor velocidadeCorrente) {
                 this.foiChamado = true;
-                this.navioRecebido = n;
-                this.deltaRecebido = d;
-            }
+                this.navioRecebido = (Navio) movel;
+                this.deltaRecebido = delta;
 
+            }
         }
         EstadoNavioTemp estadoMock = new EstadoNavioTemp();
         navio.mudarEstado(estadoMock);

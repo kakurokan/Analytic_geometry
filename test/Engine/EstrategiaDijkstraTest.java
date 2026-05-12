@@ -30,7 +30,7 @@ class EstrategiaDijkstraTest {
 
         Ponto origem = new Ponto(0, 0);
         Ponto destino = new Ponto(3, 5);
-        List<Navio> navios = new ArrayList<>();
+
 
         Route rotaRetornada = dijkstra.caminhos(origem, destino);
 
@@ -60,7 +60,7 @@ class EstrategiaDijkstraTest {
 
         Ponto origem = new Ponto(0, 0);
         Ponto destino = new Ponto(3, 5);
-        List<Navio> navios = new ArrayList<>();
+
 
         Route rotaRetornada = dijkstra.caminhos(origem, destino);
 
@@ -72,6 +72,59 @@ class EstrategiaDijkstraTest {
                 "Sem obstáculos no mapa, o algoritmo deveria escolher o trajeto mais direto (rota 1).");
     }
 
+    @Test
+    void caminhos_ComObstaculosESemObstaculos(){
+        Route rota1 = new Route(List.of(
+                new Ponto(2.0, 3.0),
+                new Ponto(4.0, 5.0),
+                new Ponto(1.0, 6.0),
+                new Ponto(2.0, 8.0),
+                new Ponto(6.0, 9.0))
+        );
+
+        Route rota2 = new Route(List.of(
+                new Ponto(3.0, 10.0),
+                new Ponto(5.0, 8.0),
+                new Ponto(10.0, 6.0),
+                new Ponto(10.0, 3.0),
+                new Ponto(6.0, 4.0),
+                new Ponto(2.0, 5.0),
+                new Ponto(1.0, 1.0))
+        );
+        Route rota3 = new Route(List.of(
+                new Ponto(1.0, 1.0),
+                new Ponto(4.0, 3.0),
+                new Ponto(5.0, 8.0)
+        ));
+
+
+        List<Route> rotas = List.of(rota1,rota2,rota3);
+        Poligono q = new Poligono(new Ponto[]{
+           new Ponto(3,3), new Ponto(5,0), new Ponto(9,0), new Ponto(9,4)
+        });
+        List<Obstaculo> obstaculos = List.of(q);
+
+        Grafo grafo = new Grafo(rotas, obstaculos);
+        EstrategiaDijkstra dijkstra = new EstrategiaDijkstra(grafo);
+        GestorMaritimo gestor = new  GestorMaritimo();
+
+        Porto origem = new Porto("A", new Ponto(1,1), gestor);
+        Porto destino = new Porto("B", new Ponto(3,10), gestor);
+        Porto destino2 = new Porto("C", new Ponto(10,6), gestor);
+
+
+
+        Route rotaEsperadaOrigemDestino = new Route(List.of(
+         new Ponto (1,1), new Ponto(2,5),new Ponto(3.60,4.60), new Ponto (4.285714285714286,4.428571428571429), new Ponto(5.0,8.0), new Ponto(4.40,8.60),new Ponto(3,10)
+        ));
+         assertEquals(rotaEsperadaOrigemDestino,dijkstra.caminhos(origem.getPosicao(),destino.getPosicao()));
+
+        Route rotaEsperadaOrigemDestino2 = new Route(List.of(
+                new Ponto (1,1), new Ponto(2,5),new Ponto(3.60,4.60), new Ponto (4.285714285714286,4.428571428571429), new Ponto(5.0,8.0), new Ponto(10,6)        ));
+
+        assertEquals(rotaEsperadaOrigemDestino2,dijkstra.caminhos(origem.getPosicao(),destino2.getPosicao()));
+
+    }
     @Test
     void construtor_GrafoNulo_Excecao(){
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
