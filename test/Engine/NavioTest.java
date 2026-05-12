@@ -12,7 +12,7 @@ class NavioTest {
 
     private Porto origem;
     private Porto destino;
-    private Navio navio;
+    private Navio navio,navio2;
     private TorreDeControlo torre;
 
     @BeforeEach
@@ -31,8 +31,39 @@ class NavioTest {
 
         // Navio principal usado na maioria dos testes
         navio = origem.adicionarNavio(5, 2, destino);
+        navio2 = origem.adicionarNavio(5,3, destino);
     }
 
+    @Test
+    void isEmColisaoTrue(){
+        torre.libertarMovel(origem,navio);
+        torre.libertarMovel(origem,navio2);
+        navio.mover(0.1,new Vetor(1,1));
+        navio2.mover(0.05, new Vetor(1,1));
+        assertTrue(navio.isEmColisao());
+    }
+
+    @Test
+    void isEmColisaoFalse(){
+        torre.libertarMovel(origem,navio);
+        torre.libertarMovel(origem,navio2);
+        navio.mover(0.6,new Vetor(1,1));
+        navio2.mover(0.05, new Vetor(1,1));
+        assertFalse(navio.isEmColisao());
+    }
+
+    @Test
+    void getDirecao(){
+        torre.libertarMovel(origem,navio);
+        assertEquals(new Vetor(2.5355339059,2.5355339059),navio.getDirecao(new Vetor(1,1)));
+    }
+
+    @Test
+    void compareTo(){
+        assertEquals(-1,navio.compareTo(navio2));
+
+        assertEquals(-1,navio2.compareTo(navio));
+    }
     @Test
     void intersect_ComNavioNaMesmaArea_RetornaTrue() {
         // Cria um navio numa posição que interseta o navio principal na origem
@@ -40,6 +71,7 @@ class NavioTest {
 
         assertTrue(navio.intersect(navioInterseta), "Os navios deveriam intersetar-se devido à proximidade das suas áreas.");
     }
+
 
     @Test
     void intersect_ComNavioDistante_RetornaFalse() {

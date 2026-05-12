@@ -23,7 +23,7 @@ import java.util.*;
  */
 
 public class EstrategiaDijkstra implements EstrategiaRota {
-    private final Grafo grafo;
+    private Grafo grafo;
 
     /**
      * Constrói uma instância de EstrategiaDijkstra com o grafo especificado.
@@ -161,4 +161,7 @@ public class EstrategiaDijkstra implements EstrategiaRota {
         }
     }
 
+    public void setGrafo(Grafo grafo){
+        this.grafo=grafo;
+    }
 }

@@ -67,11 +67,7 @@ public class Grafo {
      * de objetos {@code Ponto} representando as conexões.
      */
     public Map<Ponto, Set<Ponto>> getGrafo() {
-        Map<Ponto, Set<Ponto>> view = new TreeMap<>(comparador);
-        for (Map.Entry<Ponto, Set<Ponto>> entry : grafo.entrySet()) {
-            view.put(entry.getKey(), Collections.unmodifiableSet(entry.getValue()));
-        }
-        return Collections.unmodifiableMap(view);
+        return this.grafo;
     }
 
     /**
@@ -87,6 +83,7 @@ public class Grafo {
      * obstáculos, {@code false} caso contrário.
      */
     private boolean intersetaObstaculo(SegmentoReta segmento, List<Obstaculo> obstaculo) {
+        if (obstaculo ==null || obstaculo.isEmpty()) return false;
         Route rota = new Route(
                 List.of(segmento.getA(), segmento.getB()));
         for (Obstaculo o : obstaculo) {

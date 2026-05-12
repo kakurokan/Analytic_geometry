@@ -1,5 +1,6 @@
 package Engine;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -315,5 +316,16 @@ public class Navio implements Movel {
      */
     public SegmentoReta getSegmentoAtual(Ponto posicao) {
         return this.navegante.getSegmentoAtual(posicao);
+    }
+
+    public Route getRota(){
+        List<Ponto> pontosRota= new ArrayList<>();
+        List<SegmentoReta> segmentosRota= this.navegante.getSegmentos();
+        if (segmentosRota == null || segmentosRota.isEmpty()) {return null;}
+        pontosRota.add(segmentosRota.getFirst().getA());
+        for (SegmentoReta seg: segmentosRota){
+            pontosRota.add(seg.getB());
+        }
+        return new Route(pontosRota);
     }
 }

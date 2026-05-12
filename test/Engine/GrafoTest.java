@@ -86,4 +86,16 @@ class GrafoTest {
                 "Se todos os segmentos forem bloqueados, o grafo deve avisar que não há caminhos disponíveis.");
     }
 
+    @Test
+    void getGrafo(){
+        List<Route> rotas = List.of(
+                new Route(List.of(
+                        new Ponto(0,0), new Ponto(1,1), new Ponto(9,8)
+                ))
+        );
+        List<Obstaculo> obstaculos = new  ArrayList<>();
+
+        Grafo grafo = new Grafo(rotas,obstaculos);
+        assertNotNull(grafo.getGrafo());
+    }
 }
