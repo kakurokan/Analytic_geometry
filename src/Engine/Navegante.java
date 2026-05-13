@@ -45,6 +45,7 @@ public class Navegante {
      *             Deve ser um objeto {@code Engine.Route} válido cuja lista de segmentos
      *             não seja nula.
      * @pre rota != null e rota.getSegmentos() != null
+     * @pos A lista interna de segmentos é substituída pelos segmentos da nova rota.
      */
     public void mudarRota(Route rota) {
         this.segmentos = rota.getSegmentos();

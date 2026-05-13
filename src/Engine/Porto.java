@@ -29,6 +29,8 @@ public class Porto {
      * @param nome    O nome do porto.
      * @param posicao A posição do porto especificada como um ponto 2D.
      * @param torre   A torre de controle associada responsável por gerir os navios.
+     * @pre nome != null, posicao != null e torre != null
+     * @pos A instância do porto é criada com os valores fornecidos e a fila de navios em espera é inicializada vazia.
      */
     public Porto(String nome, Ponto posicao, TorreDeControlo torre) {
         this.nome = nome;
@@ -44,6 +46,8 @@ public class Porto {
      * @param horarioPartida   O horário previsto de partida do navio.
      * @param destino          O porto de destino do navio.
      * @return O objeto Navio que foi criado e adicionado à lista de espera.
+     * @pre velocidadeLinear > 0 e destino != null
+     * @pos A instância do navio criada é adicionada à lista interna naviosEmEspera do porto.
      */
     public Navio adicionarNavio(double velocidadeLinear, int horarioPartida, Porto destino) {
         Navio navio = criarNavio(velocidadeLinear, horarioPartida, destino);
@@ -69,6 +73,7 @@ public class Porto {
      * <p>
      * Esta operação serve para reiniciar o estado da fila de navios que aguardam
      * no porto, garantindo que nenhum navio permaneça na lista de espera.
+     * @pos A lista de navios em espera no porto passa a estar vazia.
      */
     public void limparFila() {
         this.naviosEmEspera.clear();

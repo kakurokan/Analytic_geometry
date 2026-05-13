@@ -37,7 +37,6 @@ public class Tempestade implements Obstaculo {
      * graficamente a delimitação da área afetada.
      *
      * @return o objeto Circulo que representa a área da tempestade.
-     * @pos Retorna a área circular da tempestade, não sendo nula.
      */
     public Circulo getArea() {
         return area;
@@ -53,7 +52,6 @@ public class Tempestade implements Obstaculo {
      * @return Uma lista de pontos representando as interseções entre a área da tempestade
      * e a rota. Se não houver interseção, retorna uma lista vazia.
      * @pre rota != null
-     * @pos Retorna null se não houver interseção, ou uma lista com os pontos de interseção únicos entre a área e a rota.
      */
     @Override
     public List<Ponto> intersect(Route rota) {

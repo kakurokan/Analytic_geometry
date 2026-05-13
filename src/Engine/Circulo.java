@@ -39,7 +39,6 @@ public class Circulo implements Obstaculo {
      * Este método fornece acesso ao ponto central armazenado internamente.
      *
      * @return o ponto que representa o centro do círculo.
-     * @pos O ponto retornado não é nulo.
      */
     public Ponto getCentro() {
         return centro;
@@ -61,7 +60,6 @@ public class Circulo implements Obstaculo {
      * do círculo à sua borda.
      *
      * @return o valor do raio do círculo.
-     * @pos O valor retornado é > 0.
      */
     public double getRaio() {
         return raio;
@@ -78,7 +76,6 @@ public class Circulo implements Obstaculo {
      * @return Uma lista de pontos de interseção únicos entre o círculo e os segmentos da rota,
      * ou {@code null} se não houver interseções.
      * @pre rota != null
-     * @pos Retorna null se não houver interseções, ou uma lista com pelo menos um ponto e sem pontos repetidos.
      */
     @Override
     public List<Ponto> intersect(Route rota) {
@@ -108,8 +105,6 @@ public class Circulo implements Obstaculo {
      *                Não pode ser nulo.
      * @return {@code true} se os círculos se interceptarem, {@code false} caso contrário.
      * @pre circulo != null
-     * @pos Retorna true se e só se a distância entre os centros
-     * for menor ou igual à soma dos raios, devolvendo false caso contrário.
      */
     public boolean intersect(Circulo circulo) {
         return (this.centro.distanciaPara(circulo.centro)) <= Math.abs(this.raio + circulo.raio);

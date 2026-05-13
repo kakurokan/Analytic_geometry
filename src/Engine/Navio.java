@@ -64,7 +64,6 @@ public class Navio implements Movel {
      * Verifica se o navio está em estado de colisão.
      *
      * @return true se o navio estiver em colisão, ou false caso contrário.
-     * @pos Retorna true se o navio estiver marcado em colisão.
      */
     public boolean isEmColisao() {
         return emColisao;
@@ -104,7 +103,6 @@ public class Navio implements Movel {
      * @return {@code true} se a área do navio intercetar a área do objeto fornecido,
      * {@code false} caso contrário.
      * @pre objeto != null
-     * @pos Retorna true se as áreas circulares dos dois objetos se intersetam.
      */
     @Override
     public boolean intersect(Movel objeto) {
@@ -215,6 +213,8 @@ public class Navio implements Movel {
      * Altera o estado atual do navio para o estado especificado.
      *
      * @param estado o novo estado que será atribuído ao navio. Deve ser uma instância válida de {@code EstadoNavio}.
+     * @pre estado != null
+     * @pos O estado interno do navio passa a ser a instância fornecida.
      */
     public void mudarEstado(EstadoMovel estado) {
         this.estado = estado;

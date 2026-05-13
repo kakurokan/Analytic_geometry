@@ -206,7 +206,6 @@ public class GestorMaritimo implements TorreDeControlo {
      *
      * @return Uma lista contendo os navios registrados no sistema.
      * A lista é composta por objetos do tipo {@code Navio}.
-     * @pos A lista de navios retornada não é nula.
      */
     @Override
     public List<Movel> getMovels() {
