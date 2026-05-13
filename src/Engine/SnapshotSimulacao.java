@@ -106,6 +106,13 @@ public class SnapshotSimulacao {
         public String toString() {
             return String.format("T=%d, %s, %.2f", horarioSaida, destino, velocidadeLinear);
         }
+
+        @Override
+        public boolean equals(Object o){
+            if (o == null || getClass() != o.getClass()) return false;
+            NavioEmEspera navio = (NavioEmEspera) o;
+            return this.destino.equals(navio.destino) && this.velocidadeLinear == navio.velocidadeLinear && this.horarioSaida ==  navio.horarioSaida;
+        }
     }
 
     /**
@@ -185,6 +192,14 @@ public class SnapshotSimulacao {
          */
         public double getRaioArea() {
             return raioArea;
+        }
+
+        @Override
+        public boolean equals(Object o){
+            if (o == null || getClass() != o.getClass()) return false;
+            DadosNavio dadosNavio = (DadosNavio) o;
+            return dadosNavio.emColisao == this.emColisao && dadosNavio.direcao.equals(this.direcao) && dadosNavio.posicao.equals(this.posicao) && dadosNavio.getRaioArea()==this.raioArea;
+
         }
     }
 }

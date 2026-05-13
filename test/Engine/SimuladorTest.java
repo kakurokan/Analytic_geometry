@@ -1,5 +1,6 @@
 package Engine;
 
+import com.sun.source.doctree.VersionTree;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -40,13 +41,40 @@ class SimuladorTest {
         destino = new Porto("Lisboa", new Ponto(3, 5), gestor);
         portos = List.of(origem, destino);
 
-        navio = origem.adicionarNavio(5, 2, destino);
+        navio = origem.adicionarNavio(2, 2, destino);
         naviosSistema = List.of(navio);
         corrente = new Vetor(-3, 2);
 
         simulador = new Simulador(corrente, rotas, portos, obstaculos, gestor);
     }
 
+    @Test
+    void getSnapshotSimulacao_VerificaNavioEmEspera(){
+        SnapshotSimulacao.NavioEmEspera navioEmEspera = new SnapshotSimulacao.NavioEmEspera(navio.getHorarioPartida(),navio.getPortoDestino().getNome(),navio.getVelocidadeLinear());
+        SnapshotSimulacao snapshot = simulador.gerarSnapshot();
+        assertTrue(snapshot.getNaviosEmEsperaPorPorto().get(origem.getNome()).contains(navioEmEspera));
+    }
+
+    @Test
+    void getSnapshotSimulacao_VerificaDadosNavio(){
+        simulador.atualizar(2.0);
+        Ponto posicao = new Ponto(navio.getPosicao().getX(), navio.getPosicao().getY());
+        SegmentoReta segAtual = navio.getSegmentoAtual(navio.getPosicao());
+        Vetor direcaoRota = new Vetor(segAtual.getB(),segAtual.getA());
+        Vetor direcaoContraCorrente = navio.getDirecao(corrente);
+        boolean isEmColisao = false;
+        SnapshotSimulacao.DadosNavio dados = new SnapshotSimulacao.DadosNavio(posicao,direcaoContraCorrente,direcaoRota,isEmColisao,navio.getArea().getRaio());
+        SnapshotSimulacao snapshot = simulador.gerarSnapshot();
+        assertTrue(snapshot.getDadosNavios().contains(dados));
+
+    }
+
+    @Test
+    void getSnapshotSimulacao_TempoAcumulado(){
+        simulador.atualizar(2.0);
+        SnapshotSimulacao snapshotSimulacao = simulador.gerarSnapshot();
+        assertEquals(2.0,snapshotSimulacao.getTempoSimulacao());
+    }
     @Test
     void setCorrente(){
         assertEquals(new Vetor(-3,2), simulador.getCorrente());
@@ -129,6 +157,7 @@ class SimuladorTest {
 
         assertEquals(obstaculos, simuladorComObstaculos.getObstaculos(), "O simulador deveria retornar a mesma lista de obstáculos com a qual foi instanciado.");
     }
+
 
     class TorreControloAux implements TorreDeControlo {
 
