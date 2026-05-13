@@ -35,7 +35,7 @@ public class JanelaPrincipal extends JFrame {
      * @param rotas              Lista de rotas marítimas utilizadas na simulação.
      * @param obstaculos         Lista de obstáculos representados por polígonos na área de simulação.
      * @param tempestades        Lista de tempestades ativas na área de simulação.
-     * @param posicoesPortos     Mapeamento entre os nomes dos portos e suas respectivas localizações.
+     * @param posicoesPortos     Mapeamento entre os nomes dos portos e as suas respetivas localizações.
      * @param velocidadeCorrente Vetor representando a velocidade da corrente marítima no ambiente simulado.
      * @param recriarBarcos      Runnable que define a lógica para recriar os barcos usados na simulação.
      * @pre simulador != null, rotas != null, obstaculos != null, tempestades != null, posicoesPortos != null, velocidadeCorrente != null e recriarBarcos != null
@@ -51,7 +51,7 @@ public class JanelaPrincipal extends JFrame {
         this.painel = new PainelMapa(rotas, tempestades, obstaculos, posicoesPortos, velocidadeCorrente);
 
         setTitle("Simulador marítimo");
-        setSize(1024, 768);
+        setSize(1920, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
@@ -80,6 +80,7 @@ public class JanelaPrincipal extends JFrame {
             painel.repaint();
         });
     }
+
     /**
      * Inicia a janela principal da aplicação e dá início ao temporizador da simulação.
      * <p>
@@ -87,6 +88,7 @@ public class JanelaPrincipal extends JFrame {
      * que é responsável por executar atualizações periódicas na interface e no
      * estado da simulação. O temporizador ajuda a simular o comportamento em tempo
      * real, atualizando o mapa e os elementos relacionados.
+     *
      * @pos A janela passa a estar visível no ecrã e o relógio interno da simulação começa a contar.
      */
     public void iniciar() {
