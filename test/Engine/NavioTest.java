@@ -90,7 +90,7 @@ class NavioTest {
         torre.libertarMovel(origem,navio);
         navio.mover(0.1,new Vetor(1,1));
         SegmentoReta esperado = new SegmentoReta(new Ponto(0,0),new Ponto(1,1));
-        assertEquals(esperado,navio.getSegmentoAtual(navio.getPosicao()));
+        assertEquals(esperado,navio.getSegmentoAtual());
 
     }
 

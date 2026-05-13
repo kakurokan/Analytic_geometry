@@ -85,15 +85,11 @@ public interface Movel extends Comparable<Movel> {
     int compareTo(Movel outro);
 
     /**
-     * Obtém o segmento de reta da rota onde o objeto móvel se encontra atualmente,
-     * com base numa posição de origem especificada.
-     * @param origem O {@code Ponto} que representa a posição atual ou base de referência.
-     *
+     * Obtém o segmento de reta da rota onde o objeto móvel se encontra atualmente.
      * @return O objeto {@code SegmentoReta} em que o móvel se encontra, ou {@code null}
      * se não estiver associado a nenhum segmento reconhecido.
-     * @pre origem != null
      */
-    SegmentoReta getSegmentoAtual(Ponto origem);
+    SegmentoReta getSegmentoAtual();
 
     /**
      * Atribui uma nova rota que ditará a trajetória do objeto móvel.

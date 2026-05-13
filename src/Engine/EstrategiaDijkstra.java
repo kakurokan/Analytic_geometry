@@ -35,7 +35,7 @@ public class EstrategiaDijkstra implements EstrategiaRota {
      * @pre grafo != null
      * @pos O objeto é inicializado com o grafo fornecido.
      */
-    public EstrategiaDijkstra(Grafo grafo) {
+    EstrategiaDijkstra(Grafo grafo) {
         if (grafo == null) {
             throw new IllegalArgumentException("EstrategiaDijkstra:iv");
         }
@@ -162,4 +162,5 @@ public class EstrategiaDijkstra implements EstrategiaRota {
             return Double.compare(this.distanciaAcumulada, n.distanciaAcumulada);
         }
     }
-}
+
+  }

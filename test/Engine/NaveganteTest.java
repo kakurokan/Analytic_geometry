@@ -7,7 +7,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NaveganteTest {
-    
+
+
     @Test
     void posicao_DistanciaAlcancaSegundoSegmento_RetornaPosicaoCorreta() {
         Route rota = new Route(List.of(
@@ -159,4 +160,25 @@ class NaveganteTest {
             assertEquals(esperado.get(i).getY(), resultado.get(i).getY(), 0.01, "Erro no Y do vetor " + i);
         }
     }
+
+    @Test
+    void direcao() {
+        Navegante navegante = new Navegante(new Route(List.of(
+            new Ponto(0,0), new Ponto(1,1), new Ponto(3,2), new Ponto(3,5)
+        )));
+        double velocidade = 0.5;
+        Vetor corrente = new Vetor(-1,1);
+        Vetor esperado = new Vetor(1.44721359549,-0.7763932022);
+        assertEquals(esperado,navegante.direcao(velocidade,3,corrente));
+    }
+
+    @Test
+    void getSegmentoAtual() {
+        Navegante navegante = new Navegante(new Route(List.of(
+                new Ponto(0,0), new Ponto(1,1), new Ponto(3,2), new Ponto(3,5)
+        )));
+        double velocidade = 0.6;
+        SegmentoReta esperado= new SegmentoReta(new Ponto(1,1),new Ponto(3,2));
+        assertEquals(esperado, navegante.getSegmentoAtual(5,velocidade));
+        }
 }

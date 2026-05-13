@@ -98,4 +98,91 @@ class GrafoTest {
         Grafo grafo = new Grafo(rotas,obstaculos);
         assertNotNull(grafo.getGrafo());
     }
+
+    @Test
+    void adicionarPonto_PontoNovo(){
+        List<Route> rotas = List.of(
+                new Route(List.of(
+                        new Ponto(0,0), new Ponto(5,1), new Ponto(5,4)
+                ))
+        );
+        List<Obstaculo> obstaculos = new  ArrayList<>();
+
+        Grafo grafo = new Grafo(rotas,obstaculos);
+
+        grafo.adicionarPonto(new Ponto(5,3),new SegmentoReta(new Ponto(5,1),new Ponto(5,4)));
+
+        assertTrue(grafo.getGrafo().containsKey(new Ponto(5,3)));
+    }
+
+    @Test
+    void adicionarPonto_PontoJaExistente(){
+        List<Route> rotas = List.of(
+                new Route(List.of(
+                        new Ponto(0,1), new Ponto(4,1), new Ponto(5,4)
+                ))
+        );
+        List<Obstaculo> obstaculos = new  ArrayList<>();
+
+        Grafo grafo = new Grafo(rotas,obstaculos);
+        int tamanhoOriginal=grafo.getGrafo().size();
+
+        grafo.adicionarPonto(new Ponto(4,1),new SegmentoReta(new Ponto(4,1),new Ponto(5,4)));
+
+        assertEquals(tamanhoOriginal,grafo.getGrafo().size());
+    }
+
+    @Test
+    void adicionarPonto_EmSegmentoNaoExistenteNoGrafo(){
+        List<Route> rotas = List.of(
+                new Route(List.of(
+                        new Ponto(0,1), new Ponto(0,3), new Ponto(5,4)
+                ))
+        );
+        List<Obstaculo> obstaculos = new  ArrayList<>();
+
+        Grafo grafo = new Grafo(rotas,obstaculos);
+        int tamanhoOriginal=grafo.getGrafo().size();
+
+        grafo.adicionarPonto(new Ponto(6,2),new SegmentoReta(new Ponto(6,1),new Ponto(6,4)));
+
+        assertEquals(tamanhoOriginal,grafo.getGrafo().size());
+    }
+
+    @Test
+    void removerPonto_PontoNaoExistente(){
+        List<Route> rotas = List.of(
+                new Route(List.of(
+                     new Ponto(0,0), new Ponto(1,1), new Ponto(3,4)
+                ))
+        );
+        List<Obstaculo> obstaculos = new  ArrayList<>();
+
+        Grafo grafo = new Grafo(rotas,obstaculos);
+        int tamanhoOriginal=grafo.getGrafo().size();
+
+        grafo.removerPonto(new Ponto(0.5,0.5), new SegmentoReta(new Ponto(0,0),new Ponto(1,1)));
+
+        assertEquals(tamanhoOriginal,grafo.getGrafo().size());
+    }
+
+    @Test
+    void removerPonto_PontoNovo(){
+        List<Route> rotas = List.of(
+                new Route(List.of(
+                        new Ponto(0,0), new Ponto(1,1), new Ponto(5,4), new Ponto(3,2), new Ponto(5,0),new Ponto(6,0)
+                ))
+        );
+        List<Obstaculo> obstaculos = new  ArrayList<>();
+
+        Grafo grafo = new Grafo(rotas,obstaculos);
+        int tamanhoOriginal=grafo.getGrafo().size();
+        grafo.adicionarPonto(new Ponto(5.5,0),new SegmentoReta(new Ponto(5,0),new Ponto(6,0)));
+        assertEquals(tamanhoOriginal+1,grafo.getGrafo().size());
+
+        grafo.removerPonto(new Ponto(5.5,0), new SegmentoReta(new Ponto(5,0),new Ponto(6,0)));
+
+        assertEquals(tamanhoOriginal,grafo.getGrafo().size());
+
+    }
 }

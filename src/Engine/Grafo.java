@@ -161,7 +161,10 @@ public class Grafo {
      * @param seg     O segmento de reta cujos extremos serão conectados ao ponto fornecido.
      */
     public void adicionarPonto(Ponto posicao, SegmentoReta seg) {
-        if (posicao.equals(seg.getA()) || posicao.equals(seg.getB())) {
+        if (!grafo.containsKey(seg.getA()) || !grafo.containsKey(seg.getB())) {
+            return;
+        }
+        if (grafo.containsKey(posicao)) {
             return;
         }
         grafo.computeIfAbsent(posicao, _ -> new TreeSet<>(comparador)).add(seg.getA());
@@ -185,6 +188,9 @@ public class Grafo {
      *                desconectável.
      */
     public void removerPonto(Ponto posicao, SegmentoReta seg) {
+        if (!grafo.containsKey(seg.getA()) || !grafo.containsKey(seg.getB())) {
+            return;
+        }
         if (posicao.equals(seg.getA()) || posicao.equals(seg.getB())) {
             return;
         }

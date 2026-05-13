@@ -129,7 +129,7 @@ public class GestorMaritimo implements TorreDeControlo {
             return;
 
         Ponto origem = movel.getPosicao();
-        SegmentoReta atual = movel.getSegmentoAtual(origem);
+        SegmentoReta atual = movel.getSegmentoAtual();
 
         // Só particiona o grafo se o navio estiver efetivamente a meio de um segmento
         if (atual != null) {

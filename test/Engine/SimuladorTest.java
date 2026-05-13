@@ -67,7 +67,7 @@ class SimuladorTest {
     void getSnapshotSimulacao_VerificaDadosNavio(){
         simulador.atualizar(2.0);
         Ponto posicao = new Ponto(navio.getPosicao().getX(), navio.getPosicao().getY());
-        SegmentoReta segAtual = navio.getSegmentoAtual(navio.getPosicao());
+        SegmentoReta segAtual = navio.getSegmentoAtual();
         Vetor direcaoRota = new Vetor(segAtual.getB(),segAtual.getA());
         Vetor direcaoContraCorrente = navio.getDirecao(corrente);
         boolean isEmColisao = false;
@@ -247,7 +247,7 @@ class SimuladorTest {
         }
 
         @Override
-        public SegmentoReta getSegmentoAtual(Ponto origem) {
+        public SegmentoReta getSegmentoAtual() {
             return null;
         }
 

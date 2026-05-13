@@ -212,20 +212,19 @@ public class Navegante {
     }
 
     /**
-     * Retorna o segmento atual da lista de segmentos em que o ponto fornecido está localizado.
-     * O método verifica se o ponto pertence a algum dos segmentos da lista e retorna o
-     * segmento correspondente.
+     * Determina o segmento de reta atual em que o objeto móvel se encontra,
+     * calculando a distância percorrida ao longo da rota com base no tempo
+     * decorrido e na velocidade linear constante.
      *
-     * @param posicao A posição representada por um ponto que será verificado relativamente
-     *                aos segmentos. Não pode ser nulo.
-     * @return O segmento correspondente ao ponto fornecido, ou {@code null} se o ponto não
-     * pertencer a nenhum segmento.
-     * @pre posicao != null
+     * @param tempo O tempo transcorrido desde o início da navegação na rota.
+     * Deve ser um valor não negativo.
+     * @param velocidadeLinear A velocidade linear em unidades de distância por unidade de tempo.
+     * Deve ser um valor positivo maior que zero.
+     * @return O objeto {@code SegmentoReta} correspondente à posição atual na rota.
+     * @pre tempo >= 0 e velocidadeLinear > 0
      */
-    public SegmentoReta getSegmentoAtual(Ponto posicao) {
-        for (SegmentoReta seg : segmentos) {
-            if (seg.noSegmento(posicao)) return seg;
-        }
-        return null;
+    public SegmentoReta getSegmentoAtual(double tempo, double velocidadeLinear) {
+        int segIndice = this.getIndiceSegmentoAtual(velocidadeLinear, tempo, new double[1]);
+        return this.segmentos.get(segIndice);
     }
 }

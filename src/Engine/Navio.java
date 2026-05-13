@@ -322,8 +322,8 @@ public class Navio implements Movel {
         return velocidadeLinear;
     }
 
-    public SegmentoReta getSegmentoAtual(Ponto posicao) {
-        return this.navegante.getSegmentoAtual(posicao);
+    public SegmentoReta getSegmentoAtual() {
+        return this.navegante.getSegmentoAtual(tempoNavegando,this.velocidadeLinear);
     }
 
     public Route getRota() {

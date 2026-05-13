@@ -177,7 +177,7 @@ public class Simulador {
         List<SnapshotSimulacao.DadosNavio> dadosNavios = new ArrayList<>();
 
         for (Movel navio : navios) {
-            SegmentoReta seg = navio.getSegmentoAtual(navio.getPosicao());
+            SegmentoReta seg = navio.getSegmentoAtual();
             Vetor direcaoRota = (seg != null) ? new Vetor(seg.getA(), seg.getB()) : null;
 
             dadosNavios.add(new SnapshotSimulacao.DadosNavio(
