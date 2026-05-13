@@ -57,7 +57,6 @@ class SimuladorTest {
         assertNotEquals(snapshotAntes,snapshotDepois);
     }
 
-
     @Test
     void getSnapshotSimulacao_VerificaNavioEmEspera(){
         SnapshotSimulacao.NavioEmEspera navioEmEspera = new SnapshotSimulacao.NavioEmEspera(navio.getHorarioPartida(),navio.getPortoDestino().getNome(),navio.getVelocidadeLinear());
