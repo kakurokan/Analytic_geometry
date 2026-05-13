@@ -1,7 +1,5 @@
 package Engine;
 
-import java.util.List;
-
 /**
  * Interface que define a estratégia de cálculo de rotas entre dois pontos em um contexto navegável.
  * Implementações dessa interface devem fornecer a lógica necessária para encontrar um caminho
@@ -22,12 +20,13 @@ public interface EstrategiaRota {
      *                Não pode ser nulo.
      * @param destino O ponto de destino para onde a rota será traçada.
      *                Não pode ser nulo.
-      * @return Um objeto {@code Route} que representa a rota calculada entre os
+     * @return Um objeto {@code Route} que representa a rota calculada entre os
      * pontos de origem e destino. O resultado será sempre uma rota válida
      * ou nula caso não seja possível calcular uma rota viável.
      * @throws IllegalArgumentException Se algum dos parâmetros obrigatórios for nulo ou
      *                                  se as condições prévias para o cálculo da rota
      *                                  não forem satisfeitas.
+     * @see <a href="https://refactoring.guru/pt-br/design-patterns/strategy">Padrão de Projeto: Strategy (Refactoring Guru)</a>
      */
     public Route caminhos(Ponto origem, Ponto destino);
 }

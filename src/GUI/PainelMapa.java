@@ -267,7 +267,6 @@ public class PainelMapa extends JPanel {
     private void desenharNavios(Graphics2D g) {
         for (SnapshotSimulacao.DadosNavio navio : snapshot.getDadosNavios()) {
             Ponto posAtual = navio.getPosicao();
-            Vetor direcao = navio.getDirecao();
 
             int x = telaX(posAtual.getX());
             int y = telaY(posAtual.getY());
