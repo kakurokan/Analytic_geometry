@@ -42,6 +42,15 @@ public class Simulador {
     }
 
     /**
+     * Retorna o vetor que representa o fluxo de corrente configurado na simulação.
+     *
+     * @return O objeto {@code Vetor} correspondente à corrente atual.
+     */
+    public Vetor getCorrente() {
+        return this.corrente;
+    }
+
+    /**
      * Define o vetor que representa o fluxo de corrente na simulação.
      *
      * @param corrente O vetor que representa o fluxo de corrente a ser configurado.
@@ -52,15 +61,12 @@ public class Simulador {
         this.corrente = corrente;
     }
 
-    public Vetor getCorrente() {
-        return this.corrente;
-    }
-
     /**
      * Inicia a simulação utilizando as rotas e obstáculos previamente definidos.
      * <p>
      * Este método delega o início da simulação à torre de controlo associada,
      * fornecendo a lista de rotas e obstáculos configurados na instância atual.
+     *
      * @pos A torre de controlo é inicializada com as rotas e obstáculos do simulador.
      */
     public void iniciar() {

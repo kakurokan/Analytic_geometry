@@ -205,7 +205,6 @@ public class Navegante {
      * @return Uma lista contendo os segmentos da rota representados por
      * objetos do tipo {@code SegmentoReta}. Se não houver segmentos
      * associados, retorna uma lista vazia.
-     * @pos A lista de segmentos retornada não é nula.
      */
     public List<SegmentoReta> getSegmentos() {
         return segmentos;
@@ -216,10 +215,10 @@ public class Navegante {
      * calculando a distância percorrida ao longo da rota com base no tempo
      * decorrido e na velocidade linear constante.
      *
-     * @param tempo O tempo transcorrido desde o início da navegação na rota.
-     * Deve ser um valor não negativo.
+     * @param tempo            O tempo transcorrido desde o início da navegação na rota.
+     *                         Deve ser um valor não negativo.
      * @param velocidadeLinear A velocidade linear em unidades de distância por unidade de tempo.
-     * Deve ser um valor positivo maior que zero.
+     *                         Deve ser um valor positivo maior que zero.
      * @return O objeto {@code SegmentoReta} correspondente à posição atual na rota.
      * @pre tempo >= 0 e velocidadeLinear > 0
      */

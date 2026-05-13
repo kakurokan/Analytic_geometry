@@ -322,10 +322,24 @@ public class Navio implements Movel {
         return velocidadeLinear;
     }
 
+    /**
+     * Obtém o segmento de reta da rota onde o navio se encontra atualmente,
+     * calculado com base no tempo de navegação acumulado e na sua velocidade linear.
+     *
+     * @return O objeto {@code SegmentoReta} correspondente à posição atual na rota.
+     */
     public SegmentoReta getSegmentoAtual() {
-        return this.navegante.getSegmentoAtual(tempoNavegando,this.velocidadeLinear);
+        return this.navegante.getSegmentoAtual(tempoNavegando, this.velocidadeLinear);
     }
 
+    /**
+     * Reconstrói e retorna a rota completa seguida pelo navio.
+     * Este método extrai os pontos de todos os segmentos geridos pelo navegante
+     * para criar uma nova instância de {@code Route}.
+     *
+     * @return O objeto {@code Route} que representa o percurso total do navio,
+     * ou {@code null} se o navio não possuir segmentos de rota definidos.
+     */
     public Route getRota() {
         List<Ponto> pontosRota = new ArrayList<>();
         List<SegmentoReta> segmentosRota = this.navegante.getSegmentos();
