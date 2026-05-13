@@ -29,6 +29,8 @@ public class Simulador {
      * @param portos          A lista de portos incluídos na simulação.
      * @param obstaculo       A lista de obstáculos presentes no ambiente da simulação.
      * @param torreDeControlo A torre de controlo responsável por gerir a simulação.
+     * @pre corrente != null, rotas != null, portos != null, obstaculo != null e torreDeControlo != null
+     * @pos O simulador é inicializado com os parâmetros fornecidos e o tempo acumulado começa a zero.
      */
     public Simulador(Vetor corrente, List<Route> rotas, List<Porto> portos, List<Obstaculo> obstaculo, TorreDeControlo torreDeControlo) {
         this.corrente = corrente;
@@ -43,6 +45,8 @@ public class Simulador {
      * Define o vetor que representa o fluxo de corrente na simulação.
      *
      * @param corrente O vetor que representa o fluxo de corrente a ser configurado.
+     * @pre corrente != null
+     * @pos O fluxo de corrente do simulador é atualizado para o vetor fornecido.
      */
     public void setCorrente(Vetor corrente) {
         this.corrente = corrente;
@@ -57,6 +61,7 @@ public class Simulador {
      * <p>
      * Este método delega o início da simulação à torre de controlo associada,
      * fornecendo a lista de rotas e obstáculos configurados na instância atual.
+     * @pos A torre de controlo é inicializada com as rotas e obstáculos do simulador.
      */
     public void iniciar() {
         torreDeControlo.iniciar(this.rotas, this.obstaculos);
@@ -67,6 +72,9 @@ public class Simulador {
      * navios e a torre de controlo para refletir as mudanças ocorridas no ambiente simulado.
      *
      * @param delta O intervalo de tempo (em unidades de tempo de simulação) que deve ser adicionado ao tempo acumulado.
+     * @pre delta > 0
+     * @pos O tempo acumulado é incrementado, navios prontos são libertados dos portos
+     * e todos os navios ativos são atualizados no espaço.
      */
     public void atualizar(double delta) {
         tempoAcumulado += delta;
@@ -99,6 +107,7 @@ public class Simulador {
      * Após a criação, a tempestade é adicionada à lista de obstáculos gerenciados pela simulação.
      *
      * @return A nova instância de {@code Tempestade} criada e posicionada.
+     * @pos A tempestade gerada é adicionada à lista interna de obstáculos da simulação.
      */
     public Tempestade criarTempestade() {
         Random rand = new Random();
@@ -192,6 +201,9 @@ public class Simulador {
      *
      * @return Uma lista contendo as novas instâncias de {@code Tempestade}
      * criadas e posicionadas no ambiente da simulação.
+     * @pos O tempo acumulado volta a zero, as filas dos portos são limpas,
+     * as tempestades antigas são removidas da lista de obstáculos,
+     * novas tempestades são adicionadas e a torre é reiniciada.
      */
     public List<Tempestade> reiniciarSimulacao() {
         this.tempoAcumulado = 0;

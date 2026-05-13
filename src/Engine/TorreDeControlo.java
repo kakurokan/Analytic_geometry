@@ -74,7 +74,6 @@ public interface TorreDeControlo {
     /**
      * Retorna a lista de móveis sob gestão.
      * @return Lista de objetos Movel.
-     * @pos A lista retornada não é nula.
      */
     List<Movel> getMovels();
 }
