@@ -80,7 +80,6 @@ public class JanelaPrincipal extends JFrame {
             painel.repaint();
         });
     }
-
     /**
      * Inicia a janela principal da aplicação e dá início ao temporizador da simulação.
      * <p>
