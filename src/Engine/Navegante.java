@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * A classe {@code Engine.Navegante} é responsável por realizar cálculos relacionados à navegação
  * numa rota composta por segmentos de reta. Os cálculos incluem a determinação da
- * velocidade em cada segmento considerando a interferência de um vetor de vento, o tempo
+ * velocidade em cada segmento considerando a interferência de um vetor que representa a velocidade vetorial da corrente, o tempo
  * total necessário para percorrer a rota e a posição em função de uma velocidade constante
  * e o tempo transcorrido.
  *
@@ -52,12 +52,12 @@ public class Navegante {
     }
 
     /**
-     * Calcula a velocidade por segmento de uma rota, considerando a velocidade do vento
+     * Calcula a velocidade por segmento de uma rota, considerando a velocidade vetorial da corrente
      * e uma velocidade linear constante. Para cada segmento da rota, é calculado o tempo
      * requerido para atravessá-lo e, com base nesses parâmetros, determina-se a velocidade
      * resultante para o segmento.
      *
-     * @param velocidadeCorrente Um objeto {@code Engine.Vetor} representando a velocidade do vento.
+     * @param velocidadeCorrente Um objeto {@code Engine.Vetor} representando a velocidade vetorial da corrente.
      *                           Não pode ser {@code null}.
      * @param velocidadeLinear   A velocidade linear constante utilizada para o cálculo.
      *                           Deve ser um valor positivo maior que zero.

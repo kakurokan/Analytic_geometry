@@ -21,7 +21,7 @@ public class Vetor {
      * @param x Componente x do vetor.
      * @param y Componente y do vetor.
      * @throws IllegalArgumentException Se as componentes x e y forem ambas consideradas zero
-     * @pre Math.abs(x) >= 1e-9 e Math.abs(y) >= 1e-9.
+     * @pre Math.abs(x) >= 1e-9 ou Math.abs(y) >= 1e-9.
      * @pos O modulo do vetor é > 0.
      * @pos getX() == x
      * @pos getY() == y
@@ -88,6 +88,7 @@ public class Vetor {
      * da soma dos quadrados das componentes x e y.
      *
      * @return o módulo do vetor.
+     * @see <a href="https://pt.wikipedia.org/wiki/Vetor_(matem%C3%A1tica)">Wikipédia</a>
      */
     public double modulo() {
         double sum = Math.pow(x, 2) + Math.pow(y, 2);
@@ -100,6 +101,7 @@ public class Vetor {
      *
      * @param v O vetor fornecido com o qual o produto interno será calculado.
      * @return o valor do produto interno entre os dois vetores.
+     * @see <a href="https://pt.wikipedia.org/wiki/Vetor_(matem%C3%A1tica)">Wikipédia</a>
      * @pre v != null
      */
     public double produtoInterno(Vetor v) {
@@ -114,6 +116,7 @@ public class Vetor {
      *
      * @param v O vetor fornecido com o qual a similaridade cosseno será calculada.
      * @return o valor da similaridade cosseno entre os dois vetores.
+     * @see <a href="https://www.geeksforgeeks.org/dbms/cosine-similarity/">GeeksforGeeks</a>
      * @pre v != null
      */
     public double cossineSimilarity(Vetor v) {
@@ -144,6 +147,7 @@ public class Vetor {
      * @return Um novo vetor cujas componentes são o resultado da multiplicação do vetor atual pelo escalar.
      * @pre Math.abs(d) >= 1e-9.
      * @pos Retorna um novo vetor não nulo válido.
+     * @see <a href="https://pt.wikipedia.org/wiki/Vetor_(matem%C3%A1tica)">Wikipédia</a>
      */
     public Vetor multi(double d) {
         if (Math.abs(d) < Ponto.eps) {
@@ -161,6 +165,7 @@ public class Vetor {
      * @return Um novo vetor que é o resultado da subtração do vetor fornecido
      * do vetor atual.
      * @pre v != null e os vetores não podem ser iguais.
+     * @see <a href="https://pt.wikipedia.org/wiki/Vetor_(matem%C3%A1tica)">Wikipédia</a>
      */
     public Vetor sub(Vetor v) {
         return new Vetor(this.x - v.getX(), this.y - v.getY());
@@ -172,7 +177,8 @@ public class Vetor {
      *
      * @param v O vetor fornecido para calcular o produto vetorial com o vetor atual.
      * @return O valor do produto vetorial entre os dois vetores.
-     * @pre p != null
+     * @pre v != null
+     * @see <a href="https://pt.wikipedia.org/wiki/Vetor_(matem%C3%A1tica)">Wikipédia</a>
      */
     public double produtoVetorial(Vetor v) {
         return this.x * v.getY() - this.y * v.getX();

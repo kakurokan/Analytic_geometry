@@ -77,6 +77,7 @@ public class EstrategiaDijkstra implements EstrategiaRota {
      * levando em conta as restrições de tráfego por navios. Retorna {@code null} se a
      * origem ou o destino não estiverem no grafo, ou se não houver caminho viável.
      * @see <a href="https://www.geeksforgeeks.org/dsa/dijkstras-shortest-path-algorithm-using-priority_queue-stl/">GeeksforGeeks</a>
+     * @see <a href="https://www.geeksforgeeks.org/dsa/can-we-use-simple-queue-instead-of-priority-queue-to-implement-dijkstras-algorithm/">GeeksforGeeks</a>
      */
     @Override
     public Route caminhos(Ponto origem, Ponto destino) {

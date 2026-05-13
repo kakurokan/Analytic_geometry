@@ -6,7 +6,7 @@ package Engine;
  * @inv o vetor r não pode ser nulo
  * A classe Engine.AutoPilot representa um sistema de navegação automatizado que calcula
  * a velocidade ajustada e o tempo necessário para percorrer uma rota entre dois pontos,
- * levando em consideração fatores como velocidade do vento.
+ * levando em consideração fatores como velocidade vetorial da corrente.
  */
 public class AutoPilot {
     private final Vetor r;
@@ -24,14 +24,14 @@ public class AutoPilot {
     }
 
     /**
-     * Calcula a velocidade ajustada conforme o vetor de velocidade do vento e o tempo fornecido.
-     * A velocidade ajustada é obtida subtraindo o vetor da velocidade do vento do vetor de rota
+     * Calcula a velocidade ajustada conforme o vetor de velocidade vetorial da corrente e o tempo fornecido.
+     * A velocidade ajustada é obtida subtraindo o vetor da velocidade vetorial da corrente de rota
      * e multiplicando pelo inverso do tempo.
      *
-     * @param velocidadeCorrente O vetor que representa a velocidade do vento, que será subtraído do vetor de rota.
+     * @param velocidadeCorrente O vetor que representa a velocidade vetorial da corrente, que será subtraído do vetor de rota.
      * @param tempo              O tempo em que a rota é percorrida, utilizado para ajustar a velocidade.
      * @return Um novo vetor que representa a velocidade ajustada com base no vetor de rota,
-     * na velocidade do vento e no tempo.
+     * na velocidade da corrente e no tempo.
      * @pre velocidadeCorrente != null e tempo > 0.0
      * @pos O vetor retornado não é nulo.
      */
@@ -41,7 +41,7 @@ public class AutoPilot {
 
     /**
      * Calcula o tempo necessário para percorrer a rota do vetor com uma velocidade linear específica,
-     * ajustando o cálculo pela influência de um vetor de velocidade do vento fornecido.
+     * ajustando o cálculo pela influência de um vetor de velocidade vetorial da corrente fornecida.
      *
      * @param linearSpeed A velocidade linear constante utilizada na travessia da rota.
      * @return O tempo necessário para percorrer a rota, ajustado pela velocidade do vento.

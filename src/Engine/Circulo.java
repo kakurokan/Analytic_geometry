@@ -105,6 +105,7 @@ public class Circulo implements Obstaculo {
      *                Não pode ser nulo.
      * @return {@code true} se os círculos se interceptarem, {@code false} caso contrário.
      * @pre circulo != null
+     * @see <a href="https://stackoverflow.com/questions/8367512/how-do-i-detect-intersections-between-a-circle-and-any-other-circle-in-the-same"> Stack Overflow</a>
      */
     public boolean intersect(Circulo circulo) {
         return (this.centro.distanciaPara(circulo.centro)) <= Math.abs(this.raio + circulo.raio);

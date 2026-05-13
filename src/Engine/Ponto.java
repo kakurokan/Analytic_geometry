@@ -96,6 +96,7 @@ public class Ponto {
      * @return A distância entre o ponto atual e o ponto fornecido.
      * Retorna {@code 0.0} se os pontos forem iguais.
      * @pre p != null
+     * @see <a href="https://pt.wikipedia.org/wiki/Dist%C3%A2ncia_euclidiana"> Wikipédia</a>
      */
     public double distanciaPara(Ponto p) {
         return (this.equals(p)) ? 0.0 : new Vetor(this, p).modulo();
