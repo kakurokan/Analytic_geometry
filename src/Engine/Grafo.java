@@ -52,17 +52,13 @@ public class Grafo {
     }
 
     /**
-     * Retorna uma visão imutável do grafo no formato de um mapa onde cada chave
-     * representa um ponto e o valor associado é um conjunto imutável dos pontos
-     * adjacentes lhe conectados.
+     * Retorna o mapa interno que representa as conexões do grafo.
      * <p>
-     * O mapa retornado é uma cópia baseada no grafo interno da classe, mas
-     * disponibilizada sem permitir modificações externas, garantindo a integridade
-     * dos dados do grafo original.
-     *
-     * @return Um mapa imutável representando o grafo, onde as chaves são objetos
-     * do tipo {@code Ponto} e cada valor associado é um conjunto imutável
-     * de objetos {@code Ponto} representando as conexões.
+     * Neste mapa, cada chave corresponde a um {@code Ponto} (vértice) e o valor
+     * associado é um conjunto de pontos adjacentes (arestas) a esse vértice.
+     * Este método retorna a referência direta, permitindo a alteração do grafo
+     * <p>
+     * @return O mapa que mapeia cada {@code Ponto} para o seu conjunto de ligações diretas.
      */
     public Map<Ponto, Set<Ponto>> getGrafo() {
         return this.grafo;
@@ -145,6 +141,17 @@ public class Grafo {
         return segmentosValidos;
     }
 
+    /**
+     * Adiciona um ponto a uma lista apenas se este ainda não estiver presente,
+     * garantindo a unicidade dos elementos na coleção fornecida.
+     * <p>
+     * O método percorre a lista e utiliza o método {@code equals} da classe {@link Ponto}
+     * para verificar se já existe uma instância com as mesmas coordenadas antes de
+     * realizar a inserção.
+     *
+     * @param lista A lista de pontos onde a inserção será tentada.
+     * @param ponto O ponto que se deseja adicionar à lista.
+     */
     private void adicionarPontoUnico(List<Ponto> lista, Ponto ponto) {
         for (Ponto p : lista) {
             if (p.equals(ponto)) return;
@@ -159,6 +166,11 @@ public class Grafo {
      * @param posicao O ponto que será adicionado ao grafo. Se for igual a um dos extremos
      *                do segmento, nenhuma ação será realizada.
      * @param seg     O segmento de reta cujos extremos serão conectados ao ponto fornecido.
+     * @pre posicao != null
+     * @pre seg!=null
+     * @pos Se os extremos de 'seg' pertencerem ao grafo e 'posicao' ainda não pertencer e for diferente de ambos, é adicionado ao grafo
+     * com as ligações seg.getA() e seg.getB()
+     * Caso contrario o grafo permanece inalterado
      */
     public void adicionarPonto(Ponto posicao, SegmentoReta seg) {
         if (!grafo.containsKey(seg.getA()) || !grafo.containsKey(seg.getB())) {
@@ -186,6 +198,10 @@ public class Grafo {
      *                o ponto a ser removido não seja um deles. As conexões entre os
      *                extremos do segmento e o ponto serão removidas, caso o ponto seja
      *                desconectável.
+     * @pre posicao != null
+     * @pre seg!=null
+     *@pos Se os extremos de 'seg' pertencerem ao grafo e 'posicao' também pertencer e for diferente de ambos, é removido do grafo
+     * tal como as suas ligações com seg.getA() e seg.getB()
      */
     public void removerPonto(Ponto posicao, SegmentoReta seg) {
         if (!grafo.containsKey(seg.getA()) || !grafo.containsKey(seg.getB())) {

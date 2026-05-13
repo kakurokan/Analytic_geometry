@@ -5,13 +5,13 @@ import java.util.List;
 
 /**
  * A classe GestorMaritimo gerencia o tráfego marítimo, garantindo segurança e
- * rotas otimizadas para todos os navios sob o seu controle. Implementa a interface TorreDeControlo
+ * rotas otimizadas para todos os navios sob o seu controle. Implementa a ‘interface’ TorreDeControlo
  * para supervisionar decisões de navegação, como gestão de rotas, prevenção de colisões
  * e transições de estado dos navios.
  * <p>
  * Responsabilidades incluem:
  * - Inicializar o ambiente marítimo com rotas e obstáculos.
- * - Monitorar e atualizar posições dos navios, garantindo navegação livre de colisões.
+ * - Monitorizar e atualizar posições dos navios, garantindo navegação livre de colisões.
  * - Calcular e atribuir rotas otimizadas para navios usando uma estratégia de roteamento específica.
  * - Gerir transições de estado dos navios com base no seu status atual, colisões
  * ou disponibilidade de rota.
@@ -87,9 +87,6 @@ public class GestorMaritimo implements TorreDeControlo {
                 tocando = true;
                 outro.setEmColisao(true);
 
-                // A REGRA DE OURO DO ENUNCIADO:
-                // Se o MEU código de viagem for lexicograficamente menor (< 0) que o outro,
-                // então EU sou obrigado a esperar (caminhoBloqueado = true).
                 if (movel.compareTo(outro) < 0) {
                     caminhoBloqueado = true;
                     break;

@@ -11,8 +11,7 @@ package Engine;
  */
 public interface EstrategiaRota {
     /**
-     * Calcula a rota entre dois pontos de origem e destino, considerando uma lista de navios
-     * que podem interferir no trajeto. A implementação deste método deve levar em conta
+     * Calcula a rota entre dois pontos de origem e destino. A implementação deste método deve levar em conta
      * restrições como obstáculos, áreas interditadas ou travessias seguras, dependendo
      * das informações fornecidas pelos objetos na lista de navios.
      *

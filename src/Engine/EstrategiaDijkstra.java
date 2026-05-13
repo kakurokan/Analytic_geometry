@@ -68,7 +68,7 @@ public class EstrategiaDijkstra implements EstrategiaRota {
     }
 
     /**
-     * Calcula a rota mais curta entre dois pontos em um grafo navegável considerando
+     * Calcula a rota mais curta entre dois pontos num grafo navegável considerando
      * as restrições impostas pelos navios existentes.
      *
      * @param origem  O ponto de partida no grafo. Não pode ser nulo e deve estar presente no grafo.
@@ -121,7 +121,7 @@ public class EstrategiaDijkstra implements EstrategiaRota {
 
     /**
      * Representa um nó utilizado no algoritmo de Dijkstra. Cada nó contém um ponto
-     * e a distância acumulada desse ponto em relação à origem no grafo.
+     * e a distância acumulada desse ponto relativamente à origem no grafo.
      * <p>
      * Esta classe é projetada para ser utilizada como parte do algoritmo de cálculo
      * de rotas mais curtas, com a capacidade de comparar nós com base na suas distâncias
