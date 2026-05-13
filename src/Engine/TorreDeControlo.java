@@ -56,7 +56,6 @@ public interface TorreDeControlo {
      */
     void movelTerminouPercurso(Movel movel);
 
-
     /**
      * Inicializa o sistema de controle marítimo com as rotas e os obstáculos fornecidos.
      * Este método configura os recursos necessários para o funcionamento do sistema,
