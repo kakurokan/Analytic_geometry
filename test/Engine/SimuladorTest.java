@@ -1,6 +1,5 @@
 package Engine;
 
-import com.sun.source.doctree.VersionTree;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -160,9 +159,9 @@ class SimuladorTest {
 
     @Test
     void getObstaculos_SimuladorComObstaculos_RetornaListaCorreta() {
-        EstadoNavioTest.TorreDeControloSAux torre = new EstadoNavioTest.TorreDeControloSAux();
+
         obstaculos.add(new Tempestade(new Circulo(new Ponto(1, 1), 5)));
-        Simulador simuladorComObstaculos = new Simulador(corrente, rotas, portos, obstaculos, torre);
+        Simulador simuladorComObstaculos = new Simulador(corrente, rotas, portos, obstaculos, gestor);
 
         assertEquals(obstaculos, simuladorComObstaculos.getObstaculos(), "O simulador deveria retornar a mesma lista de obstáculos com a qual foi instanciado.");
     }
