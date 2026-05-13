@@ -28,5 +28,5 @@ public interface EstrategiaRota {
      *                                  não forem satisfeitas.
      * @see <a href="https://refactoring.guru/pt-br/design-patterns/strategy">Padrão de Projeto: Strategy (Refactoring Guru)</a>
      */
-    public Route caminhos(Ponto origem, Ponto destino);
+    Route caminhos(Ponto origem, Ponto destino);
 }
