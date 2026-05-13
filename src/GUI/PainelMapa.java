@@ -186,6 +186,7 @@ public class PainelMapa extends JPanel {
      * Desenha os eixos cartesianos, as marcas de escala e as etiquetas de identificação X e Y.
      *
      * @param g O contexto gráfico {@code Graphics2D}.
+     * @pre g != null
      */
     private void desenharEixos(Graphics2D g) {
         g.setColor(Color.BLACK);
@@ -221,9 +222,10 @@ public class PainelMapa extends JPanel {
     }
 
     /**
-     * Renderiza as tempestades como círculos semi-transparentes sobre o mapa.
+     * Renderiza as tempestades como círculos semitransparentes sobre o mapa.
      *
      * @param g O contexto gráfico {@code Graphics2D}.
+     * @pre g != null
      */
     private void desenharTempestades(Graphics2D g) {
         g.setColor(new Color(44, 136, 227, 80));
@@ -240,6 +242,7 @@ public class PainelMapa extends JPanel {
      * Renderiza as rotas coloridas e os pontos identificados por letras no mapa.
      *
      * @param g O contexto gráfico {@code Graphics2D}.
+     * @pre g != null
      */
     private void desenharRotasEPontos(Graphics2D g) {
         int corIndex = 0;
@@ -270,6 +273,7 @@ public class PainelMapa extends JPanel {
      * Desenha os navios em movimento, incluindo a sua orientação e o alerta visual de colisão.
      *
      * @param g O contexto gráfico {@code Graphics2D}.
+     * @pre g != null
      */
     private void desenharNavios(Graphics2D g) {
         for (SnapshotSimulacao.DadosNavio navio : snapshot.getDadosNavios()) {
@@ -320,6 +324,7 @@ public class PainelMapa extends JPanel {
      * Desenha caixas de informação flutuantes próximas aos portos com a lista de navios em espera.
      *
      * @param g O contexto gráfico {@code Graphics2D}.
+     * @pre g != null
      */
     private void desenharCaixasFlutuantesPorto(Graphics2D g) {
         g.setFont(new Font("Arial", Font.PLAIN, 11));
@@ -374,6 +379,7 @@ public class PainelMapa extends JPanel {
      * Exibe o tempo corrente de simulação no topo do painel.
      *
      * @param g O contexto gráfico {@code Graphics2D}.
+     * @pre g != null
      */
     private void desenharRelogio(Graphics2D g) {
         String textoTempo = String.format("Tempo: %.1f", snapshot.getTempoSimulacao());
@@ -390,6 +396,7 @@ public class PainelMapa extends JPanel {
      * Renderiza os obstáculos estáticos como polígonos beges com bordas pretas.
      *
      * @param g O contexto gráfico {@code Graphics2D}.
+     * @pre g != null
      */
     private void desenharObstaculos(Graphics2D g) {
         Color bege = new Color(245, 245, 220);
@@ -416,6 +423,7 @@ public class PainelMapa extends JPanel {
      * Desenha a caixa informativa com os componentes da corrente marítima atual.
      *
      * @param g O contexto gráfico {@code Graphics2D}.
+     * @pre g != null
      */
     private void desenharCaixaCorrente(Graphics2D g) {
         if (corrente == null) return;

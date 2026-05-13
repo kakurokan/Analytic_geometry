@@ -67,30 +67,41 @@ public class Cliente {
         posicoesPortos.put("Porto de Leixões", pLeixoes);
 
         // ========================================================
-        // 4. OBSTÁCULOS ESTÁTICOS (Corrigidos para evitar Rotas)
+        // 4. OBSTÁCULOS ESTÁTICOS
         // ========================================================
 
-        // Retângulo isolado no Norte (seguro entre o centro e a borda superior)
-        Retangulo obsNorte = new Retangulo(new Ponto[]{
-                new Ponto(9, 11), new Ponto(11, 11), new Ponto(11, 12.5), new Ponto(9, 12.5)
+        // 4.1 Ilha Maior (norte): Um polígono complexo e irregular no grande vazio central superior
+        Poligono ilhaNorte = new Poligono(new Ponto[]{
+                new Ponto(8.5, 10), new Ponto(10, 12.5), new Ponto(11.5, 11),
+                new Ponto(11.5, 9.5), new Ponto(10, 8.5), new Ponto(9, 9)
         });
 
-        // Quadrado isolado no Sul (seguro entre o centro e a borda inferior)
-        Quadrado obsSul = new Quadrado(new Ponto[]{
-                new Ponto(9.5, 2.5), new Ponto(10.5, 2.5), new Ponto(10.5, 3.5), new Ponto(9.5, 3.5)
+        // 4.2 Banco de Areia (sul): Um retângulo muito longo e estreito para simular águas rasas
+        Retangulo bancoDeAreia = new Retangulo(new Ponto[]{
+                new Ponto(6, 2), new Ponto(14, 2), new Ponto(14, 3), new Ponto(6, 3)
         });
 
-        // Triângulo Oeste (Posicionado no vazio acíma da linha horizontal Y=7)
-        Triangulo obsOeste = new Triangulo(new Ponto[]{
-                new Ponto(3, 8), new Ponto(4.5, 8), new Ponto(3.75, 9.5)
+        // 4.3 Arquipélago Oeste: Duas pequenas ilhas próximas (triângulos) formando um "canal"
+        Triangulo ilhaOesteNorte = new Triangulo(new Ponto[]{
+                new Ponto(2, 8), new Ponto(4, 9), new Ponto(2, 10)
+        });
+        Triangulo ilhaOesteSul = new Triangulo(new Ponto[]{
+                new Ponto(2.5, 5), new Ponto(4.5, 6), new Ponto(3, 7)
         });
 
-        // Triângulo Este (Simétrico ao do Oeste, livre da linha horizontal)
-        Triangulo obsEste = new Triangulo(new Ponto[]{
-                new Ponto(15.5, 8), new Ponto(17, 8), new Ponto(16.25, 9.5)
+        // 4.4 Formação Rochosa (este): Polígono rotacionado que se desvia elegantemente do centro
+        Poligono rochasEste = new Poligono(new Ponto[]{
+                new Ponto(16, 4.5), new Ponto(17.5, 6), new Ponto(16, 6.5), new Ponto(14.5, 5)
         });
 
-        List<Poligono> obstaculosEstaticos = Arrays.asList(obsNorte, obsSul, obsOeste, obsEste);
+        // 4.5 Recife de Corais isolado perto da rota de descida
+        Quadrado recifeSul = new Quadrado(new Ponto[]{
+                new Ponto(12, 4), new Ponto(13, 4), new Ponto(13, 5), new Ponto(12, 5)
+        });
+
+        List<Poligono> obstaculosEstaticos = Arrays.asList(
+                ilhaNorte, bancoDeAreia, ilhaOesteNorte, ilhaOesteSul, rochasEste, recifeSul
+        );
         List<Obstaculo> todosObstaculos = new ArrayList<>(obstaculosEstaticos);
 
         // ========================================================
