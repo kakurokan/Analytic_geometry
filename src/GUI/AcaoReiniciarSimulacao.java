@@ -34,6 +34,8 @@ public class AcaoReiniciarSimulacao extends AbstractAction {
      * @param painel          o objeto {@code PainelMapa} responsável por exibir o estado atual da simulação.
      * @param rotinaDeTrafego uma rotina {@code Runnable} que é executada para gerir o fluxo de tráfego
      *                        após a reinicialização da simulação.
+     * @pre simulador != null, painel != null e rotinaDeTrafego != null
+     * @pos Associa a ação aos elementos do sistema e define o título do botão como "Reiniciar".
      */
     public AcaoReiniciarSimulacao(Simulador simulador, PainelMapa painel, Runnable rotinaDeTrafego) {
         super("Reiniciar");
@@ -50,6 +52,9 @@ public class AcaoReiniciarSimulacao extends AbstractAction {
      *
      * @param e o {@code ActionEvent} que acionou esta ação, tipicamente
      *          gerado por um componente GUI.
+     * @pos Pede ao utilizador uma nova corrente marítima.
+     * Se confirmada, atualiza o simulador e o painel, recria as tempestades,
+     * relança a rotina de tráfego e redesenha o mapa atualizado.
      */
     @Override
     public void actionPerformed(ActionEvent e) {

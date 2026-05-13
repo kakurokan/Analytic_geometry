@@ -44,6 +44,8 @@ public class PainelMapa extends JPanel {
      * @param obstaculosEstaticos A lista de polígonos que representam obstáculos estáticos.
      * @param posicoesPortos      Mapeamento dos nomes dos portos para as suas coordenadas geográficas.
      * @param corrente            O vetor que representa a corrente marítima no mapa.
+     * @pre rotas != null, obstaculosEstaticos != null e posicoesPortos != null
+     * @pos O painel é configurado com as listas recebidas, o fundo passa a branco e as letras são atribuídas aos pontos.
      */
     public PainelMapa(List<Route> rotas, List<Tempestade> tempestades, List<Poligono> obstaculosEstaticos, Map<String, Ponto> posicoesPortos, Vetor corrente) {
         this.rotas = rotas;
@@ -70,6 +72,8 @@ public class PainelMapa extends JPanel {
      * Define o vetor que representa a corrente marítima no mapa.
      *
      * @param corrente o vetor que representa a corrente marítima. Não pode ser nulo.
+     * @pre corrente != null
+     * @pos O vetor de corrente do painel é atualizado.
      */
     public void setCorrente(Vetor corrente) {
         this.corrente = corrente;
@@ -122,6 +126,7 @@ public class PainelMapa extends JPanel {
      * Define a lista de tempestades dinâmicas que serão exibidas no mapa.
      *
      * @param t A lista de tempestades a ser atribuída.
+     * @pos A lista interna de tempestades do mapa é atualizada.
      */
     public void setTempestades(List<Tempestade> t) {
         this.tempestades = t;
@@ -133,6 +138,7 @@ public class PainelMapa extends JPanel {
      *
      * @param apontarParaRota um valor booleano que indica se é para
      *                        usar a direção da rota
+     * @pos A preferência visual de orientação dos navios é alterada.
      */
     public void setApontarParaRota(boolean apontarParaRota) {
         this.apontarParaRota = apontarParaRota;
@@ -142,6 +148,7 @@ public class PainelMapa extends JPanel {
      * Atualiza o instantâneo (snapshot) de dados da simulação para renderização dos elementos móveis.
      *
      * @param snapshotSimulacao O novo snapshot contendo as posições atuais de navios e portos.
+     * @pos O snapshot interno do painel é substituído pela nova versão recebida.
      */
     public void atualizarSnapshot(SnapshotSimulacao snapshotSimulacao) {
         this.snapshot = snapshotSimulacao;

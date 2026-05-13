@@ -19,6 +19,7 @@ public class DialogoCorrente {
      *
      * @param valorAtual O vetor com a corrente atual (para pré-preencher os campos).
      * @return O novo Vetor introduzido pelo utilizador, ou null se o utilizador cancelar.
+     * @pre valorAtual != null
      */
     public static Vetor pedirCorrente(Vetor valorAtual) {
         JTextField campoX = new JTextField(String.valueOf(valorAtual.getX()), 5);

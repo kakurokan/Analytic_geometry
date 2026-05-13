@@ -38,6 +38,8 @@ public class JanelaPrincipal extends JFrame {
      * @param posicoesPortos     Mapeamento entre os nomes dos portos e suas respectivas localizações.
      * @param velocidadeCorrente Vetor representando a velocidade da corrente marítima no ambiente simulado.
      * @param recriarBarcos      Runnable que define a lógica para recriar os barcos usados na simulação.
+     * @pre simulador != null, rotas != null, obstaculos != null, tempestades != null, posicoesPortos != null, velocidadeCorrente != null e recriarBarcos != null
+     * @pos A janela é configurada com os componentes gráficos e o temporizador de simulação é instanciado.
      */
     public JanelaPrincipal(Simulador simulador,
                            List<Route> rotas,
@@ -86,6 +88,7 @@ public class JanelaPrincipal extends JFrame {
      * que é responsável por executar atualizações periódicas na interface e no
      * estado da simulação. O temporizador ajuda a simular o comportamento em tempo
      * real, atualizando o mapa e os elementos relacionados.
+     * @pos A janela passa a estar visível no ecrã e o relógio interno da simulação começa a contar.
      */
     public void iniciar() {
         setVisible(true);
