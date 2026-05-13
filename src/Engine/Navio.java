@@ -204,7 +204,7 @@ public class Navio implements Movel {
      * @param velocidadeOposta O vetor de velocidade oposta que representa forças
      *                         externas, como correntes ou ventos, influenciando
      *                         o movimento do navio. Não pode ser nulo.
-     * @return O vetor que indica a direção do movimento do navio no momento atual.
+     * @return O vetor que indica a direção do movimento do navio agora.
      */
     @Override
     public Vetor getDirecao(Vetor velocidadeOposta) {
@@ -244,7 +244,6 @@ public class Navio implements Movel {
      * {@code Navio} seja menor, igual ou maior que o código de viagem do
      * {@code Navio} especificado.
      * @pre o != null
-     * @pos Retorna o resultado da comparação lexicográfica dos códigos de viagem.
      */
     @Override
     public int compareTo(Movel o) {
@@ -323,22 +322,18 @@ public class Navio implements Movel {
         return velocidadeLinear;
     }
 
-    /**
-     * Retrieves the current segment of a line based on the specified position.
-     *
-     * @param posicao the point representing the position to determine the current segment
-     * @return the current segment of the line corresponding to the given position
-     */
     public SegmentoReta getSegmentoAtual(Ponto posicao) {
         return this.navegante.getSegmentoAtual(posicao);
     }
 
-    public Route getRota(){
-        List<Ponto> pontosRota= new ArrayList<>();
-        List<SegmentoReta> segmentosRota= this.navegante.getSegmentos();
-        if (segmentosRota == null || segmentosRota.isEmpty()) {return null;}
+    public Route getRota() {
+        List<Ponto> pontosRota = new ArrayList<>();
+        List<SegmentoReta> segmentosRota = this.navegante.getSegmentos();
+        if (segmentosRota == null || segmentosRota.isEmpty()) {
+            return null;
+        }
         pontosRota.add(segmentosRota.getFirst().getA());
-        for (SegmentoReta seg: segmentosRota){
+        for (SegmentoReta seg : segmentosRota) {
             pontosRota.add(seg.getB());
         }
         return new Route(pontosRota);

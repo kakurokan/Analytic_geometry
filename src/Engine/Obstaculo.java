@@ -14,9 +14,10 @@ public interface Obstaculo {
 
     /**
      * Verifica a interseção entre o obstáculo e uma rota.
+     *
      * @param rota A rota a ser verificada. Não pode ser nula.
+     * @return Retorna null se não houver interseções, ou uma lista com pelo menos um ponto e sem pontos repetidos.
      * @pre rota != null
-     * @pos Retorna null se não houver interseções, ou uma lista com pelo menos um ponto e sem pontos repetidos.
      */
     List<Ponto> intersect(Route rota);
 }

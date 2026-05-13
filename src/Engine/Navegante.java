@@ -20,7 +20,7 @@ public class Navegante {
      * Constrói uma instância padrão de {@code Navegante} sem inicializar uma rota associada.
      * <p>
      * Este construtor cria uma instância de {@code Navegante} com uma lista de segmentos vazia.
-     * A rota e seus segmentos podem ser atribuídos posteriormente utilizando métodos disponíveis
+     * A rota e os seus segmentos podem ser atribuídos posteriormente utilizando métodos disponíveis
      * na classe.
      */
     public Navegante() {
@@ -45,7 +45,6 @@ public class Navegante {
      *             Deve ser um objeto {@code Engine.Route} válido cuja lista de segmentos
      *             não seja nula.
      * @pre rota != null e rota.getSegmentos() != null
-     * @pos A lista de segmentos interna é substituída pelos segmentos da nova rota.
      */
     public void mudarRota(Route rota) {
         this.segmentos = rota.getSegmentos();
@@ -65,7 +64,6 @@ public class Navegante {
      * segmento da rota, considerando os efeitos da velocidade do vento.
      * A lista estará vazia se não houver segmentos na rota.
      * @pre velocidadeCorrente != null e velocidadeLinear > 0
-     * @pos Retorna uma lista de vetores (um por segmento). A lista não é nula.
      */
     public List<Vetor> velocidadePorSegmento(Vetor velocidadeCorrente, double velocidadeLinear) {
         List<Vetor> velocidades = new ArrayList<>();
@@ -90,7 +88,6 @@ public class Navegante {
      * @return O tempo total necessário para percorrer a rota em segundos. Se a lista de segmentos
      * estiver vazia, o retorno será 0.
      * @pre linearSpeed > 0.0
-     * @pos Retorna o tempo total >= 0.
      */
     public double tempoParaPercorrer(double linearSpeed) {
         double resultado = 0;
@@ -118,7 +115,6 @@ public class Navegante {
      * correspondente ao local alcançado após o movimento. Se os segmentos estiverem
      * vazios, retorna null.
      * @pre tempo > 0 e velocidadeLinear > 0
-     * @pos Retorna o ponto exato da posição na rota. Se a rota estiver vazia, retorna null.
      */
     public Ponto posicao(double velocidadeLinear, double tempo) {
         //o array é preenchido dentro da função
@@ -155,7 +151,6 @@ public class Navegante {
      * @return Um vetor representando a direção do movimento no segmento correspondente,
      * considerando os parâmetros fornecidos.
      * @pre velocidadeLinear > 0, tempo >= 0 e velocidadeCorrente != null
-     * @pos Retorna o vetor da velocidade ajustada para o segmento atual.
      */
     public Vetor direcao(double velocidadeLinear, double tempo, Vetor velocidadeCorrente) {
         int segIndice = getIndiceSegmentoAtual(velocidadeLinear, tempo, new double[1]);
@@ -181,7 +176,6 @@ public class Navegante {
      * percorrida exceder o comprimento cumulativo de todos os segmentos, o índice do
      * último segmento é retornado.
      * @pre velocidadeLinear > 0, tempo >= 0 e percorrido.length == 1
-     * @pos Retorna um índice válido dentro da lista de segmentos.
      */
     private int getIndiceSegmentoAtual(double velocidadeLinear, double tempo, double[] percorrido) {
         double percorrer = velocidadeLinear * tempo;
@@ -226,7 +220,6 @@ public class Navegante {
      * @return O segmento correspondente ao ponto fornecido, ou {@code null} se o ponto não
      * pertencer a nenhum segmento.
      * @pre posicao != null
-     * @pos Retorna o segmento que contém o ponto, ou null se não pertencer a nenhum.
      */
     public SegmentoReta getSegmentoAtual(Ponto posicao) {
         for (SegmentoReta seg : segmentos) {
