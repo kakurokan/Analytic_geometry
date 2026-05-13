@@ -83,7 +83,7 @@ public class Route {
      * @return O comprimento total da rota como um valor numérico de ponto flutuante.
      * @pos O valor retornado é ≥ 0.0.
      */
-    public double Comprimento() {
+    public double comprimento() {
         double total = 0;
 
         for (int i = 1; i < pontos.size(); i++) {

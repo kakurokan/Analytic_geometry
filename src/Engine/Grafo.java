@@ -1,7 +1,5 @@
 package Engine;
 
-import com.sun.source.tree.Tree;
-
 import java.util.*;
 
 /**
@@ -14,7 +12,7 @@ import java.util.*;
  * @inv a lista de rotas não pode ser vazia
  */
 public class Grafo {
-    static Comparator<Ponto> comparador;
+    public static Comparator<Ponto> comparador;
     private final Map<Ponto, Set<Ponto>> grafo;
 
     /**
@@ -32,23 +30,23 @@ public class Grafo {
      *                                  nenhum segmento livre (sem interseção) for encontrado.
      */
     public Grafo(List<Route> rotas, List<Obstaculo> obstaculo) {
-        if(rotas.isEmpty()) {
+        if (rotas.isEmpty()) {
             throw new IllegalArgumentException("Grafo:iv");
         }
 
         comparador = Comparator.comparingDouble(Ponto::getX).thenComparingDouble(Ponto::getY);
-        grafo =  new TreeMap<>(comparador);
+        grafo = new TreeMap<>(comparador);
         List<SegmentoReta> segmentosRotas = getSegmentosRotas(rotas);
-        for(SegmentoReta segmento : segmentosRotas) {
-            if (intersetaObstaculo(segmento,obstaculo)) {
+        for (SegmentoReta segmento : segmentosRotas) {
+            if (intersetaObstaculo(segmento, obstaculo)) {
                 continue;
             }
             Ponto p1 = segmento.getA();
             Ponto p2 = segmento.getB();
-            grafo.computeIfAbsent(p1, k->new TreeSet<>(comparador)).add(p2);
-            grafo.computeIfAbsent(p2, k->new TreeSet<>(comparador)).add(p1);
+            grafo.computeIfAbsent(p1, k -> new TreeSet<>(comparador)).add(p2);
+            grafo.computeIfAbsent(p2, k -> new TreeSet<>(comparador)).add(p1);
         }
-        if(grafo.isEmpty()) {
+        if (grafo.isEmpty()) {
             throw new IllegalArgumentException("Não existe nenhum segmento livre");
         }
     }
@@ -56,7 +54,7 @@ public class Grafo {
     /**
      * Retorna uma visão imutável do grafo no formato de um mapa onde cada chave
      * representa um ponto e o valor associado é um conjunto imutável dos pontos
-     * adjacentes conectados a ele.
+     * adjacentes lhe conectados.
      * <p>
      * O mapa retornado é uma cópia baseada no grafo interno da classe, mas
      * disponibilizada sem permitir modificações externas, garantindo a integridade
@@ -71,7 +69,7 @@ public class Grafo {
     }
 
     /**
-     * Verifica se um segmento de reta intercepta algum dos obstáculos fornecidos.
+     * Verifica se um segmento de reta interceta algum dos obstáculos fornecidos.
      *
      * @param segmento  O segmento de reta a ser verificado. Este é representado
      *                  por dois pontos {@code A} e {@code B}, que definem o
@@ -79,11 +77,11 @@ public class Grafo {
      * @param obstaculo A lista de obstáculos contra os quais a interseção será
      *                  verificada. Cada obstáculo fornece métodos para calcular
      *                  pontos de interseção com o segmento.
-     * @return {@code true} se o segmento de reta interceptar qualquer um dos
+     * @return {@code true} se o segmento de reta intercetar qualquer um dos
      * obstáculos, {@code false} caso contrário.
      */
     private boolean intersetaObstaculo(SegmentoReta segmento, List<Obstaculo> obstaculo) {
-        if (obstaculo ==null || obstaculo.isEmpty()) return false;
+        if (obstaculo == null || obstaculo.isEmpty()) return false;
         Route rota = new Route(
                 List.of(segmento.getA(), segmento.getB()));
         for (Obstaculo o : obstaculo) {
@@ -104,54 +102,56 @@ public class Grafo {
      *              Cada objeto {@code Route} deve conter uma ou mais definições
      *              de segmentos de reta.
      * @return Uma lista de objetos {@code SegmentoReta} extraídos das rotas fornecidas.
-    */
-     private List<SegmentoReta> getSegmentosRotas(List<Route> rotas) {
+     */
+    private List<SegmentoReta> getSegmentosRotas(List<Route> rotas) {
         List<SegmentoReta> segmentos = new ArrayList<>();
         for (Route rota : rotas) {
             segmentos.addAll(rota.getSegmentos());
         }
-        Map <SegmentoReta, List<Ponto>> pontosPorSegmento = new HashMap<>();
-        for (SegmentoReta seg: segmentos) {
+        Map<SegmentoReta, List<Ponto>> pontosPorSegmento = new HashMap<>();
+        for (SegmentoReta seg : segmentos) {
             pontosPorSegmento.put(seg, new ArrayList<>());
             pontosPorSegmento.get(seg).add(seg.getA());
             pontosPorSegmento.get(seg).add(seg.getB());
         }
 
-        for(int i =0; i<segmentos.size(); i++) {
-            for (int j=i+1; j<segmentos.size(); j++) {
+        for (int i = 0; i < segmentos.size(); i++) {
+            for (int j = i + 1; j < segmentos.size(); j++) {
                 SegmentoReta seg1 = segmentos.get(i);
                 SegmentoReta seg2 = segmentos.get(j);
 
                 Ponto inter = seg1.intersect(seg2);
-                if (inter == null) { continue;
+                if (inter == null) {
+                    continue;
                 }
 
-                adicionarPontoUnico(pontosPorSegmento.get(seg1),inter);
-                adicionarPontoUnico(pontosPorSegmento.get(seg2),inter);
+                adicionarPontoUnico(pontosPorSegmento.get(seg1), inter);
+                adicionarPontoUnico(pontosPorSegmento.get(seg2), inter);
             }
         }
         List<SegmentoReta> segmentosValidos = new ArrayList<>();
-        for (SegmentoReta seg: pontosPorSegmento.keySet()) {
+        for (SegmentoReta seg : pontosPorSegmento.keySet()) {
             List<Ponto> pontosSeg = pontosPorSegmento.get(seg);
 
             pontosSeg.sort(Comparator.comparingDouble(
                     p -> p.distanciaPara(seg.getA())
             ));
 
-            for (int i =1;i<pontosSeg.size();i++) {
-                segmentosValidos.add(new SegmentoReta(pontosSeg.get(i-1),pontosSeg.get(i)));
+            for (int i = 1; i < pontosSeg.size(); i++) {
+                segmentosValidos.add(new SegmentoReta(pontosSeg.get(i - 1), pontosSeg.get(i)));
             }
         }
 
         return segmentosValidos;
     }
 
-    private void adicionarPontoUnico(List<Ponto> lista, Ponto ponto){
-         for (Ponto p: lista) {
-             if (p.equals(ponto)) return;
-         }
-         lista.add(ponto);
+    private void adicionarPontoUnico(List<Ponto> lista, Ponto ponto) {
+        for (Ponto p : lista) {
+            if (p.equals(ponto)) return;
+        }
+        lista.add(ponto);
     }
+
     /**
      * Adiciona um ponto ao grafo e estabelece conexões entre o ponto fornecido e os extremos
      * de um segmento de reta especificado, se o ponto não for igual a um dos extremos do segmento.

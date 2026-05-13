@@ -7,7 +7,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RouteTest {
-    
+
     @Test
     void construtor_ArrayComNumeroImparDeCoordenadas_LancaIllegalArgumentException() {
         double[] coordenadas = {2.5, 3.0, 2.0};
@@ -38,7 +38,7 @@ class RouteTest {
         );
         Route rota = new Route(pontos);
 
-        assertEquals(6.24, rota.Comprimento(), 0.01, "O comprimento total deve ser a soma das distâncias entre os pontos consecutivos.");
+        assertEquals(6.24, rota.comprimento(), 0.01, "O comprimento total deve ser a soma das distâncias entre os pontos consecutivos.");
     }
 
     @Test
@@ -50,7 +50,7 @@ class RouteTest {
         );
         Route rota = new Route(pontos);
 
-        assertEquals(4.24, rota.Comprimento(), 0.01);
+        assertEquals(4.24, rota.comprimento(), 0.01);
     }
 
     @Test
@@ -62,7 +62,7 @@ class RouteTest {
         );
         Route rota = new Route(pontos);
 
-        assertEquals(3.61, rota.Comprimento(), 0.01, "Pontos consecutivos iguais na rota não devem aumentar o comprimento.");
+        assertEquals(3.61, rota.comprimento(), 0.01, "Pontos consecutivos iguais na rota não devem aumentar o comprimento.");
     }
 
     @Test
