@@ -49,6 +49,16 @@ class SimuladorTest {
     }
 
     @Test
+    void reiniciarSimulacao(){
+        simulador.atualizar(2.0);
+        SnapshotSimulacao snapshotAntes = simulador.gerarSnapshot();
+        simulador.reiniciarSimulacao();
+        SnapshotSimulacao snapshotDepois = simulador.gerarSnapshot();
+        assertNotEquals(snapshotAntes,snapshotDepois);
+    }
+
+
+    @Test
     void getSnapshotSimulacao_VerificaNavioEmEspera(){
         SnapshotSimulacao.NavioEmEspera navioEmEspera = new SnapshotSimulacao.NavioEmEspera(navio.getHorarioPartida(),navio.getPortoDestino().getNome(),navio.getVelocidadeLinear());
         SnapshotSimulacao snapshot = simulador.gerarSnapshot();
